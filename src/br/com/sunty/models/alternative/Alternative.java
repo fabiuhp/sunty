@@ -2,6 +2,8 @@ package br.com.sunty.models.alternative;
 
 import br.com.sunty.models.activity.Question;
 
+import static br.com.sunty.models.validations.Validation.*;
+
 public class Alternative {
 
     private Long id;
@@ -12,6 +14,9 @@ public class Alternative {
     private Question question;
 
     public Alternative(Long id, String explainText, Boolean isCorrect, Question question) {
+        emptyFieldValidation(explainText, "Explicação não pode ser nula.");
+        classNonNullValidation(question, "Questão não pode ser nulo.");
+
         this.id = id;
         this.explainText = explainText;
         this.isCorrect = isCorrect;

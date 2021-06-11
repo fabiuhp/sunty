@@ -1,5 +1,7 @@
 package br.com.sunty.models.Category;
 
+import static br.com.sunty.models.validations.Validation.*;
+
 public class Category {
 
     private Long id;
@@ -13,6 +15,9 @@ public class Category {
     private String hexColorHtml;
 
     public Category(Long id, String name, String urlCode) {
+        emptyFieldValidation(name, "Nome não pode ser nulo.");
+        urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
+
         this.id = id;
         this.name = name;
         this.urlCode = urlCode;

@@ -2,6 +2,8 @@ package br.com.sunty.models.section;
 
 import br.com.sunty.models.course.Course;
 
+import static br.com.sunty.models.validations.Validation.*;
+
 public class Section {
 
     private Long id;
@@ -13,6 +15,10 @@ public class Section {
     private Course course;
 
     public Section(Long id, String name, String urlCode, Course course) {
+        emptyFieldValidation(name, "Nome não pode ser nulo.");
+        urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
+        classNonNullValidation(course, "Curso não pode ser nulo.");
+
         this.id = id;
         this.name = name;
         this.urlCode = urlCode;

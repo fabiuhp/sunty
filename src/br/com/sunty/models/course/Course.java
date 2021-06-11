@@ -3,6 +3,8 @@ package br.com.sunty.models.course;
 import br.com.sunty.models.Category.Category;
 import br.com.sunty.models.instructor.Instructor;
 
+import static br.com.sunty.models.validations.Validation.*;
+
 public class Course {
 
     private Long id;
@@ -17,6 +19,12 @@ public class Course {
     private Category category;
 
     public Course(Long id, String name, String urlCode, Integer timeForFinish, Instructor instructor, Category category) {
+        emptyFieldValidation(name, "Nome não pode ser nulo.");
+        urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
+        intervalValidation(1, 20, timeForFinish, "O tempo do curso deve ser entre 1 e 20 horas.");
+        classNonNullValidation(instructor, "Instrutor não pode ser nulo.");
+        classNonNullValidation(category, "Categoria não pode ser nula.");
+
         this.id = id;
         this.name = name;
         this.urlCode = urlCode;

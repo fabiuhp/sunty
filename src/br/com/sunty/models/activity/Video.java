@@ -3,6 +3,8 @@ package br.com.sunty.models.activity;
 import br.com.sunty.models.activity.utils.Activity;
 import br.com.sunty.models.section.Section;
 
+import static br.com.sunty.models.validations.Validation.*;
+
 public class Video extends Activity {
 
     private String url;
@@ -10,6 +12,10 @@ public class Video extends Activity {
     private String transcription;
 
     public Video(Long id, String name, String urlCode, Section section, String url) {
+        emptyFieldValidation(name, "Nome não pode ser nulo.");
+        urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
+        classNonNullValidation(section, "Seção não pode ser nula.");
+
         super.setId(id);
         super.setName(name);
         super.setUrlCode(urlCode);

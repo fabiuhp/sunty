@@ -2,6 +2,8 @@ package br.com.sunty.models.Category.SubCategory;
 
 import br.com.sunty.models.Category.Category;
 
+import static br.com.sunty.models.validations.Validation.*;
+
 public class SubCategory {
 
     private Long id;
@@ -14,6 +16,10 @@ public class SubCategory {
     private Category category;
 
     public SubCategory(Long id, String name, String urlCode, Category category) {
+        emptyFieldValidation(name, "Nome não pode ser nulo.");
+        urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
+        classNonNullValidation(category, "Categoria não pode ser nula.");
+
         this.id = id;
         this.name = name;
         this.urlCode = urlCode;
