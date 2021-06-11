@@ -16,7 +16,7 @@ public class Validation {
     }
 
     public static void urlValidation(String urlCode, String err) {
-        if (urlCode.matches("[-?a-z]+")) {
+        if (!urlCode.matches("[-?a-z]+")) {
             throw new IllegalArgumentException(err);
         }
     }

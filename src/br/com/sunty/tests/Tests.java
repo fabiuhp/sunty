@@ -17,10 +17,10 @@ public class Tests {
         Instructor instructor1 = new Instructor(1L, "Fabio");
         Category category1 = new Category(1L, "Cursos de Java", "carreira-java");
         Course curso1 = new Course(1L, "Java Basico", "java-basico", 2, instructor1, category1);
-        Section section1 = new Section(1L, "secao 1", "sec1", curso1);
+        Section section1 = new Section(1L, "secao 1", "sec", curso1);
 
         //Criar vídeo
-        Video video1 = new Video(1L, "Video inicial Java", "inicio-java", section1, "video-java-1");
+        Video video1 = new Video(1L, "Video inicial Java", "inicio-java", section1, "video-java");
 
         System.out.println(video1.toString());
         video1.setTime(2);
@@ -33,7 +33,7 @@ public class Tests {
         System.out.println(question1.toString());
 
         //Criar explicação
-        Explanation explanation1 = new Explanation(1L, "Explic 1", "explic-1", section1, "Texto da explicação.");
+        Explanation explanation1 = new Explanation(1L, "Explic 1", "explic", section1, "Texto da explicação.");
         System.out.println(explanation1.toString());
 
         //Criar alternativa
@@ -43,8 +43,8 @@ public class Tests {
         System.out.println(alternative2.toString());
 
         //Criar subcategoria
-        SubCategory subCategory1 = new SubCategory(1L, "SubCategoria 1", "subcat-1", category1);
-        SubCategory subCategory2 = new SubCategory(2L, "SubCategoria 2", "subcat-2", category1);
+        SubCategory subCategory1 = new SubCategory(1L, "SubCategoria 1", "subcat-cde", category1);
+        SubCategory subCategory2 = new SubCategory(2L, "SubCategoria 2", "subcat-abc", category1);
         System.out.println(subCategory1.toString());
         System.out.println(subCategory2.toString());
     }
