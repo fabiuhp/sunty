@@ -1,4 +1,4 @@
-package br.com.sunty.models.activity.utils;
+package br.com.sunty.models.activity;
 
 import br.com.sunty.models.section.Section;
 
@@ -10,6 +10,13 @@ public abstract class Activity {
     private Boolean isActive;
     private Integer order;
     private Section section;
+
+    public Activity(Long id, String name, String urlCode, Section section) {
+        this.id = id;
+        this.name = name;
+        this.urlCode = urlCode;
+        this.section = section;
+    }
 
     public Long getId() {
         return id;

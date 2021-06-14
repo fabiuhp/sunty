@@ -1,6 +1,5 @@
 package br.com.sunty.models.activity;
 
-import br.com.sunty.models.activity.utils.Activity;
 import br.com.sunty.models.section.Section;
 
 import static br.com.sunty.models.validations.Validation.*;
@@ -10,14 +9,12 @@ public class Explanation extends Activity {
     private String text;
 
     public Explanation(Long id, String name, String urlCode, Section section, String text) {
-        emptyFieldValidation(name, "Nome não pode ser nulo.");
+        super(id, name, urlCode, section);
+
+        nonEmptyFieldValidation(name, "Nome não pode ser nulo.");
         urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
         classNonNullValidation(section, "Seção não pode ser nula.");
 
-        super.setId(id);
-        super.setName(name);
-        super.setUrlCode(urlCode);
-        super.setSection(section);
         this.text = text;
     }
 

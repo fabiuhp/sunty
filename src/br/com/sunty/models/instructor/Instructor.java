@@ -1,6 +1,6 @@
 package br.com.sunty.models.instructor;
 
-import static br.com.sunty.models.validations.Validation.emptyFieldValidation;
+import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
 
 public class Instructor {
 
@@ -8,7 +8,7 @@ public class Instructor {
     private String name;
 
     public Instructor(Long id, String name) {
-        emptyFieldValidation(name, "Nome não pode ser nulo.");
+        nonEmptyFieldValidation(name, "Nome não pode ser nulo.");
 
         this.id = id;
         this.name = name;

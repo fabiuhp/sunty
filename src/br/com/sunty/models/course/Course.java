@@ -1,6 +1,6 @@
 package br.com.sunty.models.course;
 
-import br.com.sunty.models.Category.Category;
+import br.com.sunty.models.category.Category;
 import br.com.sunty.models.instructor.Instructor;
 
 import static br.com.sunty.models.validations.Validation.*;
@@ -10,25 +10,26 @@ public class Course {
     private Long id;
     private String name;
     private String urlCode;
-    private Integer timeForFinish;
-    private CourseVisibility courseVisibility;
+    private int timeToFinish;
+    private CourseVisibility visibility = CourseVisibility.PRIVATE;
     private String targetAudience;
     private Instructor instructor;
     private String syllabus;
     private String developedSkills;
     private Category category;
 
-    public Course(Long id, String name, String urlCode, Integer timeForFinish, Instructor instructor, Category category) {
-        emptyFieldValidation(name, "Nome não pode ser nulo.");
+    public Course(Long id, String name, String urlCode, int timeToFinish, Instructor instructor, Category category) {
+        nonEmptyFieldValidation(name, "Nome não pode ser nulo.");
+        nonEmptyFieldValidation(urlCode, "Url do curso não pode ser nula ou vazia.");
         urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
-        intervalValidation(1, 20, timeForFinish, "O tempo do curso deve ser entre 1 e 20 horas.");
+        intervalValidation(1, 20, timeToFinish, "O tempo do curso deve ser entre 1 e 20 horas.");
         classNonNullValidation(instructor, "Instrutor não pode ser nulo.");
         classNonNullValidation(category, "Categoria não pode ser nula.");
 
         this.id = id;
         this.name = name;
         this.urlCode = urlCode;
-        this.timeForFinish = timeForFinish;
+        this.timeToFinish = timeToFinish;
         this.instructor = instructor;
         this.category = category;
     }
@@ -57,20 +58,20 @@ public class Course {
         this.urlCode = urlCode;
     }
 
-    public Integer getTimeForFinish() {
-        return timeForFinish;
+    public Integer getTimeToFinish() {
+        return timeToFinish;
     }
 
-    public void setTimeForFinish(Integer timeForFinish) {
-        this.timeForFinish = timeForFinish;
+    public void setTimeToFinish(Integer timeToFinish) {
+        this.timeToFinish = timeToFinish;
     }
 
-    public CourseVisibility getCourseVisibility() {
-        return courseVisibility;
+    public CourseVisibility getVisibility() {
+        return visibility;
     }
 
-    public void setCourseVisibility(CourseVisibility courseVisibility) {
-        this.courseVisibility = courseVisibility;
+    public void setVisibility(CourseVisibility visibility) {
+        this.visibility = visibility;
     }
 
     public String getTargetAudience() {
@@ -119,8 +120,8 @@ public class Course {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", urlCode='" + urlCode + '\'' +
-                ", timeForFinish=" + timeForFinish +
-                ", courseVisibility=" + courseVisibility +
+                ", timeToFinish=" + timeToFinish +
+                ", visibility=" + visibility +
                 ", targetAudience='" + targetAudience + '\'' +
                 ", instructor=" + instructor +
                 ", syllabus='" + syllabus + '\'' +

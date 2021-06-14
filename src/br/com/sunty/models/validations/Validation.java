@@ -3,20 +3,20 @@ package br.com.sunty.models.validations;
 public class Validation {
 
     //Os métodos static ou métodos da classe são funções que não dependem de nenhuma variável de instância
-    public static void emptyFieldValidation(String text, String err) {
+    public static void nonEmptyFieldValidation(String text, String err) {
         if (text == null || text.isBlank()) {
             throw new IllegalArgumentException(err);
         }
     }
 
-    public static void intervalValidation(Integer minimumTime, Integer maximumTime, Integer timeForFinish, String err) {
-        if (timeForFinish > maximumTime || timeForFinish < minimumTime) {
+    public static void intervalValidation(int minimum, int maximum, int value, String err) {
+        if (value > maximum || value < minimum) {
             throw new IllegalArgumentException(err);
         }
     }
 
     public static void urlValidation(String urlCode, String err) {
-        if (!urlCode.matches("[-?a-z]+")) {
+        if (!urlCode.matches("[-a-z]+")) {
             throw new IllegalArgumentException(err);
         }
     }

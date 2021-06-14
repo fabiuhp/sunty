@@ -10,12 +10,12 @@ public class Section {
     private String name;
     private String urlCode;
     private Integer order;
-    private Boolean isTest = true;
-    private Boolean isActive = true;
+    private Boolean isExam = false;
+    private Boolean isActive = false;
     private Course course;
 
     public Section(Long id, String name, String urlCode, Course course) {
-        emptyFieldValidation(name, "Nome não pode ser nulo.");
+        nonEmptyFieldValidation(name, "Nome não pode ser nulo.");
         urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
         classNonNullValidation(course, "Curso não pode ser nulo.");
 
@@ -58,11 +58,11 @@ public class Section {
     }
 
     public Boolean getTest() {
-        return isTest;
+        return isExam;
     }
 
     public void setTest(Boolean test) {
-        isTest = test;
+        isExam = test;
     }
 
     public Boolean getActive() {

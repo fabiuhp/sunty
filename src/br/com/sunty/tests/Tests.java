@@ -1,11 +1,11 @@
 package br.com.sunty.tests;
 
-import br.com.sunty.models.Category.Category;
-import br.com.sunty.models.Category.SubCategory.SubCategory;
+import br.com.sunty.models.category.Category;
+import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.activity.Explanation;
 import br.com.sunty.models.activity.Question;
 import br.com.sunty.models.activity.Video;
-import br.com.sunty.models.activity.utils.QuestionType;
+import br.com.sunty.models.activity.QuestionType;
 import br.com.sunty.models.alternative.Alternative;
 import br.com.sunty.models.course.Course;
 import br.com.sunty.models.instructor.Instructor;
@@ -15,8 +15,11 @@ public class Tests {
     public static void main(String[] args) {
         //Criar instrutor, categoria, curso e seção
         Instructor instructor1 = new Instructor(1L, "Fabio");
-        Category category1 = new Category(1L, "Cursos de Java", "carreira-java");
+        Category category1 = new Category("Cursos de Java", "carreira-java");
         Course curso1 = new Course(1L, "Java Basico", "java-basico", 2, instructor1, category1);
+//        Course curso1 = new Course(1L, "Java Basico", null, 2, instructor1, category1);
+//        Course curso1 = new Course(1L, "Java Basico", "", 2, instructor1, category1);
+//        Course curso1 = new Course(1L, "Java Basico", "            ", 2, instructor1, category1);
         Section section1 = new Section(1L, "secao 1", "sec", curso1);
 
         //Criar vídeo
@@ -29,7 +32,7 @@ public class Tests {
         System.out.println(video1);
 
         //Criar questão
-        Question question1 = new Question(1L, "O que significa POO?", "questao-poo", section1, "Pergunta 1", QuestionType.MULTIPLEANSWER);
+        Question question1 = new Question(1L, "O que significa POO?", "questao-poo", section1, "Pergunta 1", QuestionType.MULTIPLE_ANSWER);
         System.out.println(question1);
 
         //Criar explicação

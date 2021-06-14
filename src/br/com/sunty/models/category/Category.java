@@ -1,4 +1,4 @@
-package br.com.sunty.models.Category;
+package br.com.sunty.models.category;
 
 import static br.com.sunty.models.validations.Validation.*;
 
@@ -12,13 +12,12 @@ public class Category {
     private Boolean isActive;
     private Integer order;
     private String pathImg;
-    private String hexColorHtml;
+    private String hexHtmlColor;
 
-    public Category(Long id, String name, String urlCode) {
-        emptyFieldValidation(name, "Nome não pode ser nulo.");
+    public Category(String name, String urlCode) {
+        nonEmptyFieldValidation(name, "Nome não pode ser nulo.");
         urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
 
-        this.id = id;
         this.name = name;
         this.urlCode = urlCode;
     }
@@ -87,11 +86,11 @@ public class Category {
         this.pathImg = pathImg;
     }
 
-    public String getHexColorHtml() {
-        return hexColorHtml;
+    public String getHexHtmlColor() {
+        return hexHtmlColor;
     }
 
-    public void setHexColorHtml(String hexColorHtml) {
-        this.hexColorHtml = hexColorHtml;
+    public void setHexHtmlColor(String hexHtmlColor) {
+        this.hexHtmlColor = hexHtmlColor;
     }
 }

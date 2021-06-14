@@ -10,11 +10,11 @@ public class Alternative {
     private String explainText;
     private Integer order;
     private Boolean isCorrect;
-    private String justificative;
+    private String justification;
     private Question question;
 
     public Alternative(Long id, String explainText, Boolean isCorrect, Question question) {
-        emptyFieldValidation(explainText, "Explicação não pode ser nula.");
+        nonEmptyFieldValidation(explainText, "Explicação não pode ser nula.");
         classNonNullValidation(question, "Questão não pode ser nulo.");
 
         this.id = id;
@@ -55,12 +55,12 @@ public class Alternative {
         isCorrect = correct;
     }
 
-    public String getJustificative() {
-        return justificative;
+    public String getJustification() {
+        return justification;
     }
 
-    public void setJustificative(String justificative) {
-        this.justificative = justificative;
+    public void setJustification(String justification) {
+        this.justification = justification;
     }
 
     public Question getQuestion() {
@@ -78,7 +78,7 @@ public class Alternative {
                 ", explainText='" + explainText + '\'' +
                 ", order=" + order +
                 ", isCorrect=" + isCorrect +
-                ", justificative='" + justificative + '\'' +
+                ", justification='" + justification + '\'' +
                 ", question=" + question +
                 '}';
     }
