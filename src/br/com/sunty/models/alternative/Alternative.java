@@ -7,17 +7,17 @@ import static br.com.sunty.models.validations.Validation.*;
 public class Alternative {
 
     private Long id;
-    private String explainText;
+    private String explanation;
     private Integer order;
     private Boolean isCorrect;
     private String justification;
     private Question question;
 
-    public Alternative(String explainText, Boolean isCorrect, Question question) {
-        nonEmptyFieldValidation(explainText, "Explicação");
+    public Alternative(String explanation, Boolean isCorrect, Question question) {
+        nonEmptyFieldValidation(explanation, "Explicação");
         classNonNullValidation(question, "Questão");
 
-        this.explainText = explainText;
+        this.explanation = explanation;
         this.isCorrect = isCorrect;
         this.question = question;
     }
@@ -30,12 +30,12 @@ public class Alternative {
         this.id = id;
     }
 
-    public String getExplainText() {
-        return explainText;
+    public String getExplanation() {
+        return explanation;
     }
 
-    public void setExplainText(String explainText) {
-        this.explainText = explainText;
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
     }
 
     public Integer getOrder() {
@@ -74,7 +74,7 @@ public class Alternative {
     public String toString() {
         return "Alternative{" +
                 "id=" + id +
-                ", explainText='" + explainText + '\'' +
+                ", explanation='" + explanation + '\'' +
                 ", order=" + order +
                 ", isCorrect=" + isCorrect +
                 ", justification='" + justification + '\'' +
