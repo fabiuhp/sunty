@@ -13,12 +13,6 @@ public class Video extends Activity {
     public Video(Long id, String name, String urlCode, Section section, String url) {
         super(id, name, urlCode, section);
 
-        nonEmptyIdValidation(id);
-        nonEmptyFieldValidation(name, "Nome");
-        nonEmptyFieldValidation(urlCode, "Url");
-        urlValidation(urlCode);
-        classNonNullValidation(section, "Seção");
-
         this.url = url;
     }
 

@@ -11,12 +11,6 @@ public class Explanation extends Activity {
     public Explanation(Long id, String name, String urlCode, Section section, String text) {
         super(id, name, urlCode, section);
 
-        nonEmptyIdValidation(id);
-        nonEmptyFieldValidation(urlCode, "Url");
-        urlValidation(urlCode);
-        nonEmptyFieldValidation(name, "Nome");
-        classNonNullValidation(section, "Seção");
-
         this.text = text;
     }
 

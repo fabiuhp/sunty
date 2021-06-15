@@ -2,6 +2,8 @@ package br.com.sunty.models.activity;
 
 import br.com.sunty.models.section.Section;
 
+import static br.com.sunty.models.validations.Validation.*;
+
 public abstract class Activity {
 
     private Long id;
@@ -16,6 +18,12 @@ public abstract class Activity {
         this.name = name;
         this.urlCode = urlCode;
         this.section = section;
+
+        nonEmptyIdValidation(id);
+        nonEmptyFieldValidation(urlCode, "Url");
+        urlValidation(urlCode);
+        nonEmptyFieldValidation(name, "Nome");
+        classNonNullValidation(section, "Seção");
     }
 
     public Long getId() {

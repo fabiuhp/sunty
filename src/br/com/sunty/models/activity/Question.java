@@ -12,12 +12,7 @@ public class Question extends Activity {
     public Question(Long id, String name, String urlCode, Section section, String description, QuestionType questionType) {
         super(id, name, urlCode, section);
 
-        nonEmptyIdValidation(id);
-        nonEmptyFieldValidation(name, "Nome");
         nonEmptyFieldValidation(description, "Descrição");
-        nonEmptyFieldValidation(urlCode, "Url");
-        urlValidation(urlCode);
-        classNonNullValidation(section, "Seção não pode ser nula.");
 
         this.description = description;
         this.questionType = questionType;
