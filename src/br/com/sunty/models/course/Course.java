@@ -1,6 +1,5 @@
 package br.com.sunty.models.course;
 
-import br.com.sunty.models.category.Category;
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.instructor.Instructor;
 
@@ -11,7 +10,7 @@ public class Course {
     private Long id;
     private String name;
     private String urlCode;
-    private int timeToFinish;
+    private int timeToFinishAnHours;
     private CourseVisibility visibility = CourseVisibility.PRIVATE;
     private String targetAudience;
     private Instructor instructor;
@@ -19,17 +18,17 @@ public class Course {
     private String developedSkills;
     private SubCategory subCategory;
 
-    public Course(String name, String urlCode, int timeToFinish, Instructor instructor, SubCategory subCategory) {
+    public Course(String name, String urlCode, int timeToFinishAnHours, Instructor instructor, SubCategory subCategory) {
         nonEmptyFieldValidation(name, "Nome");
         nonEmptyFieldValidation(urlCode, "Url");
         urlValidation(urlCode);
-        intervalValidation(1, 20, timeToFinish, "O tempo do curso deve ser entre 1 e 20 horas.");
+        intervalValidation(1, 20, timeToFinishAnHours, "O tempo do curso deve ser entre 1 e 20 horas.");
         classNonNullValidation(instructor, "Instrutor");
         classNonNullValidation(subCategory, "Categoria");
 
         this.name = name;
         this.urlCode = urlCode;
-        this.timeToFinish = timeToFinish;
+        this.timeToFinishAnHours = timeToFinishAnHours;
         this.instructor = instructor;
         this.subCategory = subCategory;
     }
@@ -58,12 +57,12 @@ public class Course {
         this.urlCode = urlCode;
     }
 
-    public Integer getTimeToFinish() {
-        return timeToFinish;
+    public Integer getTimeToFinishAnHours() {
+        return timeToFinishAnHours;
     }
 
-    public void setTimeToFinish(Integer timeToFinish) {
-        this.timeToFinish = timeToFinish;
+    public void setTimeToFinishAnHours(Integer timeToFinishAnHours) {
+        this.timeToFinishAnHours = timeToFinishAnHours;
     }
 
     public CourseVisibility getVisibility() {
@@ -120,7 +119,7 @@ public class Course {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", urlCode='" + urlCode + '\'' +
-                ", timeToFinish=" + timeToFinish +
+                ", timeToFinishAnHours=" + timeToFinishAnHours +
                 ", visibility=" + visibility +
                 ", targetAudience='" + targetAudience + '\'' +
                 ", instructor=" + instructor +
