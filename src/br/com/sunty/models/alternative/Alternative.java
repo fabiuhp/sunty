@@ -14,8 +14,9 @@ public class Alternative {
     private Question question;
 
     public Alternative(Long id, String explainText, Boolean isCorrect, Question question) {
-        nonEmptyFieldValidation(explainText, "Explicação não pode ser nula.");
-        classNonNullValidation(question, "Questão não pode ser nulo.");
+        nonEmptyIdValidation(id);
+        nonEmptyFieldValidation(explainText, "Explicação");
+        classNonNullValidation(question, "Questão");
 
         this.id = id;
         this.explainText = explainText;

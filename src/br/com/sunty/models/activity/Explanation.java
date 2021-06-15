@@ -11,9 +11,11 @@ public class Explanation extends Activity {
     public Explanation(Long id, String name, String urlCode, Section section, String text) {
         super(id, name, urlCode, section);
 
-        nonEmptyFieldValidation(name, "Nome não pode ser nulo.");
-        urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
-        classNonNullValidation(section, "Seção não pode ser nula.");
+        nonEmptyIdValidation(id);
+        nonEmptyFieldValidation(urlCode, "Url");
+        urlValidation(urlCode);
+        nonEmptyFieldValidation(name, "Nome");
+        classNonNullValidation(section, "Seção");
 
         this.text = text;
     }

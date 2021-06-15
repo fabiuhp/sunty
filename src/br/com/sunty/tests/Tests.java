@@ -15,11 +15,22 @@ public class Tests {
     public static void main(String[] args) {
         //Criar instrutor, categoria, curso e seção
         Instructor instructor1 = new Instructor(1L, "Fabio");
+//        Instructor instructor1 = null;
+//        Instructor instructor1 = new Instructor(1L, null);
+//        Instructor instructor1 = new Instructor(null, "Fabio");
+
         Category category1 = new Category("Cursos de Java", "carreira-java");
-        Course curso1 = new Course(1L, "Java Basico", "java-basico", 2, instructor1, category1);
+//        Category category1 = new Category(null, "carreira-java");
+//        Category category1 = new Category("Cursos de Java", null);
+//        Category category1 = new Category("", "carreira-java");
+//        Category category1 = new Category("Cursos de Java", "             ");
+
+//        Course curso1 = new Course(1L, "Java Basico", "java-basico", 2, instructor1, category1);
 //        Course curso1 = new Course(1L, "Java Basico", null, 2, instructor1, category1);
 //        Course curso1 = new Course(1L, "Java Basico", "", 2, instructor1, category1);
-//        Course curso1 = new Course(1L, "Java Basico", "            ", 2, instructor1, category1);
+        Course curso1 = new Course(1L, "Java Basico", "            ", 2, instructor1, category1);
+//        Course curso1 = new Course(1L, "Java Basico", "java-basico", 2, null, category1);
+
         Section section1 = new Section(1L, "secao 1", "sec", curso1);
 
         //Criar vídeo

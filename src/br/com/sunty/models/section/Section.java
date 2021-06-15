@@ -15,9 +15,11 @@ public class Section {
     private Course course;
 
     public Section(Long id, String name, String urlCode, Course course) {
-        nonEmptyFieldValidation(name, "Nome não pode ser nulo.");
-        urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
-        classNonNullValidation(course, "Curso não pode ser nulo.");
+        nonEmptyIdValidation(id);
+        nonEmptyFieldValidation(name, "Nome");
+        nonEmptyFieldValidation(urlCode, "Url");
+        urlValidation(urlCode);
+        classNonNullValidation(course, "Curso");
 
         this.id = id;
         this.name = name;

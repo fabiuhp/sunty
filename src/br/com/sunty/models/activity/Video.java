@@ -13,9 +13,11 @@ public class Video extends Activity {
     public Video(Long id, String name, String urlCode, Section section, String url) {
         super(id, name, urlCode, section);
 
-        nonEmptyFieldValidation(name, "Nome não pode ser nulo.");
-        urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
-        classNonNullValidation(section, "Seção não pode ser nula.");
+        nonEmptyIdValidation(id);
+        nonEmptyFieldValidation(name, "Nome");
+        nonEmptyFieldValidation(urlCode, "Url");
+        urlValidation(urlCode);
+        classNonNullValidation(section, "Seção");
 
         this.url = url;
     }

@@ -12,11 +12,12 @@ public class Category {
     private Boolean isActive;
     private Integer order;
     private String pathImg;
-    private String hexHtmlColor;
+    private String hexHtmlColor; // FAZER VALIDAÇÃO VIA REGEX DO HEXADECIMAL
 
     public Category(String name, String urlCode) {
-        nonEmptyFieldValidation(name, "Nome não pode ser nulo.");
-        urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
+        nonEmptyFieldValidation(urlCode, "Url");
+        urlValidation(urlCode);
+        nonEmptyFieldValidation(name, "Nome");
 
         this.name = name;
         this.urlCode = urlCode;

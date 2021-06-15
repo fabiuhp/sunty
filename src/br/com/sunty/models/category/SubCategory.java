@@ -14,9 +14,11 @@ public class SubCategory {
     private Category category;
 
     public SubCategory(Long id, String name, String urlCode, Category category) {
-        nonEmptyFieldValidation(name, "Nome não pode ser nulo.");
-        urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
-        classNonNullValidation(category, "Categoria não pode ser nula.");
+        nonEmptyIdValidation(id);
+        nonEmptyFieldValidation(name, "Nome");
+        nonEmptyFieldValidation(urlCode, "Url");
+        urlValidation(urlCode);
+        classNonNullValidation(category, "Categoria");
 
         this.id = id;
         this.name = name;

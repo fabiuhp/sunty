@@ -19,12 +19,13 @@ public class Course {
     private Category category;
 
     public Course(Long id, String name, String urlCode, int timeToFinish, Instructor instructor, Category category) {
-        nonEmptyFieldValidation(name, "Nome não pode ser nulo.");
-        nonEmptyFieldValidation(urlCode, "Url do curso não pode ser nula ou vazia.");
-        urlValidation(urlCode, "Url só deve conter letras minusculas e traços.");
+        nonEmptyIdValidation(id);
+        nonEmptyFieldValidation(name, "Nome");
+        nonEmptyFieldValidation(urlCode, "Url");
+        urlValidation(urlCode);
         intervalValidation(1, 20, timeToFinish, "O tempo do curso deve ser entre 1 e 20 horas.");
-        classNonNullValidation(instructor, "Instrutor não pode ser nulo.");
-        classNonNullValidation(category, "Categoria não pode ser nula.");
+        classNonNullValidation(instructor, "Instrutor");
+        classNonNullValidation(category, "Categoria");
 
         this.id = id;
         this.name = name;
