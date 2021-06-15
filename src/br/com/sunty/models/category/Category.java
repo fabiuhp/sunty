@@ -12,7 +12,7 @@ public class Category {
     private Boolean isActive;
     private Integer order;
     private String pathImg;
-    private String hexHtmlColor; // FAZER VALIDAÇÃO VIA REGEX DO HEXADECIMAL
+    private String hexHtmlColor;
 
     public Category(String name, String urlCode) {
         nonEmptyFieldValidation(urlCode, "Url");
