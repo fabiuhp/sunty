@@ -9,12 +9,6 @@ public class Validation {
         }
     }
 
-    public static void nonEmptyIdValidation(Long id) {
-        if (id == null) {
-            throw new IllegalArgumentException("Id não pode ser vazio.");
-        }
-    }
-
     public static void intervalValidation(int minimum, int maximum, int value, String err) {
         if (value > maximum || value < minimum) {
             throw new IllegalArgumentException(err);

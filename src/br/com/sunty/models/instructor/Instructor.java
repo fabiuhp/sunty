@@ -7,11 +7,9 @@ public class Instructor {
     private Long id;
     private String name;
 
-    public Instructor(Long id, String name) {
-        nonEmptyIdValidation(id);
+    public Instructor(String name) {
         nonEmptyFieldValidation(name, "Nome");
 
-        this.id = id;
         this.name = name;
     }
 

@@ -8,8 +8,8 @@ public class Explanation extends Activity {
 
     private String text;
 
-    public Explanation(Long id, String name, String urlCode, Section section, String text) {
-        super(id, name, urlCode, section);
+    public Explanation(String name, String urlCode, Section section, String text) {
+        super(name, urlCode, section);
 
         this.text = text;
     }

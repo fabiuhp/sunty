@@ -14,14 +14,12 @@ public class Section {
     private Boolean isActive = false;
     private Course course;
 
-    public Section(Long id, String name, String urlCode, Course course) {
-        nonEmptyIdValidation(id);
+    public Section(String name, String urlCode, Course course) {
         nonEmptyFieldValidation(name, "Nome");
         nonEmptyFieldValidation(urlCode, "Url");
         urlValidation(urlCode);
         classNonNullValidation(course, "Curso");
 
-        this.id = id;
         this.name = name;
         this.urlCode = urlCode;
         this.course = course;

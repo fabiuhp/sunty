@@ -13,12 +13,10 @@ public class Alternative {
     private String justification;
     private Question question;
 
-    public Alternative(Long id, String explainText, Boolean isCorrect, Question question) {
-        nonEmptyIdValidation(id);
+    public Alternative(String explainText, Boolean isCorrect, Question question) {
         nonEmptyFieldValidation(explainText, "Explicação");
         classNonNullValidation(question, "Questão");
 
-        this.id = id;
         this.explainText = explainText;
         this.isCorrect = isCorrect;
         this.question = question;

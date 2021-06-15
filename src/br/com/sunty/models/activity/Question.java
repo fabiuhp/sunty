@@ -9,8 +9,8 @@ public class Question extends Activity {
     private String description;
     private QuestionType questionType;
 
-    public Question(Long id, String name, String urlCode, Section section, String description, QuestionType questionType) {
-        super(id, name, urlCode, section);
+    public Question(String name, String urlCode, Section section, String description, QuestionType questionType) {
+        super(name, urlCode, section);
 
         nonEmptyFieldValidation(description, "Descrição");
 

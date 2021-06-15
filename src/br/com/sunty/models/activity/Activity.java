@@ -13,13 +13,11 @@ public abstract class Activity {
     private Integer order;
     private Section section;
 
-    public Activity(Long id, String name, String urlCode, Section section) {
-        this.id = id;
+    public Activity(String name, String urlCode, Section section) {
         this.name = name;
         this.urlCode = urlCode;
         this.section = section;
 
-        nonEmptyIdValidation(id);
         nonEmptyFieldValidation(urlCode, "Url");
         urlValidation(urlCode);
         nonEmptyFieldValidation(name, "Nome");

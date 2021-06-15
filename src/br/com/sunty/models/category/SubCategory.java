@@ -13,14 +13,12 @@ public class SubCategory {
     private Integer order;
     private Category category;
 
-    public SubCategory(Long id, String name, String urlCode, Category category) {
-        nonEmptyIdValidation(id);
+    public SubCategory(String name, String urlCode, Category category) {
         nonEmptyFieldValidation(name, "Nome");
         nonEmptyFieldValidation(urlCode, "Url");
         urlValidation(urlCode);
         classNonNullValidation(category, "Categoria");
 
-        this.id = id;
         this.name = name;
         this.urlCode = urlCode;
         this.category = category;

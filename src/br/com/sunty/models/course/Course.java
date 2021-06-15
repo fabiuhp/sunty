@@ -19,8 +19,7 @@ public class Course {
     private String developedSkills;
     private SubCategory subCategory;
 
-    public Course(Long id, String name, String urlCode, int timeToFinish, Instructor instructor, SubCategory subCategory) {
-        nonEmptyIdValidation(id);
+    public Course(String name, String urlCode, int timeToFinish, Instructor instructor, SubCategory subCategory) {
         nonEmptyFieldValidation(name, "Nome");
         nonEmptyFieldValidation(urlCode, "Url");
         urlValidation(urlCode);
@@ -28,7 +27,6 @@ public class Course {
         classNonNullValidation(instructor, "Instrutor");
         classNonNullValidation(subCategory, "Categoria");
 
-        this.id = id;
         this.name = name;
         this.urlCode = urlCode;
         this.timeToFinish = timeToFinish;

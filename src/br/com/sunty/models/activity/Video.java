@@ -10,8 +10,8 @@ public class Video extends Activity {
     private Integer time;
     private String transcription;
 
-    public Video(Long id, String name, String urlCode, Section section, String url) {
-        super(id, name, urlCode, section);
+    public Video(String name, String urlCode, Section section, String url) {
+        super(name, urlCode, section);
 
         this.url = url;
     }
