@@ -1,6 +1,7 @@
 package br.com.sunty.models.course;
 
 import br.com.sunty.models.category.Category;
+import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.instructor.Instructor;
 
 import static br.com.sunty.models.validations.Validation.*;
@@ -16,23 +17,23 @@ public class Course {
     private Instructor instructor;
     private String syllabus;
     private String developedSkills;
-    private Category category;
+    private SubCategory subCategory;
 
-    public Course(Long id, String name, String urlCode, int timeToFinish, Instructor instructor, Category category) {
+    public Course(Long id, String name, String urlCode, int timeToFinish, Instructor instructor, SubCategory subCategory) {
         nonEmptyIdValidation(id);
         nonEmptyFieldValidation(name, "Nome");
         nonEmptyFieldValidation(urlCode, "Url");
         urlValidation(urlCode);
         intervalValidation(1, 20, timeToFinish, "O tempo do curso deve ser entre 1 e 20 horas.");
         classNonNullValidation(instructor, "Instrutor");
-        classNonNullValidation(category, "Categoria");
+        classNonNullValidation(subCategory, "Categoria");
 
         this.id = id;
         this.name = name;
         this.urlCode = urlCode;
         this.timeToFinish = timeToFinish;
         this.instructor = instructor;
-        this.category = category;
+        this.subCategory = subCategory;
     }
 
     public Long getId() {
@@ -107,12 +108,12 @@ public class Course {
         this.developedSkills = developedSkills;
     }
 
-    public Category getCategory() {
-        return category;
+    public SubCategory getSubCategory() {
+        return subCategory;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setSubCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
     }
 
     @Override
@@ -127,7 +128,7 @@ public class Course {
                 ", instructor=" + instructor +
                 ", syllabus='" + syllabus + '\'' +
                 ", developedSkills='" + developedSkills + '\'' +
-                ", category=" + category +
+                ", category=" + subCategory +
                 '}';
     }
 }
