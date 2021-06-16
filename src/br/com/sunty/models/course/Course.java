@@ -7,6 +7,8 @@ import static br.com.sunty.models.validations.Validation.*;
 
 public class Course {
 
+    public static final int MINIMUM_TIME_TO_FINISH = 1;
+    public static final int MAXIMUM_TIME_TO_FINISH = 20;
     private Long id;
     private String name;
     private String urlCode;
@@ -22,7 +24,7 @@ public class Course {
         nonEmptyFieldValidation(name, "Nome");
         nonEmptyFieldValidation(urlCode, "Url");
         urlValidation(urlCode);
-        intervalValidation(1, 20, timeToFinishAnHours, "O tempo do curso deve ser entre 1 e 20 horas.");
+        intervalValidation(MINIMUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH, timeToFinishAnHours, "O tempo do curso deve ser entre 1 e 20 horas.");
         classNonNullValidation(instructor, "Instrutor");
         classNonNullValidation(subCategory, "Categoria");
 
