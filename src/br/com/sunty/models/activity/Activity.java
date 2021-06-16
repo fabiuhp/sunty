@@ -14,14 +14,14 @@ public abstract class Activity {
     private Section section;
 
     public Activity(String name, String urlCode, Section section) {
-        this.name = name;
-        this.urlCode = urlCode;
-        this.section = section;
-
         nonEmptyFieldValidation(urlCode, "Url");
         urlValidation(urlCode);
         nonEmptyFieldValidation(name, "Nome");
         classNonNullValidation(section, "Seção");
+
+        this.name = name;
+        this.urlCode = urlCode;
+        this.section = section;
     }
 
     public Long getId() {

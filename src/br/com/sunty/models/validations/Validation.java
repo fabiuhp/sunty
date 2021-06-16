@@ -2,7 +2,6 @@ package br.com.sunty.models.validations;
 
 public class Validation {
 
-    //Os métodos static ou métodos da classe são funções que não dependem de nenhuma variável de instância
     public static void nonEmptyFieldValidation(String text, String err) {
         if (text == null || text.isBlank()) {
             throw new IllegalArgumentException(err + " não pode ser nulo(a) ou vazio(a).");
