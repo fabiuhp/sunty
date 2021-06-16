@@ -10,8 +10,8 @@ public class Section {
     private String name;
     private String urlCode;
     private Integer order;
-    private boolean isExam = false;
-    private boolean isActive = false;
+    private boolean isExam;
+    private boolean isActive;
     private Course course;
 
     public Section(String name, String urlCode, Course course) {
