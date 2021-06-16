@@ -10,6 +10,7 @@ public class Explanation extends Activity {
 
     public Explanation(String name, String urlCode, Section section, String text) {
         super(name, urlCode, section);
+        nonEmptyFieldValidation(text, "Text");
 
         this.text = text;
     }
