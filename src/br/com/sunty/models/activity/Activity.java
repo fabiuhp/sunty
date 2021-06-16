@@ -9,7 +9,7 @@ public abstract class Activity {
     private Long id;
     private String name;
     private String urlCode;
-    private Boolean isActive;
+    private boolean isActive;
     private Integer order;
     private Section section;
 
@@ -48,11 +48,11 @@ public abstract class Activity {
         this.urlCode = urlCode;
     }
 
-    public Boolean getActive() {
+    public boolean getActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         isActive = active;
     }
 

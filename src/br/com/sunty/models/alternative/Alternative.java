@@ -9,11 +9,11 @@ public class Alternative {
     private Long id;
     private String explanation;
     private Integer order;
-    private Boolean isCorrect;
+    private boolean isCorrect;
     private String justification;
     private Question question;
 
-    public Alternative(String explanation, Boolean isCorrect, Question question) {
+    public Alternative(String explanation, boolean isCorrect, Question question) {
         nonEmptyFieldValidation(explanation, "Explicação");
         classNonNullValidation(question, "Questão");
 
@@ -46,11 +46,11 @@ public class Alternative {
         this.order = order;
     }
 
-    public Boolean getCorrect() {
+    public boolean getCorrect() {
         return isCorrect;
     }
 
-    public void setCorrect(Boolean correct) {
+    public void setCorrect(boolean correct) {
         isCorrect = correct;
     }
 

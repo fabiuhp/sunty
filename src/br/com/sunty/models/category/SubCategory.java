@@ -9,7 +9,7 @@ public class SubCategory {
     private String urlCode;
     private String shortDescription;
     private String guideText;
-    private Boolean isActive;
+    private boolean isActive;
     private Integer order;
     private Category category;
 
@@ -64,11 +64,11 @@ public class SubCategory {
         this.guideText = guideText;
     }
 
-    public Boolean getActive() {
+    public boolean getActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         isActive = active;
     }
 

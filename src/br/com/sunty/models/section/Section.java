@@ -10,8 +10,8 @@ public class Section {
     private String name;
     private String urlCode;
     private Integer order;
-    private Boolean isExam = false;
-    private Boolean isActive = false;
+    private boolean isExam = false;
+    private boolean isActive = false;
     private Course course;
 
     public Section(String name, String urlCode, Course course) {
@@ -57,19 +57,19 @@ public class Section {
         this.order = order;
     }
 
-    public Boolean getTest() {
+    public boolean getTest() {
         return isExam;
     }
 
-    public void setTest(Boolean test) {
+    public void setTest(boolean test) {
         isExam = test;
     }
 
-    public Boolean getActive() {
+    public boolean getActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         isActive = active;
     }
 
