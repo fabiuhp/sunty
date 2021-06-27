@@ -12,26 +12,45 @@ public class Course {
     private Long id;
     private String name;
     private String urlCode;
-    private int timeToFinishAnHours;
-    private CourseVisibility visibility = CourseVisibility.PRIVATE;
+    private int timeToFinishInHours;
+    private CourseVisibility visibility = CourseVisibility.PRIVADA;
     private String targetAudience;
     private Instructor instructor;
     private String syllabus;
     private String developedSkills;
     private SubCategory subCategory;
 
-    public Course(String name, String urlCode, int timeToFinishAnHours, Instructor instructor, SubCategory subCategory) {
+    public Course(String name, String urlCode, int timeToFinishInHours, Instructor instructor, SubCategory subCategory) {
         nonEmptyFieldValidation(name, "Nome");
         nonEmptyFieldValidation(urlCode, "Url");
         urlValidation(urlCode);
-        intervalValidation(MINIMUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH, timeToFinishAnHours, "O tempo do curso deve ser entre 1 e 20 horas.");
+        intervalValidation(MINIMUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH, timeToFinishInHours, "O tempo do curso deve ser entre 1 e 20 horas.");
         classNonNullValidation(instructor, "Instrutor");
         classNonNullValidation(subCategory, "Categoria");
 
         this.name = name;
         this.urlCode = urlCode;
-        this.timeToFinishAnHours = timeToFinishAnHours;
+        this.timeToFinishInHours = timeToFinishInHours;
         this.instructor = instructor;
+        this.subCategory = subCategory;
+    }
+
+    public Course(String name, String urlCode, int timeToFinishInHours, CourseVisibility visibility, String targetAudience, Instructor instructor, String syllabus, String developedSkills, SubCategory subCategory) {
+        nonEmptyFieldValidation(name, "Nome");
+        nonEmptyFieldValidation(urlCode, "Url");
+        urlValidation(urlCode);
+        intervalValidation(MINIMUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH, timeToFinishInHours, "O tempo do curso deve ser entre 1 e 20 horas.");
+        classNonNullValidation(instructor, "Instrutor");
+        classNonNullValidation(subCategory, "Subcategoria");
+
+        this.name = name;
+        this.urlCode = urlCode;
+        this.timeToFinishInHours = timeToFinishInHours;
+        this.visibility = visibility;
+        this.targetAudience = targetAudience;
+        this.instructor = instructor;
+        this.syllabus = syllabus;
+        this.developedSkills = developedSkills;
         this.subCategory = subCategory;
     }
 
@@ -59,12 +78,12 @@ public class Course {
         this.urlCode = urlCode;
     }
 
-    public Integer getTimeToFinishAnHours() {
-        return timeToFinishAnHours;
+    public Integer getTimeToFinishInHours() {
+        return timeToFinishInHours;
     }
 
-    public void setTimeToFinishAnHours(Integer timeToFinishAnHours) {
-        this.timeToFinishAnHours = timeToFinishAnHours;
+    public void setTimeToFinishInHours(Integer timeToFinishInHours) {
+        this.timeToFinishInHours = timeToFinishInHours;
     }
 
     public CourseVisibility getVisibility() {
@@ -121,7 +140,7 @@ public class Course {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", urlCode='" + urlCode + '\'' +
-                ", timeToFinishAnHours=" + timeToFinishAnHours +
+                ", timeToFinishInHours=" + timeToFinishInHours +
                 ", visibility=" + visibility +
                 ", targetAudience='" + targetAudience + '\'' +
                 ", instructor=" + instructor +

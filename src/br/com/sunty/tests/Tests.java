@@ -10,6 +10,15 @@ import br.com.sunty.models.alternative.Alternative;
 import br.com.sunty.models.course.Course;
 import br.com.sunty.models.instructor.Instructor;
 import br.com.sunty.models.section.Section;
+import br.com.sunty.resources.CategoryCSVReader;
+import br.com.sunty.resources.CourseCSVReader;
+import br.com.sunty.resources.SubCategoryCSVReader;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Tests {
     public static void main(String[] args) {
@@ -63,5 +72,22 @@ public class Tests {
         SubCategory subCategory2 = new SubCategory("SubCategoria 2", "subcat-abc", category1);
         System.out.println(subCategory1);
         System.out.println(subCategory2);
+
+        System.out.println("*-*-*-*-*-*-*-*-*-*-*-*--*-*-*-*-*--*--*-*--*-*-*-*--*-*");
+        System.out.println("*-*-*-*-*-*-*-*-*-*-*-*--*-*-*-*-*--*--*-*--*-*-*-*--*-*");
+
+        CategoryCSVReader categoryCSVReader = new CategoryCSVReader();
+        List<Category> categoryList = categoryCSVReader.readerCsv("planilha-dados-escola - Categoria.csv");
+
+        Map<String, Category> categoryMap = categoryList.stream().collect(Collectors.toMap(Category::getName, Function.identity()));
+
+        SubCategoryCSVReader subCategoryCSVReader = new SubCategoryCSVReader();
+        List<SubCategory> subCategoryList = subCategoryCSVReader.readerCsv(categoryMap, "planilha-dados-escola - Subcategoria.csv");
+
+        Map<String, SubCategory> subCategoryMap = subCategoryList.stream().collect(Collectors.toMap(SubCategory::getUrlCode, Function.identity()));
+
+        CourseCSVReader courseCSVReader = new CourseCSVReader();
+        List<Course> courseList = courseCSVReader.readerCsv(subCategoryMap, "planilha-dados-escola - Curso.csv");
+
     }
 }

@@ -1,5 +1,10 @@
 package br.com.sunty.models.category;
 
+import br.com.sunty.models.course.Course;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static br.com.sunty.models.validations.Validation.*;
 
 public class SubCategory {
@@ -12,6 +17,7 @@ public class SubCategory {
     private boolean isActive;
     private Integer order;
     private Category category;
+    private List<Course> courseList = new ArrayList<>();
 
     public SubCategory(String name, String urlCode, Category category) {
         nonEmptyFieldValidation(name, "Nome");
@@ -21,6 +27,15 @@ public class SubCategory {
 
         this.name = name;
         this.urlCode = urlCode;
+        this.category = category;
+    }
+
+    public SubCategory(String name, String urlCode, String shortDescription, boolean isActive, Integer order, Category category) {
+        this.name = name;
+        this.urlCode = urlCode;
+        this.shortDescription = shortDescription;
+        this.isActive = isActive;
+        this.order = order;
         this.category = category;
     }
 
@@ -101,4 +116,17 @@ public class SubCategory {
                 ", category=" + category +
                 '}';
     }
+
+    public void addCourse(Course course) {
+        this.courseList.add(course);
+    }
+
+    public int numberOfCourses() {
+        return courseList.size();
+    }
+
+    public int totalTimeToFinishInHours() {
+        return courseList.stream().mapToInt(Course::getTimeToFinishInHours).sum();
+    }
+
 }
