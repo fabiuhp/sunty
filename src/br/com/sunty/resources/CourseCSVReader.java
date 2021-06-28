@@ -1,12 +1,10 @@
 package br.com.sunty.resources;
 
-import br.com.sunty.models.category.Category;
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.course.Course;
 import br.com.sunty.models.course.CourseVisibility;
 import br.com.sunty.models.instructor.Instructor;
 
-import java.beans.Visibility;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -29,7 +27,7 @@ public class CourseCSVReader {
                 String[] lineSplit = line.split(",");
                 String name = lineSplit[0];
                 String urlCode = lineSplit[1];
-                int timeToFinishAnHours = lineSplit[2].isBlank() ? -1 : Integer.parseInt(lineSplit[2]);
+                int timeToFinishInHours = lineSplit[2].isBlank() ? -1 : Integer.parseInt(lineSplit[2]);
                 CourseVisibility visibility = CourseVisibility.valueOf(removerAcentos(lineSplit[3]));
                 String targetAudience = lineSplit[4];
                 String instructor = lineSplit[5];
@@ -39,7 +37,7 @@ public class CourseCSVReader {
 
                 Instructor instr = new Instructor(instructor);
                 SubCategory subCategory = subCategoryMap.get(subCategoryName);
-                Course course = new Course(name, urlCode, timeToFinishAnHours, visibility, targetAudience, instr, syllabus, developedSkills, subCategory);
+                Course course = new Course(name, urlCode, timeToFinishInHours, visibility, targetAudience, instr, syllabus, developedSkills, subCategory);
                 subCategory.addCourse(course);
 
                 line = bufferedReader.readLine();
