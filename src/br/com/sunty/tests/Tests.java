@@ -77,7 +77,7 @@ public class Tests {
         System.out.println("*-*-*-*-*-*-*-*-*-*-*-*--*-*-*-*-*--*--*-*--*-*-*-*--*-*");
 
         CategoryCSVReader categoryCSVReader = new CategoryCSVReader();
-        List<Category> categoryList = categoryCSVReader.readerCsv("planilha-dados-escola - Categoria.csv");
+        List<Category> categoryList = categoryCSVReader.readerCsv("Categoria.csv");
 
         Map<String, Category> categoryMap = categoryList.stream().collect(Collectors.toMap(Category::getName, Function.identity()));
 
@@ -87,7 +87,7 @@ public class Tests {
         Map<String, SubCategory> subCategoryMap = subCategoryList.stream().collect(Collectors.toMap(SubCategory::getUrlCode, Function.identity()));
 
         CourseCSVReader courseCSVReader = new CourseCSVReader();
-        List<Course> courseList = courseCSVReader.readerCsv(subCategoryMap, "planilha-dados-escola - Curso.csv");
+        List<Course> courseList = courseCSVReader.readerCsv(subCategoryMap, "Curso.csv");
 
     }
 }

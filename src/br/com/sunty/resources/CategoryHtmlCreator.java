@@ -14,15 +14,15 @@ public class CategoryHtmlCreator {
 
     public static void main(String[] args) throws FileNotFoundException {
         CategoryCSVReader categoryCSVReader = new CategoryCSVReader();
-        List<Category> categoryList = categoryCSVReader.readerCsv("planilha-dados-escola - Categoria.csv");
+        List<Category> categoryList = categoryCSVReader.readerCsv("Categoria.csv");
         Map<String, Category> categoryMap = categoryList.stream().collect(Collectors.toMap(Category::getUrlCode, Function.identity()));
 
         SubCategoryCSVReader subCategoryCSVReader = new SubCategoryCSVReader();
-        List<SubCategory> subCategoryList = subCategoryCSVReader.readerCsv(categoryMap, "planilha-dados-escola - Subcategoria.csv");
+        List<SubCategory> subCategoryList = subCategoryCSVReader.readerCsv(categoryMap, "SubCategoria.csv");
         Map<String, SubCategory> subCategoryMap = subCategoryList.stream().collect(Collectors.toMap(SubCategory::getUrlCode, Function.identity()));
 
         CourseCSVReader courseCSVReader = new CourseCSVReader();
-        List<Course> courseList = courseCSVReader.readerCsv(subCategoryMap, "planilha-dados-escola - Curso.csv");
+        List<Course> courseList = courseCSVReader.readerCsv(subCategoryMap, "Curso.csv");
 
         File file = new File("categories.html");
         PrintStream printStream = new PrintStream(file);
@@ -32,6 +32,14 @@ public class CategoryHtmlCreator {
                 <head>
                 <meta charset="utf-8">
                 <title>Página de Categorias</title>
+                <style>
+                table, th, td {
+                  border: 1px solid black;
+                }
+                th, td {
+                  text-align:center;
+                }
+                </style>
                 </head>
                 <body>
                 <h1>Categorias da plataforma Sunty</h1>
