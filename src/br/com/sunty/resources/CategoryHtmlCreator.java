@@ -4,7 +4,9 @@ import br.com.sunty.models.category.Category;
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.course.Course;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -29,34 +31,34 @@ public class CategoryHtmlCreator {
 
         printStream.println(""" 
                 <html>
-                <head>
-                <meta charset="utf-8">
-                <title>Página de Categorias</title>
-                <style>
-                table, th, td {
-                  border: 1px solid black;
-                }
-                th, td {
-                  text-align:center;
-                }
-                th {
-                    background-color: #149ce6;
-                    color: white;
-                }
-                </style>
-                </head>
+                    <head>
+                        <meta charset="utf-8">
+                        <title>Página de Categorias</title>
+                        <style>
+                            table, th, td {
+                              border: 1px solid black;
+                            }
+                            th, td {
+                              text-align:center;
+                            }
+                            th {
+                                background-color: #149ce6;
+                                color: white;
+                            }
+                        </style>
+                    </head>
                 <body>
-                <h1>Categorias da plataforma Sunty</h1>
-                <table>
-                <tr>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Ícone</th>
-                <th>Cor</th>
-                <th>Número de cursos</th>
-                <th>Total de horas dos cursos</th>
-                <th>Subcategorias</th>
-                </tr>
+                    <h1>Categorias da plataforma Sunty</h1>
+                    <table>
+                        <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Ícone</th>
+                        <th>Cor</th>
+                        <th>Número de cursos</th>
+                        <th>Total de horas dos cursos</th>
+                        <th>Subcategorias</th>
+                        </tr>
                 """);
 
         for (Category category : categoryList) {
