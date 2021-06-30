@@ -2,6 +2,7 @@ package br.com.sunty.models.category;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static br.com.sunty.models.validations.Validation.*;
 
@@ -133,7 +134,9 @@ public class Category {
     }
 
     public List<SubCategory> getSubCategoryList() {
-        return subCategoryList;
+        return subCategoryList.stream()
+                .filter(SubCategory::getActive)
+                .collect(Collectors.toList());
     }
 
     public int getCoursesQuantity() {

@@ -27,7 +27,7 @@ public class CategoryHtmlCreator {
         File file = new File("categories.html");
         PrintStream printStream = new PrintStream(file);
 
-        printStream.println("""
+        printStream.println(""" 
                 <html>
                 <head>
                 <meta charset="utf-8">
@@ -38,6 +38,10 @@ public class CategoryHtmlCreator {
                 }
                 th, td {
                   text-align:center;
+                }
+                th {
+                    background-color: #149ce6;
+                    color: white;
                 }
                 </style>
                 </head>
@@ -65,10 +69,9 @@ public class CategoryHtmlCreator {
                     "<td>" + category.getTotalTimeToFinishAnHours() + "</td>" +
                     "<td>");
             for (SubCategory subCategory : category.getSubCategoryList()) {
-                printStream.print(subCategory.getName() + "<br>");
+                printStream.print(subCategory.getName() + "<br><br>");
                 printStream.println(subCategory.getShortDescription());
-                printStream.println(subCategory.getName());
-                printStream.println("<br>");
+                printStream.println("<br><hr>");
             }
             printStream.println("</td>");
             printStream.println("</tr>");

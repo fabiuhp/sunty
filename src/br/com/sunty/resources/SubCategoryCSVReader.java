@@ -43,10 +43,6 @@ public class SubCategoryCSVReader {
             System.out.println("Erro: " + e.getMessage());
         }
 
-//        for (SubCategory subCategory : subCategoryList) {
-//            System.out.println(subCategory);
-//        }
-
         return subCategoryList;
     }
 }
