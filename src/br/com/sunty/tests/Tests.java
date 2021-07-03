@@ -10,10 +10,11 @@ import br.com.sunty.models.alternative.Alternative;
 import br.com.sunty.models.course.Course;
 import br.com.sunty.models.instructor.Instructor;
 import br.com.sunty.models.section.Section;
-import br.com.sunty.receiveandcreate.CategoryCSVReader;
-import br.com.sunty.receiveandcreate.CourseCSVReader;
-import br.com.sunty.receiveandcreate.SubCategoryCSVReader;
+import br.com.sunty.resources.CategoryCSVReader;
+import br.com.sunty.resources.CourseCSVReader;
+import br.com.sunty.resources.SubCategoryCSVReader;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -28,6 +29,10 @@ public class Tests {
 //        Instructor instructor1 = new Instructor(null, "Fabio");
 
         Category category1 = new Category("Cursos de Java", "carreira-java");
+//        Category category1 = new Category(null, "carreira-java");
+//        Category category1 = new Category("Cursos de Java", null);
+//        Category category1 = new Category("", "carreira-java");
+//        Category category1 = new Category("Cursos de Java", "             ");
 
         SubCategory subCategory = new SubCategory("SubCategoria1", "java-subcateg", category1);
 

@@ -31,11 +31,6 @@ public class SubCategory {
     }
 
     public SubCategory(String name, String urlCode, String shortDescription, boolean isActive, Integer order, Category category) {
-        nonEmptyFieldValidation(name, "Nome");
-        nonEmptyFieldValidation(urlCode, "Url");
-        urlValidation(urlCode);
-        classNonNullValidation(category, "Categoria");
-
         this.name = name;
         this.urlCode = urlCode;
         this.shortDescription = shortDescription;
