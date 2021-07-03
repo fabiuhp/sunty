@@ -1,4 +1,4 @@
-package br.com.sunty.resources;
+package br.com.sunty.receiveandcreate;
 
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.course.Course;
