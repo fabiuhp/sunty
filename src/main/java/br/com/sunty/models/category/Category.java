@@ -146,4 +146,8 @@ public class Category {
     public int getTotalTimeToFinishAnHours() {
         return subCategoryList.stream().mapToInt(SubCategory::totalTimeToFinishInHours).sum();
     }
+
+    public int getActiveAsNumber() {
+        return this.isActive ? 1 : 0;
+    }
 }

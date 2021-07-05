@@ -1,3 +1,7 @@
+CREATE DATABASE sunty;
+
+USE sunty;
+
 CREATE TABLE IF NOT EXISTS instructor
 (
     id   INT          NOT NULL AUTO_INCREMENT,
@@ -21,7 +25,7 @@ CREATE TABLE IF NOT EXISTS category
     UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE
 );
 
-CREATE TABLE IF NOT EXISTS subCategory
+CREATE TABLE IF NOT EXISTS sub_category
 (
     id               INT          NOT NULL AUTO_INCREMENT,
     name             VARCHAR(250) NOT NULL,
@@ -32,9 +36,9 @@ CREATE TABLE IF NOT EXISTS subCategory
     `order`          TINYINT(250) NOT NULL,
     category_id      INT          NOT NULL,
     PRIMARY KEY (id, category_id),
-    INDEX fk_subCategory_category_idx (category_id ASC) VISIBLE,
+    INDEX fk_sub_category_category_idx (category_id ASC) VISIBLE,
     UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE,
-    CONSTRAINT fk_subCategory_category
+    CONSTRAINT fk_sub_category_category
         FOREIGN KEY (category_id)
             REFERENCES category (id)
             ON DELETE NO ACTION
@@ -48,23 +52,23 @@ CREATE TABLE IF NOT EXISTS course
     urlCode             VARCHAR(250) NOT NULL,
     timeToFinishInHours TINYINT(50)  NOT NULL,
     visibility          VARCHAR(100) NOT NULL,
-    targetAudience      VARCHAR(30)  NOT NULL,
-    syllabus            VARCHAR(250) NOT NULL,
+    targetAudience      VARCHAR(500)  NOT NULL,
+    syllabus            TEXT NOT NULL,
     developedSkills     VARCHAR(500) NOT NULL,
     instructor_id       INT          NOT NULL,
-    subCategory_id      INT          NOT NULL,
-    PRIMARY KEY (id, instructor_id, subCategory_id),
+    sub_category_id      INT          NOT NULL,
+    PRIMARY KEY (id, instructor_id, sub_category_id),
     INDEX fk_course_instructor_idx (instructor_id ASC) VISIBLE,
-    INDEX fk_course_subCategory_idx (subCategory_id ASC) VISIBLE,
+    INDEX fk_course_sub_category_idx (sub_category_id ASC) VISIBLE,
     UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE,
     CONSTRAINT fk_course_instructor
         FOREIGN KEY (instructor_id)
             REFERENCES instructor (id)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION,
-    CONSTRAINT fk_course_subCategory
-        FOREIGN KEY (subCategory_id)
-            REFERENCES subCategory (id)
+    CONSTRAINT fk_course_sub_category
+        FOREIGN KEY (sub_category_id)
+            REFERENCES sub_category (id)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 );

@@ -39,10 +39,6 @@ public class CategoryCSVReader {
             System.out.println("Erro: " + e.getMessage());
         }
 
-        for (Category category : categoryList) {
-            System.out.println(category);
-        }
-
         return categoryList;
     }
 }

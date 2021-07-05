@@ -38,6 +38,7 @@ public class CourseCSVReader {
                 Instructor instr = new Instructor(instructor);
                 SubCategory subCategory = subCategoryMap.get(subCategoryName);
                 Course course = new Course(name, urlCode, timeToFinishInHours, visibility, targetAudience, instr, syllabus, developedSkills, subCategory);
+                courseList.add(course);
                 subCategory.addCourse(course);
 
                 line = bufferedReader.readLine();

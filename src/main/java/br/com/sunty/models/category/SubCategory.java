@@ -4,6 +4,7 @@ import br.com.sunty.models.course.Course;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static br.com.sunty.models.validations.Validation.*;
 
@@ -134,4 +135,7 @@ public class SubCategory {
         return courseList.stream().mapToInt(Course::getTimeToFinishInHours).sum();
     }
 
+    public int getActiveAsNumber() {
+        return this.isActive ? 1 : 0;
+    }
 }
