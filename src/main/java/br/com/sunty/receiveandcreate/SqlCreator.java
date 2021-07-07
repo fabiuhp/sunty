@@ -32,7 +32,7 @@ public class SqlCreator {
 
         for (Category category : categoryList) {
             printStream.println(
-                    "INSERT INTO category(`name`, urlCode, shortDescription, guideText, isActive, `order`, pathImg, hexHtmlColor) " +
+                    "INSERT INTO category(`name`, urlCode, shortDescription, guideText, isActive, orderToShow, pathImg, hexHtmlColor) " +
                             "VALUES(" +
                             "\"" + category.getName() + "\"," +
                             "\"" + category.getUrlCode() + "\"," +
@@ -47,7 +47,7 @@ public class SqlCreator {
 
         for (SubCategory subCategory : subCategoryList) {
             printStream.println(
-                    "INSERT INTO sub_category(`name`, urlCode, shortDescription, guideText, isActive, `order`, category_id) " +
+                    "INSERT INTO sub_category(`name`, urlCode, shortDescription, guideText, isActive, orderToShow, category_id) " +
                             "SELECT \"" + subCategory.getName() +"\", \"" +
                             subCategory.getUrlCode() + "\", \"" +
                             subCategory.getShortDescription() + "\", \"" +
