@@ -34,46 +34,46 @@ public class SqlCreator {
             printStream.println(
                     "INSERT INTO category(`name`, urlCode, shortDescription, guideText, isActive, `order`, pathImg, hexHtmlColor) " +
                             "VALUES(" +
-                            "'" + category.getName() + "'," +
-                            "'" + category.getUrlCode() + "'," +
-                            "'" + category.getShortDescription() + "'," +
-                            "'" + category.getGuideText() + "'," +
+                            "\"" + category.getName() + "\"," +
+                            "\"" + category.getUrlCode() + "\"," +
+                            "\"" + category.getShortDescription() + "\"," +
+                            "\"" + category.getGuideText() + "\"," +
                             category.getActiveAsNumber() + "," +
                             category.getOrder() + "," +
-                            "'" + category.getPathImg() + "'," +
-                            "'" + category.getHexHtmlColor() + "');"
+                            "\"" + category.getPathImg() + "\"," +
+                            "\"" + category.getHexHtmlColor() + "\");"
             );
         }
 
         for (SubCategory subCategory : subCategoryList) {
             printStream.println(
                     "INSERT INTO sub_category(`name`, urlCode, shortDescription, guideText, isActive, `order`, category_id) " +
-                            "SELECT '" + subCategory.getName() +"', '" +
-                            subCategory.getUrlCode() + "', '" +
-                            subCategory.getShortDescription() + "', '" +
-                            subCategory.getGuideText() + "', " +
+                            "SELECT \"" + subCategory.getName() +"\", \"" +
+                            subCategory.getUrlCode() + "\", \"" +
+                            subCategory.getShortDescription() + "\", \"" +
+                            subCategory.getGuideText() + "\", " +
                             subCategory.getActiveAsNumber() + ", " +
                             subCategory.getOrder() + ", " +
-                            "id from category where urlCode = '" + subCategory.getCategory().getUrlCode() + "';"
+                            "id from category where urlCode = \"" + subCategory.getCategory().getUrlCode() + "\";"
             );
         }
 
         //Ponto de atenção: será necessário refatorar quando for inserir dados de instrutor.
         //Por enquanto não é necessário.
-        printStream.println("INSERT INTO instructor(`name`) VALUES('Fábio');");
+        printStream.println("INSERT INTO instructor(`name`) VALUES(\"Fábio\");");
 
         for (Course course : courseList) {
             printStream.println(
                     "INSERT INTO course(`name`, urlCode, timeToFinishInHours, visibility, targetAudience, syllabus, developedSkills, instructor_id, sub_category_id) " +
-                            "SELECT '" + course.getName() +"', '" +
-                            course.getUrlCode() + "', " +
-                            course.getTimeToFinishInHours() + ", '" +
-                            course.getVisibility() + "', '" +
-                            course.getTargetAudience() + "', '" +
-                            course.getSyllabus() + "', '" +
-                            course.getDevelopedSkills() + "', " +
+                            "SELECT \"" + course.getName() +"\", \"" +
+                            course.getUrlCode() + "\", " +
+                            course.getTimeToFinishInHours() + ", \"" +
+                            course.getVisibility() + "\", \"" +
+                            course.getTargetAudience() + "\", \"" +
+                            course.getSyllabus() + "\", \"" +
+                            course.getDevelopedSkills() + "\", " +
                             1 +
-                            ", id from sub_category where urlCode = '" + course.getSubCategory().getUrlCode() + "';"
+                            ", id from sub_category where urlCode = \"" + course.getSubCategory().getUrlCode() + "\";"
             );
         }
     }
