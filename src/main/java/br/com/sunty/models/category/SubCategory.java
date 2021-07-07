@@ -1,12 +1,14 @@
 package br.com.sunty.models.category;
 
+import br.com.sunty.models.course.Course;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static br.com.sunty.models.validations.Validation.*;
 
-public class Category {
+public class SubCategory {
 
     private Long id;
     private String name;
@@ -15,31 +17,32 @@ public class Category {
     private String guideText;
     private boolean isActive;
     private Integer order;
-    private String pathImg;
-    private String hexHtmlColor;
-    private List<SubCategory> subCategoryList = new ArrayList<>();
+    private Category category;
+    private List<Course> courseList = new ArrayList<>();
 
-    public Category(String name, String urlCode) {
+    public SubCategory(String name, String urlCode, Category category) {
+        nonEmptyFieldValidation(name, "Nome");
         nonEmptyFieldValidation(urlCode, "Url");
         urlValidation(urlCode);
-        nonEmptyFieldValidation(name, "Nome");
+        classNonNullValidation(category, "Categoria");
 
         this.name = name;
         this.urlCode = urlCode;
+        this.category = category;
     }
 
-    public Category(String name, String urlCode, String shortDescription, boolean isActive, Integer order, String pathImg, String hexHtmlColor) {
+    public SubCategory(String name, String urlCode, String shortDescription, boolean isActive, Integer order, Category category) {
+        nonEmptyFieldValidation(name, "Nome");
         nonEmptyFieldValidation(urlCode, "Url");
         urlValidation(urlCode);
-        nonEmptyFieldValidation(name, "Nome");
+        classNonNullValidation(category, "Categoria");
 
         this.name = name;
         this.urlCode = urlCode;
         this.shortDescription = shortDescription;
         this.isActive = isActive;
         this.order = order;
-        this.pathImg = pathImg;
-        this.hexHtmlColor = hexHtmlColor;
+        this.category = category;
     }
 
     public Long getId() {
@@ -98,25 +101,17 @@ public class Category {
         this.order = order;
     }
 
-    public String getPathImg() {
-        return pathImg;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setPathImg(String pathImg) {
-        this.pathImg = pathImg;
-    }
-
-    public String getHexHtmlColor() {
-        return hexHtmlColor;
-    }
-
-    public void setHexHtmlColor(String hexHtmlColor) {
-        this.hexHtmlColor = hexHtmlColor;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
     public String toString() {
-        return "Category{" +
+        return "SubCategory{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", urlCode='" + urlCode + '\'' +
@@ -124,26 +119,23 @@ public class Category {
                 ", guideText='" + guideText + '\'' +
                 ", isActive=" + isActive +
                 ", order=" + order +
-                ", pathImg='" + pathImg + '\'' +
-                ", hexHtmlColor='" + hexHtmlColor + '\'' +
+                ", category=" + category +
                 '}';
     }
 
-    public void addSubCategory(SubCategory subCategory) {
-        this.subCategoryList.add(subCategory);
+    public void addCourse(Course course) {
+        this.courseList.add(course);
     }
 
-    public List<SubCategory> getSubCategoryList() {
-        return subCategoryList.stream()
-                .filter(SubCategory::getActive)
-                .collect(Collectors.toList());
+    public int numberOfCourses() {
+        return courseList.size();
     }
 
-    public int getCoursesQuantity() {
-        return subCategoryList.stream().mapToInt(SubCategory::numberOfCourses).sum();
+    public int totalTimeToFinishInHours() {
+        return courseList.stream().mapToInt(Course::getTimeToFinishInHours).sum();
     }
 
-    public int getTotalTimeToFinishAnHours() {
-        return subCategoryList.stream().mapToInt(SubCategory::totalTimeToFinishInHours).sum();
+    public int getActiveAsNumber() {
+        return this.isActive ? 1 : 0;
     }
 }

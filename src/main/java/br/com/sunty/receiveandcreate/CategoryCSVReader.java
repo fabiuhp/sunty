@@ -1,4 +1,4 @@
-package br.com.sunty.resources;
+package br.com.sunty.receiveandcreate;
 
 import br.com.sunty.models.category.Category;
 
@@ -37,10 +37,6 @@ public class CategoryCSVReader {
 
         } catch (IOException e) {
             System.out.println("Erro: " + e.getMessage());
-        }
-
-        for (Category category : categoryList) {
-            System.out.println(category);
         }
 
         return categoryList;

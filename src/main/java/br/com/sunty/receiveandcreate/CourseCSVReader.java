@@ -1,4 +1,4 @@
-package br.com.sunty.resources;
+package br.com.sunty.receiveandcreate;
 
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.course.Course;
@@ -38,6 +38,7 @@ public class CourseCSVReader {
                 Instructor instr = new Instructor(instructor);
                 SubCategory subCategory = subCategoryMap.get(subCategoryName);
                 Course course = new Course(name, urlCode, timeToFinishInHours, visibility, targetAudience, instr, syllabus, developedSkills, subCategory);
+                courseList.add(course);
                 subCategory.addCourse(course);
 
                 line = bufferedReader.readLine();
