@@ -27,7 +27,7 @@ public class SqlCreator {
         CourseCSVReader courseCSVReader = new CourseCSVReader();
         List<Course> courseList = courseCSVReader.readerCsv(subCategoryMap, "Curso.csv");
 
-        File file = new File("generatedScript.sql");
+        File file = new File("src/main/java/br/com/sunty/scriptsSql/scriptInsercaoInicial.sql");
         PrintStream printStream = new PrintStream(file);
 
         for (Category category : categoryList) {
