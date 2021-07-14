@@ -1,6 +1,7 @@
 package br.com.sunty.jdbc.dao;
 
 import br.com.sunty.dto.CourseDTO;
+import br.com.sunty.jdbc.dao.exceptions.DaoException;
 import br.com.sunty.models.course.Course;
 import br.com.sunty.models.course.CourseVisibility;
 
@@ -16,13 +17,14 @@ public class CourseDAO {
         this.connection = connection;
     }
 
-    public void saveCourse(Course course) throws SQLException {
+    public void saveCourse(Course course) {
         String sql = """
                     INSERT INTO course(`name`, urlCode, timeToFinishInHours, visibility, targetAudience, syllabus, developedSkills, instructor_id, sub_category_id) 
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
                 """;
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+            this.connection.setAutoCommit(false);
             preparedStatement.setString(1, course.getName());
             preparedStatement.setString(2, course.getUrlCode());
             preparedStatement.setInt(3, course.getTimeToFinishInHours());
@@ -33,12 +35,15 @@ public class CourseDAO {
             preparedStatement.setLong(8, course.getInstructor().getId());
             preparedStatement.setLong(9, course.getSubCategory().getId());
             preparedStatement.execute();
+            this.connection.commit();
 
             try(ResultSet resultSet = preparedStatement.getGeneratedKeys()){
                 while (resultSet.next()) {
                     course.setId(resultSet.getLong(1));
                 }
             }
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage());
         }
 
     }

@@ -20,6 +20,9 @@ public class SubCategory {
     private Category category;
     private List<Course> courseList = new ArrayList<>();
 
+    @Deprecated
+    public SubCategory(){}
+
     public SubCategory(String name, String urlCode, Category category) {
         nonEmptyFieldValidation(name, "Nome");
         nonEmptyFieldValidation(urlCode, "Url");

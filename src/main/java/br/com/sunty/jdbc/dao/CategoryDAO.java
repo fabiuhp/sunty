@@ -1,5 +1,6 @@
 package br.com.sunty.jdbc.dao;
 
+import br.com.sunty.jdbc.dao.exceptions.DaoException;
 import br.com.sunty.jdbc.factory.ConnectionFactory;
 import br.com.sunty.models.category.Category;
 
@@ -35,7 +36,7 @@ public class CategoryDAO {
                         categories.add(category);
                     }
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new DaoException(e.getMessage());
             }
             return categories;
     }

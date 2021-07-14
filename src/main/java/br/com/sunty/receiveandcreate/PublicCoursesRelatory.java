@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class RelatorioCursosPublicos {
+public class PublicCoursesRelatory {
     public static void main(String[] args) throws SQLException, FileNotFoundException {
         ConnectionFactory connectionFactory = new ConnectionFactory();
         Connection connection = connectionFactory.recoveryConnection();
