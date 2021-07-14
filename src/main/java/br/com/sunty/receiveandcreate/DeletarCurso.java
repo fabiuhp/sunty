@@ -13,6 +13,6 @@ public class DeletarCurso {
         Connection connection = connectionFactory.recoveryConnection();
         CourseDAO courseDAO = new CourseDAO(connection);
 
-        courseDAO.delete("prog-func");
+        courseDAO.delete("novo-curso");
     }
 }

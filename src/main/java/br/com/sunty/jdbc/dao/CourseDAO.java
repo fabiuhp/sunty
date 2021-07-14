@@ -66,7 +66,7 @@ public class CourseDAO {
                         SELECT c.id, c.name, c.timeToFinishInHours, s.id sub_category_id, s.name sub_category_name, i.name instructor_name FROM course c
                         JOIN instructor i ON c.instructor_id = i.id
                         JOIN sub_category s ON c.sub_category_id = s.id
-                        WHERE visibility = 'PUBLICA';
+                        WHERE c.visibility = 'PUBLICA';
                 """;
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {

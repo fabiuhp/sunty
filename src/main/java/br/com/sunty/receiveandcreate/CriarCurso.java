@@ -25,11 +25,10 @@ public class CriarCurso {
     private static Course createCourse() {
         Instructor instructor = new Instructor("Fábio");
         instructor.setId(1L);
-        Category category = new Category("Funcional", "funcional");
-        category.setId(5L);
-        SubCategory subCategory = new SubCategory("funcionalsub", "subfuncional", category);
+        Category category = new Category("Programacao", "programacao");
+        category.setId(1L);
+        SubCategory subCategory = new SubCategory("Builds e Controle de versão", "builds-e-controle-de-versao", category);
         subCategory.setId(5L);
-        Course course1 = new Course("Programação Funcional", "prog-func", 10, CourseVisibility.PRIVADA, "Eu sou o foco", instructor, "O syllabus", "skills", subCategory);
-        return course1;
+        return new Course("Curso novo", "novo-curso", 10, CourseVisibility.PRIVADA, "target audience", instructor, "O syllabus", "skills", subCategory);
     }
 }

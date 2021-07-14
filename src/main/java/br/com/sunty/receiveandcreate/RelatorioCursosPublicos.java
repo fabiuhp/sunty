@@ -3,11 +3,6 @@ package br.com.sunty.receiveandcreate;
 import br.com.sunty.dto.CourseDTO;
 import br.com.sunty.jdbc.dao.CourseDAO;
 import br.com.sunty.jdbc.factory.ConnectionFactory;
-import br.com.sunty.models.category.Category;
-import br.com.sunty.models.category.SubCategory;
-import br.com.sunty.models.course.Course;
-import br.com.sunty.models.course.CourseVisibility;
-import br.com.sunty.models.instructor.Instructor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
