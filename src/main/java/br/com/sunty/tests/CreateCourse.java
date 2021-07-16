@@ -18,11 +18,10 @@ public class CreateCourse {
         CourseDao courseDao = new CourseDao(entityManager);
         InstructorDao instructorDao = new InstructorDao(entityManager);
         SubCategoryDao subCategoryDao = new SubCategoryDao(entityManager);
-        Instructor cadu = instructorDao.findById(3L);
         SubCategory java = subCategoryDao.findById(1L);
 
         entityManager.getTransaction().begin();
-        Course course = new Course("Curso ACME", "acme-course", 1, cadu, java);
+        Course course = new Course("Curso ACME", "acme-course", 1, instructorDao.findById(1L), java);
         courseDao.create(course);
         entityManager.getTransaction().commit();
 
