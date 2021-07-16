@@ -30,6 +30,7 @@ public class Category {
     @OneToMany(mappedBy="category")
     private List<SubCategory> subCategoryList = new ArrayList<>();
 
+    @Deprecated
     public Category() {
     }
 

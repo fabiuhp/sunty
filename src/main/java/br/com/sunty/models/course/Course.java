@@ -38,6 +38,7 @@ public class Course {
     @ManyToOne
     private SubCategory subCategory;
 
+    @Deprecated
     public Course() {}
 
     public Course(String name, String urlCode, int timeToFinishInHours, Instructor instructor, SubCategory subCategory) {
