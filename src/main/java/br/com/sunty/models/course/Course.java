@@ -3,22 +3,42 @@ package br.com.sunty.models.course;
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.instructor.Instructor;
 
+import javax.persistence.*;
+
 import static br.com.sunty.models.validations.Validation.*;
 
+@Entity
+@Table(name = "course")
 public class Course {
 
     public static final int MINIMUM_TIME_TO_FINISH = 1;
+
     public static final int MAXIMUM_TIME_TO_FINISH = 20;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String urlCode;
     private int timeToFinishInHours;
+
+    @Enumerated(EnumType.STRING)
     private CourseVisibility visibility = CourseVisibility.PRIVADA;
     private String targetAudience;
+
+    @ManyToOne
     private Instructor instructor;
+
+    @Column(columnDefinition = "TEXT")
     private String syllabus;
+
+    @Column(columnDefinition = "TEXT")
     private String developedSkills;
+
+    @ManyToOne
     private SubCategory subCategory;
+
+    public Course() {}
 
     public Course(String name, String urlCode, int timeToFinishInHours, Instructor instructor, SubCategory subCategory) {
         nonEmptyFieldValidation(name, "Nome");

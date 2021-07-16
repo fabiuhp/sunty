@@ -68,7 +68,7 @@ public class SubCategoryTest {
         assertEquals("abc-abc", subCategory.getUrlCode());
         assertEquals("abc description", subCategory.getShortDescription());
         assertTrue(subCategory.getActive());
-        assertEquals(1, subCategory.getOrder());
+        assertEquals(1, subCategory.getOrderToShow());
         assertEquals(category.getName(), subCategory.getCategory().getName());
         assertEquals(category.getUrlCode(), subCategory.getCategory().getUrlCode());
     }

@@ -1,26 +1,27 @@
+DROP DATABASE sunty;
 CREATE DATABASE sunty;
 
 USE sunty;
 
 CREATE TABLE IF NOT EXISTS instructor
 (
-    id   INT          NOT NULL AUTO_INCREMENT,
-    name VARCHAR(250) NOT NULL,
+    id   BIGINT       NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
     PRIMARY KEY (id),
     UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE
 );
 
 CREATE TABLE IF NOT EXISTS category
 (
-    id               INT          NOT NULL AUTO_INCREMENT,
-    name             VARCHAR(250) NOT NULL,
-    urlCode          VARCHAR(250) NOT NULL,
-    shortDescription VARCHAR(250),
-    guideText        VARCHAR(500) NULL,
-    isActive         TINYINT      NOT NULL,
-    orderToShow      TINYINT(250) NOT NULL,
-    pathImg          VARCHAR(250) NOT NULL,
-    hexHtmlColor     VARCHAR(7)   NOT NULL,
+    id               BIGINT       NOT NULL AUTO_INCREMENT,
+    name             VARCHAR(255) NOT NULL,
+    urlCode          VARCHAR(255) NOT NULL,
+    shortDescription VARCHAR(255) NULL,
+    guideText        VARCHAR(255) NULL,
+    isActive         BIT(1)       NOT NULL,
+    orderToShow      INT          NULL,
+    pathImg          VARCHAR(255) NULL,
+    hexHtmlColor     VARCHAR(7)   NULL,
     PRIMARY KEY (id),
     UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE,
     UNIQUE INDEX urlCode_UNIQUE (urlCode ASC) VISIBLE
@@ -28,14 +29,14 @@ CREATE TABLE IF NOT EXISTS category
 
 CREATE TABLE IF NOT EXISTS sub_category
 (
-    id               INT          NOT NULL AUTO_INCREMENT,
-    name             VARCHAR(250) NOT NULL,
-    urlCode          VARCHAR(250) NOT NULL,
-    shortDescription VARCHAR(250),
+    id               BIGINT       NOT NULL AUTO_INCREMENT,
+    name             VARCHAR(255) NOT NULL,
+    urlCode          VARCHAR(255) NOT NULL,
+    shortDescription VARCHAR(255) NULL,
     guideText        VARCHAR(500) NULL,
-    isActive         BOOLEAN      NOT NULL,
-    orderToShow      TINYINT(250) NOT NULL,
-    category_id      INT          NOT NULL,
+    isActive         BIT(1)       NOT NULL,
+    orderToShow      INT          NOT NULL,
+    category_id      BIGINT       NOT NULL,
     PRIMARY KEY (id, category_id),
     INDEX fk_sub_category_category_idx (category_id ASC) VISIBLE,
     UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE,
@@ -49,19 +50,19 @@ CREATE TABLE IF NOT EXISTS sub_category
 
 CREATE TABLE IF NOT EXISTS course
 (
-    id                  INT          NOT NULL AUTO_INCREMENT,
-    name                VARCHAR(250) NOT NULL,
-    urlCode             VARCHAR(250) NOT NULL,
-    timeToFinishInHours TINYINT(50)  NOT NULL,
-    visibility          VARCHAR(100) NOT NULL,
-    targetAudience      VARCHAR(500) NOT NULL,
-    syllabus            TEXT         NOT NULL,
-    developedSkills     VARCHAR(500) NOT NULL,
-    instructor_id       INT          NOT NULL,
-    sub_category_id     INT          NOT NULL,
-    PRIMARY KEY (id, instructor_id, sub_category_id),
+    id                  BIGINT       NOT NULL AUTO_INCREMENT,
+    name                VARCHAR(255) NOT NULL,
+    urlCode             VARCHAR(255) NOT NULL,
+    timeToFinishInHours INT          NOT NULL,
+    visibility          VARCHAR(255) NULL,
+    targetAudience      VARCHAR(500) NULL,
+    syllabus            TEXT         NULL,
+    developedSkills     TEXT         NULL,
+    instructor_id       BIGINT       NOT NULL,
+    subcategory_id      BIGINT       NOT NULL,
+    PRIMARY KEY (id, instructor_id, subcategory_id),
     INDEX fk_course_instructor_idx (instructor_id ASC) VISIBLE,
-    INDEX fk_course_sub_category_idx (sub_category_id ASC) VISIBLE,
+    INDEX fk_course_subcategory_idx (subcategory_id ASC) VISIBLE,
     UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE,
     UNIQUE INDEX urlCode_UNIQUE (urlCode ASC) VISIBLE,
     CONSTRAINT fk_course_instructor
@@ -70,11 +71,112 @@ CREATE TABLE IF NOT EXISTS course
             ON DELETE NO ACTION
             ON UPDATE NO ACTION,
     CONSTRAINT fk_course_sub_category
-        FOREIGN KEY (sub_category_id)
+        FOREIGN KEY (subcategory_id)
             REFERENCES sub_category (id)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 );
+
+CREATE TABLE IF NOT EXISTS section
+(
+    id          BIGINT       NOT NULL AUTO_INCREMENT,
+    name        VARCHAR(255) NOT NULL,
+    urlCode     VARCHAR(255) NOT NULL,
+    orderToShow TINYINT(255) NULL,
+    isExam      BOOLEAN      NULL,
+    isActive    BOOLEAN      NULL,
+    course_id   BIGINT       NOT NULL,
+    PRIMARY KEY (id, course_id),
+    UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE,
+    UNIQUE INDEX urlCode_UNIQUE (urlCode ASC) VISIBLE,
+    INDEX fk_section_course_idx (course_id ASC) VISIBLE,
+    CONSTRAINT fk_section_course
+        FOREIGN KEY (course_id)
+            REFERENCES course (id)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS explanation
+(
+    id          BIGINT       NOT NULL AUTO_INCREMENT,
+    name        VARCHAR(255) NOT NULL,
+    urlCode     VARCHAR(255) NOT NULL,
+    isActive    VARCHAR(45)  NULL,
+    orderToShow VARCHAR(45)  NULL,
+    text        VARCHAR(500) NOT NULL,
+    section_id  BIGINT       NOT NULL,
+    PRIMARY KEY (id, section_id),
+    INDEX fk_explanation_section_idx (section_id ASC) VISIBLE,
+    UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE,
+    UNIQUE INDEX urlCode_UNIQUE (urlCode ASC) VISIBLE,
+    CONSTRAINT fk_explanation_section
+        FOREIGN KEY (section_id)
+            REFERENCES section (id)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS question
+(
+    id           BIGINT       NOT NULL AUTO_INCREMENT,
+    name         VARCHAR(255) NOT NULL,
+    urlCode      VARCHAR(255) NOT NULL,
+    isActive     VARCHAR(45)  NULL,
+    orderToShow  VARCHAR(45)  NULL,
+    description  VARCHAR(255) NOT NULL,
+    questionType VARCHAR(45)  NOT NULL,
+    section_id   BIGINT       NOT NULL,
+    PRIMARY KEY (id, section_id),
+    INDEX fk_question_section_idx (section_id ASC) VISIBLE,
+    UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE,
+    UNIQUE INDEX urlCode_UNIQUE (urlCode ASC) VISIBLE,
+    CONSTRAINT fk_question_section
+        FOREIGN KEY (section_id)
+            REFERENCES section (id)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS video
+(
+    id            BIGINT       NOT NULL AUTO_INCREMENT,
+    name          VARCHAR(255) NOT NULL,
+    urlCode       VARCHAR(255) NOT NULL,
+    isActive      VARCHAR(45)  NULL,
+    orderToShow   VARCHAR(45)  NULL,
+    url           VARCHAR(255) NOT NULL,
+    time          VARCHAR(45)  NULL,
+    transcription VARCHAR(45)  NULL,
+    section_id    BIGINT       NOT NULL,
+    PRIMARY KEY (id, section_id),
+    INDEX fk_video_section_idx (section_id ASC) VISIBLE,
+    UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE,
+    UNIQUE INDEX urlCode_UNIQUE (urlCode ASC) VISIBLE,
+    CONSTRAINT fk_video_section
+        FOREIGN KEY (section_id)
+            REFERENCES section (id)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS alternative
+(
+    id            BIGINT       NOT NULL AUTO_INCREMENT,
+    explanation   VARCHAR(255) NOT NULL,
+    orderToShow   VARCHAR(45)  NULL,
+    isCorrect     BOOLEAN      NOT NULL,
+    justification VARCHAR(45)  NULL,
+    question_id   BIGINT       NOT NULL,
+    PRIMARY KEY (id, question_id),
+    INDEX fk_alternative_question_idx (question_id ASC) VISIBLE,
+    CONSTRAINT fk_alternative_question
+        FOREIGN KEY (question_id)
+            REFERENCES question (id)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
+);
+
 
 CREATE TABLE IF NOT EXISTS section
 (

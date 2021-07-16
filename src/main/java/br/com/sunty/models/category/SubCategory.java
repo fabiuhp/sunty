@@ -2,22 +2,28 @@ package br.com.sunty.models.category;
 
 import br.com.sunty.models.course.Course;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static br.com.sunty.models.validations.Validation.*;
 
+@Entity
+@Table(name = "sub_category")
 public class SubCategory {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String urlCode;
     private String shortDescription;
     private String guideText;
     private boolean isActive;
-    private Integer order;
+    private Integer orderToShow;
+    @ManyToOne
     private Category category;
+    @OneToMany(mappedBy="subCategory")
     private List<Course> courseList = new ArrayList<>();
 
     @Deprecated
@@ -34,7 +40,7 @@ public class SubCategory {
         this.category = category;
     }
 
-    public SubCategory(String name, String urlCode, String shortDescription, boolean isActive, Integer order, Category category) {
+    public SubCategory(String name, String urlCode, String shortDescription, boolean isActive, Integer orderToShow, Category category) {
         nonEmptyFieldValidation(name, "Nome");
         nonEmptyFieldValidation(urlCode, "Url");
         urlValidation(urlCode);
@@ -44,7 +50,7 @@ public class SubCategory {
         this.urlCode = urlCode;
         this.shortDescription = shortDescription;
         this.isActive = isActive;
-        this.order = order;
+        this.orderToShow = orderToShow;
         this.category = category;
     }
 
@@ -96,12 +102,12 @@ public class SubCategory {
         isActive = active;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getOrderToShow() {
+        return orderToShow;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrderToShow(Integer order) {
+        this.orderToShow = order;
     }
 
     public Category getCategory() {
@@ -121,7 +127,7 @@ public class SubCategory {
                 ", shortDescription='" + shortDescription + '\'' +
                 ", guideText='" + guideText + '\'' +
                 ", isActive=" + isActive +
-                ", order=" + order +
+                ", order=" + orderToShow +
                 ", category=" + category +
                 '}';
     }
