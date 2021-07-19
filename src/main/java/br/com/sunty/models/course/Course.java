@@ -2,6 +2,7 @@ package br.com.sunty.models.course;
 
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.instructor.Instructor;
+import br.com.sunty.models.section.Section;
 
 import javax.persistence.*;
 
@@ -10,9 +11,7 @@ import static br.com.sunty.models.validations.Validation.*;
 @Entity
 @Table(name = "course")
 public class Course {
-
     public static final int MINIMUM_TIME_TO_FINISH = 1;
-
     public static final int MAXIMUM_TIME_TO_FINISH = 20;
 
     @Id
@@ -38,7 +37,6 @@ public class Course {
     @ManyToOne
     private SubCategory subCategory;
 
-    @Deprecated
     public Course() {}
 
     public Course(String name, String urlCode, int timeToFinishInHours, Instructor instructor, SubCategory subCategory) {

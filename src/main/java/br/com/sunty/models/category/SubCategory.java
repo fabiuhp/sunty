@@ -26,7 +26,6 @@ public class SubCategory {
     @OneToMany(mappedBy="subCategory")
     private List<Course> courseList = new ArrayList<>();
 
-    @Deprecated
     public SubCategory(){}
 
     public SubCategory(String name, String urlCode, Category category) {

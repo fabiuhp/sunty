@@ -10,7 +10,6 @@ public class Instructor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(columnDefinition = "int")
     private Long id;
     private String name;
 

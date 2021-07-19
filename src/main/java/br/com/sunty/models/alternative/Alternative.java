@@ -2,15 +2,22 @@ package br.com.sunty.models.alternative;
 
 import br.com.sunty.models.activity.Question;
 
+import javax.persistence.*;
+
 import static br.com.sunty.models.validations.Validation.*;
 
+@Entity
+@Table(name = "alternative")
 public class Alternative {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String explanation;
-    private Integer order;
+    private Integer orderToShow;
     private boolean isCorrect;
     private String justification;
+    @ManyToOne
     private Question question;
 
     public Alternative(String explanation, boolean isCorrect, Question question) {
@@ -20,6 +27,9 @@ public class Alternative {
         this.explanation = explanation;
         this.isCorrect = isCorrect;
         this.question = question;
+    }
+
+    public Alternative() {
     }
 
     public Long getId() {
@@ -38,12 +48,12 @@ public class Alternative {
         this.explanation = explanation;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getOrderToShow() {
+        return orderToShow;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrderToShow(Integer order) {
+        this.orderToShow = order;
     }
 
     public boolean getCorrect() {
@@ -75,7 +85,7 @@ public class Alternative {
         return "Alternative{" +
                 "id=" + id +
                 ", explanation='" + explanation + '\'' +
-                ", order=" + order +
+                ", order=" + orderToShow +
                 ", isCorrect=" + isCorrect +
                 ", justification='" + justification + '\'' +
                 ", question=" + question +

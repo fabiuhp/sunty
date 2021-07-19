@@ -1,9 +1,9 @@
 package br.com.sunty.dao;
 
 import br.com.sunty.models.category.SubCategory;
-import br.com.sunty.models.instructor.Instructor;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class SubCategoryDao {
 
@@ -28,5 +28,15 @@ public class SubCategoryDao {
 
     public SubCategory findById(Long id) {
         return entityManager.find(SubCategory.class, id);
+    }
+
+    public List<SubCategory> findAllActiveOrdered() {
+        String jpql = "SELECT s FROM SubCategory s where s.isActive=true order by s.orderToShow";
+        return entityManager.createQuery(jpql, SubCategory.class).getResultList();
+    }
+
+    public List<SubCategory> withoutDescription() {
+        String jpql = "SELECT s FROM SubCategory s where s.shortDescription='' OR s.shortDescription IS NULL";
+        return entityManager.createQuery(jpql, SubCategory.class).getResultList();
     }
 }

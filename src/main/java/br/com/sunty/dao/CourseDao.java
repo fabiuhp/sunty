@@ -32,6 +32,11 @@ public class CourseDao {
         return entityManager.createQuery(jpql, Course.class).getResultList();
     }
 
+    public List<Course> findAllPublic() {
+        String jpql = "SELECT c FROM Course c where c.visibility='PUBLICA'";
+        return entityManager.createQuery(jpql, Course.class).getResultList();
+    }
+
     public Course findById(Long id) {
         return entityManager.find(Course.class, id);
     }

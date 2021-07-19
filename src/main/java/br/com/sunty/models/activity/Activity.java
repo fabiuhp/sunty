@@ -2,16 +2,25 @@ package br.com.sunty.models.activity;
 
 import br.com.sunty.models.section.Section;
 
+import javax.persistence.*;
+
 import static br.com.sunty.models.validations.Validation.*;
 
+@MappedSuperclass
 public abstract class Activity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String urlCode;
     private boolean isActive;
-    private Integer order;
+    private Integer orderToShow;
+    @ManyToOne
     private Section section;
+
+    public Activity() {
+    }
 
     public Activity(String name, String urlCode, Section section) {
         nonEmptyFieldValidation(urlCode, "Url");
@@ -56,12 +65,12 @@ public abstract class Activity {
         isActive = active;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getOrderToShow() {
+        return orderToShow;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrderToShow(Integer order) {
+        this.orderToShow = order;
     }
 
     public Section getSection() {
