@@ -66,7 +66,7 @@ public class HtmlPageGenerator {
                     "<td>" + category.getUrlCode() + "</td>" +
                     "<td>" + category.getShortDescription() + "</td>" +
                     "<td>" + category.getOrderToShow() + "</td>" +
-                    "<td style=\"background-color:"+ category.getHexHtmlColor() +"\"></td>" +
+                    "<td style=\"background-color:"+ category.getHexHtmlColor() +"\">" + category.getHexHtmlColor() + "</td>" +
                     "</tr>"));
             printStream.println("</table><br>");
 

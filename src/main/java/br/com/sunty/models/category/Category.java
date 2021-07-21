@@ -1,13 +1,12 @@
 package br.com.sunty.models.category;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static br.com.sunty.models.validations.Validation.*;
+import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
+import static br.com.sunty.models.validations.Validation.urlValidation;
 
 @Entity
 @Table(name = "category")
@@ -15,15 +14,12 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(columnDefinition = "int")
     private Long id;
     private String name;
     private String urlCode;
     private String shortDescription;
     private String guideText;
-//    @Column(columnDefinition = "tinyint")
     private boolean isActive;
-//    @Column(columnDefinition = "tinyint")
     private Integer orderToShow;
     private String pathImg;
     private String hexHtmlColor;

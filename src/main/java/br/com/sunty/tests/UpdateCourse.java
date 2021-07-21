@@ -15,7 +15,7 @@ public class UpdateCourse {
 
         entityManager.getTransaction().begin();
         List<Course> courseList = courseDao.findAll();
-        courseList.forEach(x -> x.setVisibility(CourseVisibility.PUBLICA));
+        courseList.forEach(x -> x.setVisibility(CourseVisibility.PRIVADA));
 
         for (Course course: courseList) {
             courseDao.update(course);
@@ -24,7 +24,7 @@ public class UpdateCourse {
         entityManager.getTransaction().commit();
 
         List<Course> courses = courseDao.findAll();
-        courses.forEach(x -> System.out.println(x.getVisibility()));
+        courses.forEach(x -> System.out.println("Id: " + x.getId()+ ", Name: " + x.getName() + ", Visibility: " + x.getVisibility()));
         entityManager.close();
     }
 }

@@ -4,9 +4,7 @@ import br.com.sunty.dao.CourseDao;
 import br.com.sunty.dao.InstructorDao;
 import br.com.sunty.dao.SubCategoryDao;
 import br.com.sunty.models.category.SubCategory;
-import br.com.sunty.models.course.CourseDto;
 import br.com.sunty.models.course.Course;
-import br.com.sunty.models.instructor.Instructor;
 import br.com.sunty.utils.JPAUtil;
 
 import javax.persistence.EntityManager;
@@ -26,7 +24,7 @@ public class CreateCourse {
         entityManager.getTransaction().commit();
 
         List<Course> courses = courseDao.findAll();
-        courses.forEach(x -> System.out.println(x.getName()));
+        courses.forEach(x -> System.out.println("Id: " + x.getId() +", Name: " + x.getName()));
         entityManager.close();
     }
 }
