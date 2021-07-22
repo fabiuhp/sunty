@@ -39,4 +39,9 @@ public class CategoryDao {
         String jpql = "SELECT c FROM Category c where c.isActive=true order by c.orderToShow";
         return entityManager.createQuery(jpql, Category.class).getResultList();
     }
+
+    public List<Category> findAll() {
+        String jpql = "SELECT c FROM Category c";
+        return entityManager.createQuery(jpql, Category.class).getResultList();
+    }
 }
