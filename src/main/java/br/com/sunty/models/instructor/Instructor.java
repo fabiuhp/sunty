@@ -1,11 +1,20 @@
 package br.com.sunty.models.instructor;
 
+import javax.persistence.*;
+
 import static br.com.sunty.models.validations.Validation.*;
 
+@Entity
+@Table(name = "instructor")
 public class Instructor {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    public Instructor() {
+    }
 
     public Instructor(String name) {
         nonEmptyFieldValidation(name, "Nome");

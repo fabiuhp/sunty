@@ -1,23 +1,34 @@
 package br.com.sunty.models.category;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static br.com.sunty.models.validations.Validation.*;
+import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
+import static br.com.sunty.models.validations.Validation.urlValidation;
 
+@Entity
+@Table(name = "category")
 public class Category {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String urlCode;
     private String shortDescription;
     private String guideText;
     private boolean isActive;
-    private Integer order;
+    private Integer orderToShow;
     private String pathImg;
     private String hexHtmlColor;
+    @OneToMany(mappedBy="category")
     private List<SubCategory> subCategoryList = new ArrayList<>();
+
+    @Deprecated
+    public Category() {
+    }
 
     public Category(String name, String urlCode) {
         nonEmptyFieldValidation(urlCode, "Url");
@@ -28,7 +39,7 @@ public class Category {
         this.urlCode = urlCode;
     }
 
-    public Category(String name, String urlCode, String shortDescription, boolean isActive, Integer order, String pathImg, String hexHtmlColor) {
+    public Category(String name, String urlCode, String shortDescription, boolean isActive, Integer orderToShow, String pathImg, String hexHtmlColor) {
         nonEmptyFieldValidation(urlCode, "Url");
         urlValidation(urlCode);
         nonEmptyFieldValidation(name, "Nome");
@@ -37,7 +48,7 @@ public class Category {
         this.urlCode = urlCode;
         this.shortDescription = shortDescription;
         this.isActive = isActive;
-        this.order = order;
+        this.orderToShow = orderToShow;
         this.pathImg = pathImg;
         this.hexHtmlColor = hexHtmlColor;
     }
@@ -90,12 +101,12 @@ public class Category {
         isActive = active;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getOrderToShow() {
+        return orderToShow;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrderToShow(Integer order) {
+        this.orderToShow = order;
     }
 
     public String getPathImg() {
@@ -123,7 +134,7 @@ public class Category {
                 ", shortDescription='" + shortDescription + '\'' +
                 ", guideText='" + guideText + '\'' +
                 ", isActive=" + isActive +
-                ", order=" + order +
+                ", order=" + orderToShow +
                 ", pathImg='" + pathImg + '\'' +
                 ", hexHtmlColor='" + hexHtmlColor + '\'' +
                 '}';

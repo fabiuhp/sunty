@@ -1,8 +1,8 @@
-package br.com.sunty.dto;
+package br.com.sunty.models.course;
 
 import br.com.sunty.models.category.SubCategory;
 
-public class CourseDTO {
+public class CourseDto {
     private Long id;
     private String name;
     private int timeToFinishInHours;
@@ -10,7 +10,7 @@ public class CourseDTO {
     private String subCategoryName;
     private String instructorName;
 
-    public CourseDTO(Long id, String name, int timeToFinishInHours, Long subCategoryId, String subCategoryName, String instructorName) {
+    public CourseDto(Long id, String name, int timeToFinishInHours, Long subCategoryId, String subCategoryName, String instructorName) {
         this.id = id;
         this.name = name;
         this.timeToFinishInHours = timeToFinishInHours;

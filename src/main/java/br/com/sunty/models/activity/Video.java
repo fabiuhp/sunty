@@ -2,8 +2,13 @@ package br.com.sunty.models.activity;
 
 import br.com.sunty.models.section.Section;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import static br.com.sunty.models.validations.Validation.*;
 
+@Entity
+@Table(name = "video")
 public class Video extends Activity {
 
     private String url;
@@ -15,6 +20,9 @@ public class Video extends Activity {
 
         nonEmptyFieldValidation(url, "Url");
         this.url = url;
+    }
+
+    public Video() {
     }
 
     public String getUrl() {
