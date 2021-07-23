@@ -15,16 +15,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "listaCategorias", value = "/listaCategorias")
-public class CategoriesListJsp extends HttpServlet {
+@WebServlet(name = "novaCategoria", value = "/novaCategoria")
+public class CategoriesCreate extends HttpServlet {
     EntityManager entityManager = JPAUtil.getEntityManager();
     CategoryDao categoryDao = new CategoryDao(entityManager);
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Category> categories = categoryDao.findAll();
-        req.setAttribute("categories", categories);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/categoriesListComJSTL.jsp");
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Category category = new Category(req.getParameter("name"), req.getParameter("urlCode"));
+        entityManager.getTransaction().begin();
+        categoryDao.create(category);
+        entityManager.getTransaction().commit();
+        req.setAttribute("category", category);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/categoryCreatedSuccess.jsp");
         requestDispatcher.forward(req, resp);
     }
 }
