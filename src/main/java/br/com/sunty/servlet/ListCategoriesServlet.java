@@ -16,15 +16,15 @@ import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "listaCategorias", value = "/listaCategorias")
-public class CategoriesListJsp extends HttpServlet {
-    EntityManager entityManager = JPAUtil.getEntityManager();
-    CategoryDao categoryDao = new CategoryDao(entityManager);
+public class ListCategoriesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        EntityManager entityManager = JPAUtil.getEntityManager();
+        CategoryDao categoryDao = new CategoryDao(entityManager);
         List<Category> categories = categoryDao.findAll();
         req.setAttribute("categories", categories);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/categoriesListComJSTL.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/views/categoriesList.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

@@ -11,5 +11,6 @@
         <ul>
             <p>A categoria ${category.name} foi criada com sucesso!</p>
         </ul>
+        <a href="/listaCategorias">Listagem de categorias</a>
     </body>
 </html>

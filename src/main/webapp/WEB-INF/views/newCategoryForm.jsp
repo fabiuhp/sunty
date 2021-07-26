@@ -6,12 +6,12 @@
         <title>Lista de categorias</title>
     </head>
     <body>
-       <form action="/novaCategoria">
+       <form action="/novaCategoria" method="post">
            <label>Nome</label>
            <input type="text" name="name">
            <label>UrlCode</label>
            <input type="text" name="urlCode">
-           <input type="submit">
+           <input type="submit" value="Criar">
        </form>
     </body>
 </html>

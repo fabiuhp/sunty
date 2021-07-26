@@ -6,12 +6,11 @@
 <head>
     <title>Lista de categorias</title>
 </head>
-<body>
-<h1>Lista de categorias</h1>
-<ul>
-    <c:forEach items="${categories}" var="category">
-        <li>${category.name}</li>
-    </c:forEach>
-</ul>
-</body>
+    <body>
+        <h1>Sucesso</h1>
+        <ul>
+            <p>A categoria ${category.name} foi atualizada com sucesso!</p>
+        </ul>
+        <a href="/listaCategorias">Listagem de categorias</a>
+    </body>
 </html>

@@ -5,6 +5,9 @@
     <title>Bem vindo</title>
 </head>
 <body>
-    bem vindo
+    <h1>Controle de categorias</h1>
+    <a href="/listaCategorias">Listagem de categorias</a>
+    <br>
+    <a href="/novaCategoria">Criar nova categoria</a>
 </body>
 </html>

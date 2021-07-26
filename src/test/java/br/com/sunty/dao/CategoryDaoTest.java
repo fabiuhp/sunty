@@ -30,11 +30,11 @@ class CategoryDaoTest {
     }
 
     @Test
-    void shouldValidateOrderOfActiveCategories() {
+    void findAllActiveOrdered__should_return_active_categories_ordered_by_orderToShow() {
         createCategoryOrderedFirst();
         createCategoryOrderedSecond();
         createCategoryNotActive();
-        List<Category> categories = categoryDao.findAllActiveOrdered();
+        List<Category> categories = categoryDao.findAllByiIsActiveIsTrueOrderByOrderToShowAsc();
         assertEquals(categories.size(), 2);
         assertEquals(categories.get(0).getUrlCode(), "categoria-teste-um");
         assertEquals(categories.get(1).getUrlCode(), "categoria-teste-dois");

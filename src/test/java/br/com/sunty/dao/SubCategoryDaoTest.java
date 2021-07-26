@@ -39,7 +39,7 @@ class SubCategoryDaoTest {
         createSubCategoryActiveWithoutDescription();
         createSubCategoryInactiveWithDescription();
 
-        List<SubCategory> subCategories = subCategoryDao.findAllActiveOrdered();
+        List<SubCategory> subCategories = subCategoryDao.findAllByiIsActiveIsTrueOrderByOrderToShowAsc();
         assertEquals(2, subCategories.size());
         assertEquals(subCategories.get(0).getUrlCode(), "subcategoria-um");
         assertEquals(subCategories.get(1).getUrlCode(), "subcategoria-dois");

@@ -12,22 +12,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 @WebServlet(name = "novaCategoria", value = "/novaCategoria")
-public class CategoriesCreate extends HttpServlet {
-    EntityManager entityManager = JPAUtil.getEntityManager();
-    CategoryDao categoryDao = new CategoryDao(entityManager);
+public class NewCategoryFormServlet extends HttpServlet {
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/views/newCategoryForm.jsp");
+        requestDispatcher.forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        EntityManager entityManager = JPAUtil.getEntityManager();
+        CategoryDao categoryDao = new CategoryDao(entityManager);
+
         Category category = new Category(req.getParameter("name"), req.getParameter("urlCode"));
         entityManager.getTransaction().begin();
         categoryDao.create(category);
         entityManager.getTransaction().commit();
+        entityManager.close();
+
+//        resp.sendRedirect("/listaCategorias");
         req.setAttribute("category", category);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/categoryCreatedSuccess.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/views/categoryCreatedSuccess.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

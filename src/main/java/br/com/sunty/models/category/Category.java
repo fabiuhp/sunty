@@ -37,6 +37,7 @@ public class Category {
 
         this.name = name;
         this.urlCode = urlCode;
+        this.isActive = true;
     }
 
     public Category(String name, String urlCode, String shortDescription, boolean isActive, Integer orderToShow, String pathImg, String hexHtmlColor) {

@@ -23,11 +23,6 @@ public class CategoryDao {
         this.entityManager.merge(category);
     }
 
-    public void delete(Category category) {
-        category = entityManager.merge(category);
-        this.entityManager.remove(category);
-    }
-
     public Category findByUrlCode(String urlCode) {
         String jpql = "SELECT c FROM Category c where c.urlCode=:urlCode";
         return entityManager.createQuery(jpql, Category.class)
@@ -35,7 +30,7 @@ public class CategoryDao {
                 .getSingleResult();
     }
 
-    public List<Category> findAllActiveOrdered() {
+    public List<Category> findAllByiIsActiveIsTrueOrderByOrderToShowAsc() {
         String jpql = "SELECT c FROM Category c where c.isActive=true order by c.orderToShow";
         return entityManager.createQuery(jpql, Category.class).getResultList();
     }
@@ -43,5 +38,9 @@ public class CategoryDao {
     public List<Category> findAll() {
         String jpql = "SELECT c FROM Category c";
         return entityManager.createQuery(jpql, Category.class).getResultList();
+    }
+
+    public Category findById(Long id) {
+        return entityManager.find(Category.class, id);
     }
 }
