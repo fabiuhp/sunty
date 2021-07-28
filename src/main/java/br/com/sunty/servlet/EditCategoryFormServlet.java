@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "editarCategoria", value = "/editarCategoria")
 public class EditCategoryFormServlet extends HttpServlet {
@@ -31,7 +30,7 @@ public class EditCategoryFormServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
 
@@ -46,8 +45,6 @@ public class EditCategoryFormServlet extends HttpServlet {
         entityManager.getTransaction().commit();
         entityManager.close();
 
-        req.setAttribute("category", category);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/views/categoryUpdatedSuccess.jsp");
-        requestDispatcher.forward(req, resp);
+        resp.sendRedirect("/listaCategorias");
     }
 }

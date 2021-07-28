@@ -43,7 +43,7 @@ class CategoryDaoTest {
     private void createCategoryOrderedFirst() {
         Category category = new CategoryBuilder("Categoria de teste um", "categoria-teste-um")
                 .withOrder(1)
-                .activeCategory(true)
+                .activeCategory()
                 .build();
         entityManager.persist(category);
     }
@@ -51,7 +51,7 @@ class CategoryDaoTest {
     private void createCategoryOrderedSecond() {
         Category category = new CategoryBuilder("Categoria de teste-dois", "categoria-teste-dois")
                 .withOrder(2)
-                .activeCategory(true)
+                .activeCategory()
                 .build();
         entityManager.persist(category);
     }
@@ -59,7 +59,7 @@ class CategoryDaoTest {
     private void createCategoryNotActive() {
         Category category = new CategoryBuilder("Categoria de teste-tres", "categoria-teste-tres")
                 .withOrder(3)
-                .activeCategory(false)
+                .inactiveCategory()
                 .build();
         entityManager.persist(category);
     }

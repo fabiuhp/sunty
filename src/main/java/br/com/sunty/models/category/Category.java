@@ -98,8 +98,12 @@ public class Category {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void activate() {
+        isActive = true;
+    }
+
+    public void inactivate() {
+        isActive = false;
     }
 
     public Integer getOrderToShow() {

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "novaCategoria", value = "/novaCategoria")
-public class NewCategoryFormServlet extends HttpServlet {
+public class NewCategoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,19 +23,19 @@ public class NewCategoryFormServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
 
-        Category category = new Category(req.getParameter("name"), req.getParameter("urlCode"));
+        String urlCode = req.getParameter("urlCode");
+        String name = req.getParameter("name");
+
+        Category category = new Category(name, urlCode);
         entityManager.getTransaction().begin();
         categoryDao.create(category);
         entityManager.getTransaction().commit();
         entityManager.close();
 
-//        resp.sendRedirect("/listaCategorias");
-        req.setAttribute("category", category);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/views/categoryCreatedSuccess.jsp");
-        requestDispatcher.forward(req, resp);
+        resp.sendRedirect("/listaCategorias");
     }
 }

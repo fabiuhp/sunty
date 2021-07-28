@@ -58,7 +58,7 @@ class SubCategoryDaoTest {
     private void createCategory() {
         category = new CategoryBuilder("Categoria de teste um", "categoria-teste-um")
                 .withOrder(1)
-                .activeCategory(true)
+                .activeCategory()
                 .build();
         entityManager.persist(category);
     }

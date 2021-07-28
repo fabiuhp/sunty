@@ -23,28 +23,27 @@ public class InactivateCategoryFormServlet extends HttpServlet {
 
         Long id = Long.valueOf(req.getParameter("id"));
         Category category = categoryDao.findById(id);
+
         req.setAttribute("category", category);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/views/inactivateCategoryForm.jsp");
         requestDispatcher.forward(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
 
         Long id = Long.valueOf(req.getParameter("id"));
 
         Category category = categoryDao.findById(id);
-        category.setActive(false);
+        category.inactivate();
 
         entityManager.getTransaction().begin();
         categoryDao.update(category);
         entityManager.getTransaction().commit();
         entityManager.close();
 
-        req.setAttribute("category", category);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/views/categoryUpdatedSuccess.jsp");
-        requestDispatcher.forward(req, resp);
+        resp.sendRedirect("/listaCategorias");
     }
 }
