@@ -21,16 +21,11 @@ public class SubCategoryDao {
         this.entityManager.merge(subCategory);
     }
 
-    public void delete(SubCategory subCategory) {
-        subCategory = entityManager.merge(subCategory);
-        this.entityManager.remove(subCategory);
-    }
-
     public SubCategory findById(Long id) {
         return entityManager.find(SubCategory.class, id);
     }
 
-    public List<SubCategory> findAllActiveOrdered() {
+    public List<SubCategory> findAllByiIsActiveIsTrueOrderByOrderToShowAsc() {
         String jpql = "SELECT s FROM SubCategory s where s.isActive=true order by s.orderToShow";
         return entityManager.createQuery(jpql, SubCategory.class).getResultList();
     }

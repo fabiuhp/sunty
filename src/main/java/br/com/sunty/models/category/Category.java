@@ -37,6 +37,7 @@ public class Category {
 
         this.name = name;
         this.urlCode = urlCode;
+        this.isActive = true;
     }
 
     public Category(String name, String urlCode, String shortDescription, boolean isActive, Integer orderToShow, String pathImg, String hexHtmlColor) {
@@ -97,8 +98,12 @@ public class Category {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void activate() {
+        isActive = true;
+    }
+
+    public void inactivate() {
+        isActive = false;
     }
 
     public Integer getOrderToShow() {
