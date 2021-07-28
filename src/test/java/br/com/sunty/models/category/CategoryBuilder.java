@@ -12,13 +12,8 @@ public class CategoryBuilder {
         return this;
     }
 
-    public CategoryBuilder activeCategory() {
-        category.activate();
-        return this;
-    }
-
-    public CategoryBuilder inactiveCategory() {
-        category.inactivate();
+    public CategoryBuilder activeCategory(Boolean active) {
+        category.setActive(active);
         return this;
     }
 

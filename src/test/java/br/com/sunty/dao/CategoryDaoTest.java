@@ -30,11 +30,11 @@ class CategoryDaoTest {
     }
 
     @Test
-    void findAllActiveOrdered__should_return_active_categories_ordered_by_orderToShow() {
+    void shouldValidateOrderOfActiveCategories() {
         createCategoryOrderedFirst();
         createCategoryOrderedSecond();
         createCategoryNotActive();
-        List<Category> categories = categoryDao.findAllByiIsActiveIsTrueOrderByOrderToShowAsc();
+        List<Category> categories = categoryDao.findAllActiveOrdered();
         assertEquals(categories.size(), 2);
         assertEquals(categories.get(0).getUrlCode(), "categoria-teste-um");
         assertEquals(categories.get(1).getUrlCode(), "categoria-teste-dois");
@@ -43,7 +43,7 @@ class CategoryDaoTest {
     private void createCategoryOrderedFirst() {
         Category category = new CategoryBuilder("Categoria de teste um", "categoria-teste-um")
                 .withOrder(1)
-                .activeCategory()
+                .activeCategory(true)
                 .build();
         entityManager.persist(category);
     }
@@ -51,7 +51,7 @@ class CategoryDaoTest {
     private void createCategoryOrderedSecond() {
         Category category = new CategoryBuilder("Categoria de teste-dois", "categoria-teste-dois")
                 .withOrder(2)
-                .activeCategory()
+                .activeCategory(true)
                 .build();
         entityManager.persist(category);
     }
@@ -59,7 +59,7 @@ class CategoryDaoTest {
     private void createCategoryNotActive() {
         Category category = new CategoryBuilder("Categoria de teste-tres", "categoria-teste-tres")
                 .withOrder(3)
-                .inactiveCategory()
+                .activeCategory(false)
                 .build();
         entityManager.persist(category);
     }

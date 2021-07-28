@@ -22,13 +22,13 @@ public class HtmlPageGenerator {
 
     private static void generate(EntityManager entityManager) throws FileNotFoundException {
         CourseDao courseDao = new CourseDao(entityManager);
-        List<Course> courses = courseDao.findAllByVisibilityIsPublic();
+        List<Course> courses = courseDao.findAllPublic();
 
         CategoryDao categoryDao = new CategoryDao(entityManager);
-        List<Category> categories = categoryDao.findAllByiIsActiveIsTrueOrderByOrderToShowAsc();
+        List<Category> categories = categoryDao.findAllActiveOrdered();
 
         SubCategoryDao subCategoryDao = new SubCategoryDao(entityManager);
-        List<SubCategory> subCategoryActive = subCategoryDao.findAllByiIsActiveIsTrueOrderByOrderToShowAsc();
+        List<SubCategory> subCategoryActive = subCategoryDao.findAllActiveOrdered();
         List<SubCategory> subCategoryWithoutDescription = subCategoryDao.withoutDescription();
 
         File file = new File("paginaSemana5.html");
