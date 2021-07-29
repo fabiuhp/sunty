@@ -22,17 +22,12 @@ public class CourseDao {
         this.entityManager.merge(course);
     }
 
-    public void delete(Course course) {
-        course = entityManager.merge(course);
-        this.entityManager.remove(course);
-    }
-
     public List<Course> findAll() {
         String jpql = "SELECT c FROM Course c";
         return entityManager.createQuery(jpql, Course.class).getResultList();
     }
 
-    public List<Course> findAllPublic() {
+    public List<Course> findAllByVisibilityIsPublic() {
         String jpql = "SELECT c FROM Course c where c.visibility='PUBLICA'";
         return entityManager.createQuery(jpql, Course.class).getResultList();
     }
