@@ -60,7 +60,7 @@ class CourseDaoTest {
     void shouldValidateAllPublicCourses() {
         createOneCoursePublic();
         createOneCoursePrivate();
-        List<Course> courses = courseDao.findAllByVisibilityIsPublic();
+        List<Course> courses = courseDao.findAllPublic();
         assertEquals(1, courses.size());
     }
 
