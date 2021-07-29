@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Lista de categorias</title>
+    <title>Categorias</title>
 </head>
     <body>
         <h1>Lista de categorias</h1>
