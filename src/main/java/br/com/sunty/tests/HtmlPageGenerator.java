@@ -25,10 +25,10 @@ public class HtmlPageGenerator {
         List<Course> courses = courseDao.findAllByVisibilityIsPublic();
 
         CategoryDao categoryDao = new CategoryDao(entityManager);
-        List<Category> categories = categoryDao.findAllByiIsActiveIsTrueOrderByOrderToShowAsc();
+        List<Category> categories = categoryDao.findAllByIsActiveIsTrueOrderByOrderToShowAsc();
 
         SubCategoryDao subCategoryDao = new SubCategoryDao(entityManager);
-        List<SubCategory> subCategoryActive = subCategoryDao.findAllByiIsActiveIsTrueOrderByOrderToShowAsc();
+        List<SubCategory> subCategoryActive = subCategoryDao.findAllByIsActiveIsTrueOrderByOrderToShowAsc();
         List<SubCategory> subCategoryWithoutDescription = subCategoryDao.withoutDescription();
 
         File file = new File("paginaSemana5.html");

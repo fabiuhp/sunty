@@ -4,9 +4,8 @@ import br.com.sunty.models.course.Course;
 
 import javax.persistence.*;
 
-import java.util.List;
-
-import static br.com.sunty.models.validations.Validation.*;
+import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
+import static br.com.sunty.models.validations.Validation.urlValidation;
 
 @Entity
 @Table(name = "section")
@@ -20,9 +19,8 @@ public class Section {
     private Integer orderToShow;
     private boolean isExam;
     private boolean isActive;
-    @OneToMany
-    @JoinColumn(name = "course")
-    private List<Course> course;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Course course;
 
     public Section(){
     }
@@ -34,10 +32,6 @@ public class Section {
 
         this.name = name;
         this.urlCode = urlCode;
-    }
-
-    public void addCourse(Course course) {
-        this.course.add(course);
     }
 
     public Long getId() {
@@ -88,7 +82,11 @@ public class Section {
         isActive = active;
     }
 
-    public List<Course> getCourse() {
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Course getCourse() {
         return course;
     }
 }

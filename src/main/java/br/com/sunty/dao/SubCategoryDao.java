@@ -25,7 +25,7 @@ public class SubCategoryDao {
         return entityManager.find(SubCategory.class, id);
     }
 
-    public List<SubCategory> findAllByiIsActiveIsTrueOrderByOrderToShowAsc() {
+    public List<SubCategory> findAllByIsActiveIsTrueOrderByOrderToShowAsc() {
         String jpql = "SELECT s FROM SubCategory s where s.isActive=true order by s.orderToShow";
         return entityManager.createQuery(jpql, SubCategory.class).getResultList();
     }

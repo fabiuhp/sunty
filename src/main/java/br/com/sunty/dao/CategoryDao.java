@@ -1,8 +1,6 @@
 package br.com.sunty.dao;
 
 import br.com.sunty.models.category.Category;
-import br.com.sunty.models.category.SubCategory;
-import br.com.sunty.models.course.Course;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -30,7 +28,7 @@ public class CategoryDao {
                 .getSingleResult();
     }
 
-    public List<Category> findAllByiIsActiveIsTrueOrderByOrderToShowAsc() {
+    public List<Category> findAllByIsActiveIsTrueOrderByOrderToShowAsc() {
         String jpql = "SELECT c FROM Category c where c.isActive=true order by c.orderToShow";
         return entityManager.createQuery(jpql, Category.class).getResultList();
     }

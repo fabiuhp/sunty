@@ -34,7 +34,7 @@ class CategoryDaoTest {
         createCategoryOrderedFirst();
         createCategoryOrderedSecond();
         createCategoryNotActive();
-        List<Category> categories = categoryDao.findAllByiIsActiveIsTrueOrderByOrderToShowAsc();
+        List<Category> categories = categoryDao.findAllByIsActiveIsTrueOrderByOrderToShowAsc();
         assertEquals(categories.size(), 2);
         assertEquals(categories.get(0).getUrlCode(), "categoria-teste-um");
         assertEquals(categories.get(1).getUrlCode(), "categoria-teste-dois");
