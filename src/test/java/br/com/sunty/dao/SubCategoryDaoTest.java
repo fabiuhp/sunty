@@ -39,7 +39,7 @@ class SubCategoryDaoTest {
         createSubCategoryActiveWithoutDescription();
         createSubCategoryInactiveWithDescription();
 
-        List<SubCategory> subCategories = subCategoryDao.findAllActiveOrdered();
+        List<SubCategory> subCategories = subCategoryDao.findAllByIsActiveIsTrueOrderByOrderToShowAsc();
         assertEquals(2, subCategories.size());
         assertEquals(subCategories.get(0).getUrlCode(), "subcategoria-um");
         assertEquals(subCategories.get(1).getUrlCode(), "subcategoria-dois");
@@ -58,7 +58,7 @@ class SubCategoryDaoTest {
     private void createCategory() {
         category = new CategoryBuilder("Categoria de teste um", "categoria-teste-um")
                 .withOrder(1)
-                .activeCategory(true)
+                .activeCategory()
                 .build();
         entityManager.persist(category);
     }

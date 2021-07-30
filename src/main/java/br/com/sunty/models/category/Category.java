@@ -19,7 +19,7 @@ public class Category {
     private String urlCode;
     private String shortDescription;
     private String guideText;
-    private boolean isActive;
+    private boolean isActive = true;
     private Integer orderToShow;
     private String pathImg;
     private String hexHtmlColor;
@@ -97,8 +97,12 @@ public class Category {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void activate() {
+        isActive = true;
+    }
+
+    public void inactivate() {
+        isActive = false;
     }
 
     public Integer getOrderToShow() {
@@ -160,5 +164,9 @@ public class Category {
 
     public int getActiveAsNumber() {
         return this.isActive ? 1 : 0;
+    }
+
+    public void toggle() {
+        this.isActive = !isActive;
     }
 }

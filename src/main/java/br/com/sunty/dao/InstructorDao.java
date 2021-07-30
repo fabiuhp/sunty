@@ -17,15 +17,6 @@ public class InstructorDao {
         this.entityManager.persist(instructor);
     }
 
-    public void update(Instructor instructor) {
-        this.entityManager.merge(instructor);
-    }
-
-    public void delete(Instructor instructor) {
-        instructor = entityManager.merge(instructor);
-        this.entityManager.remove(instructor);
-    }
-
     public List<Instructor> findAll() {
         String jpql = "SELECT i FROM Instructor i";
         return entityManager.createQuery(jpql, Instructor.class).getResultList();

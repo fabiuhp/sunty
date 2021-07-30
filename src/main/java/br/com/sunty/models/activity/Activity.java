@@ -14,6 +14,7 @@ public abstract class Activity {
     private Long id;
     private String name;
     private String urlCode;
+    @Column(columnDefinition = "VARCHAR")
     private boolean isActive;
     private Integer orderToShow;
     @ManyToOne

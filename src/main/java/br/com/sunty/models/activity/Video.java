@@ -5,14 +5,15 @@ import br.com.sunty.models.section.Section;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import static br.com.sunty.models.validations.Validation.*;
+import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
 
 @Entity
 @Table(name = "video")
 public class Video extends Activity {
 
     private String url;
-    private Integer time;
+
+    private String time;
     private String transcription;
 
     public Video(String name, String urlCode, Section section, String url) {
@@ -33,11 +34,11 @@ public class Video extends Activity {
         this.url = url;
     }
 
-    public Integer getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Integer time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
