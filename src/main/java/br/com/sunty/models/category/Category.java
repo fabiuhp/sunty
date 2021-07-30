@@ -165,4 +165,8 @@ public class Category {
     public int getActiveAsNumber() {
         return this.isActive ? 1 : 0;
     }
+
+    public void toggle() {
+        this.isActive = !isActive;
+    }
 }

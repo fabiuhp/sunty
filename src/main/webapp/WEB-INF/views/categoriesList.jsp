@@ -18,10 +18,15 @@
                     <td>${category.name}</td>
                     <td>${category.active}</td>
                     <td><a href="/editarCategoria?id=${category.id}">Editar</a></td>
-                    <td><a href="/desativarCategoria?id=${category.id}">Desativar</a></td>
+                    <td><form action="/desativarCategoria" method="post">
+                        <input type="text" hidden name="id" value="${category.id}">
+                        <input type="submit" value="${category.active ? 'Inativar' : 'Ativar'}">
+                    </form></td>
                 </tr>
                 </c:forEach>
         </table>
         <a href="/novaCategoria">Criar nova categoria</a>
     </body>
 </html>
+
+<%--<a href="/desativarCategoria?id=${category.id}">Desativar</a>--%>
