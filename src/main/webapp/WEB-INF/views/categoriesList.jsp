@@ -28,5 +28,3 @@
         <a href="/novaCategoria">Criar nova categoria</a>
     </body>
 </html>
-
-<%--<a href="/desativarCategoria?id=${category.id}">Desativar</a>--%>

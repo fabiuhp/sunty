@@ -14,19 +14,6 @@ import java.io.IOException;
 @WebServlet(name = "desativarCategoria", value = "/desativarCategoria")
 public class InactivateCategoryFormServlet extends HttpServlet {
 
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        EntityManager entityManager = JPAUtil.getEntityManager();
-//        CategoryDao categoryDao = new CategoryDao(entityManager);
-//
-//        Long id = Long.valueOf(req.getParameter("id"));
-//        Category category = categoryDao.findById(id);
-//
-//        req.setAttribute("category", category);
-//        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/views/inactivateCategoryForm.jsp");
-//        requestDispatcher.forward(req, resp);
-//    }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         EntityManager entityManager = JPAUtil.getEntityManager();
