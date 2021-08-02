@@ -3,10 +3,18 @@
 <html>
 <head>
     <title>Lista de categorias</title>
+    <style>
+        .espacamento {
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
     <body>
-        <h1>Lista de categorias</h1>
-        <table>
+        <h1>Categorias</h1>
+        <a class="btn btn-primary" href="categories/new">Nova Categoria</a>
+        <table class="table table-bordered espacamento">
             <tr>
                 <th>Nome da categoria</th>
                 <th>Ativo</th>
@@ -26,5 +34,7 @@
                 </c:forEach>
         </table>
         <a href="/novaCategoria">Criar nova categoria</a>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
 </html>

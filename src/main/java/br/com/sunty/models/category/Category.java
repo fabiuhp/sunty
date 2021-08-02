@@ -97,6 +97,10 @@ public class Category {
         return isActive;
     }
 
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     public void activate() {
         isActive = true;
     }
@@ -152,6 +156,10 @@ public class Category {
         return subCategoryList.stream()
                 .filter(SubCategory::getActive)
                 .collect(Collectors.toList());
+    }
+
+    public List<SubCategory> getSubCategoryList() {
+        return subCategoryList;
     }
 
     public int getCoursesQuantity() {
