@@ -31,6 +31,10 @@ public class Explanation extends Activity {
         this.text = text;
     }
 
+    public void teste(String text) {
+        this.text = text;
+    }
+
     @Override
     public String toString() {
         return "Explanation{" +
