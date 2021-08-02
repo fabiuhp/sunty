@@ -2,7 +2,7 @@ package br.com.sunty.models.instructor;
 
 import javax.persistence.*;
 
-import static br.com.sunty.models.validations.Validation.*;
+import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
 
 @Entity
 @Table(name = "instructor")

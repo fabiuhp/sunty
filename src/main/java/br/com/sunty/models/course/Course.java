@@ -2,7 +2,6 @@ package br.com.sunty.models.course;
 
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.instructor.Instructor;
-import br.com.sunty.models.section.Section;
 
 import javax.persistence.*;
 
@@ -151,6 +150,10 @@ public class Course {
 
     public void setSubCategory(SubCategory subCategory) {
         this.subCategory = subCategory;
+    }
+
+    public boolean getPublic() {
+        return visibility == CourseVisibility.PUBLICA;
     }
 
     @Override

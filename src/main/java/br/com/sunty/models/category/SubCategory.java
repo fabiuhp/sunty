@@ -5,6 +5,7 @@ import br.com.sunty.models.course.Course;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static br.com.sunty.models.validations.Validation.*;
 
@@ -145,5 +146,11 @@ public class SubCategory {
 
     public int getActiveAsNumber() {
         return this.isActive ? 1 : 0;
+    }
+
+    public List<Course> getPublicCourses() {
+        return courseList.stream()
+                .filter(Course::getPublic)
+                .collect(Collectors.toList());
     }
 }

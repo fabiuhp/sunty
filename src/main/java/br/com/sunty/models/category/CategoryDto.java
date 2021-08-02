@@ -1,5 +1,8 @@
 package br.com.sunty.models.category;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CategoryDto {
     private final String name;
     private final String urlCode;
@@ -9,7 +12,7 @@ public class CategoryDto {
     private final Integer orderToShow;
     private final String pathImg;
     private final String hexHtmlColor;
-
+    private final List<SubCategoryDto> subCategoryDtoList;
 
     public CategoryDto(Category category) {
         this.name = category.getName();
@@ -20,6 +23,7 @@ public class CategoryDto {
         this.orderToShow = category.getOrderToShow();
         this.pathImg = category.getPathImg();
         this.hexHtmlColor = category.getHexHtmlColor();
+        this.subCategoryDtoList = category.getActiveSubCategoryList().stream().map(SubCategoryDto::new).toList();
     }
 
     public String getName() {
@@ -30,27 +34,23 @@ public class CategoryDto {
         return urlCode;
     }
 
-    public String getShortDescription() {
-        return shortDescription;
+    public Integer getOrderToShow() {
+        return orderToShow;
+    }
+
+    public String getHexHtmlColor() {
+        return hexHtmlColor;
     }
 
     public String getGuideText() {
         return guideText;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public String getShortDescription() {
+        return shortDescription;
     }
 
-    public Integer getOrderToShow() {
-        return orderToShow;
-    }
-
-    public String getPathImg() {
-        return pathImg;
-    }
-
-    public String getHexHtmlColor() {
-        return hexHtmlColor;
+    public List<SubCategoryDto> getSubCategoryDtoList() {
+        return subCategoryDtoList;
     }
 }

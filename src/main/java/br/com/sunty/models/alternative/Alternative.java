@@ -4,7 +4,8 @@ import br.com.sunty.models.activity.Question;
 
 import javax.persistence.*;
 
-import static br.com.sunty.models.validations.Validation.*;
+import static br.com.sunty.models.validations.Validation.classNonNullValidation;
+import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
 
 @Entity
 @Table(name = "alternative")

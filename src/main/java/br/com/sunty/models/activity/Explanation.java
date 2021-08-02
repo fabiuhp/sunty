@@ -5,7 +5,7 @@ import br.com.sunty.models.section.Section;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import static br.com.sunty.models.validations.Validation.*;
+import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
 
 @Entity
 @Table(name = "explanation")

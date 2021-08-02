@@ -148,7 +148,7 @@ public class Category {
         this.subCategoryList.add(subCategory);
     }
 
-    public List<SubCategory> getSubCategoryList() {
+    public List<SubCategory> getActiveSubCategoryList() {
         return subCategoryList.stream()
                 .filter(SubCategory::getActive)
                 .collect(Collectors.toList());
