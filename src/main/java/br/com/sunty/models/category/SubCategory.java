@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static br.com.sunty.models.validations.Validation.*;
-
 @Entity
 @Table(name = "sub_category")
 public class SubCategory {
@@ -30,22 +28,12 @@ public class SubCategory {
     public SubCategory(){}
 
     public SubCategory(String name, String urlCode, Category category) {
-        nonEmptyFieldValidation(name, "Nome");
-        nonEmptyFieldValidation(urlCode, "Url");
-        urlValidation(urlCode);
-        classNonNullValidation(category, "Categoria");
-
         this.name = name;
         this.urlCode = urlCode;
         this.category = category;
     }
 
     public SubCategory(String name, String urlCode, String shortDescription, boolean isActive, Integer orderToShow, Category category) {
-        nonEmptyFieldValidation(name, "Nome");
-        nonEmptyFieldValidation(urlCode, "Url");
-        urlValidation(urlCode);
-        classNonNullValidation(category, "Categoria");
-
         this.name = name;
         this.urlCode = urlCode;
         this.shortDescription = shortDescription;

@@ -53,6 +53,10 @@ public class CategoryDto {
         return active;
     }
 
+    public String getPathImg() {
+        return pathImg;
+    }
+
     public List<SubCategoryDto> getSubCategoryDtoList() {
         return subCategoryDtoList;
     }

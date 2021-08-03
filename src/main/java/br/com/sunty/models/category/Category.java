@@ -1,13 +1,12 @@
 package br.com.sunty.models.category;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
-import static br.com.sunty.models.validations.Validation.urlValidation;
 
 @Entity
 @Table(name = "category")
@@ -16,15 +15,21 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @NotBlank(message = "Nome da categoria não pode ser nulo.")
+    @Size(max = 255, message = "Nome não pode ter mais de 255 caracteres.")
     private String name;
-    @NotNull
+    @NotBlank(message = "Código da categoria não pode ser nulo.")
+    @Size(max = 255, message = "Nome não pode ter mais de 255 caracteres.")
+    @Pattern(regexp = "[-a-z]+", message = "Apenas letras maiúsculas e hífen permitidos.")
     private String urlCode;
     private String shortDescription;
     private String guideText;
     private boolean isActive = true;
     private Integer orderToShow;
+    @Size(max = 255, message = "Nome não pode ter mais de 255 caracteres.")
     private String pathImg;
+    @Size(max = 7, message = "Cor hexadecimal não pode ter mais de 7 caracteres.")
+    @Pattern(regexp = "#\\w{6}", message = "Primeiro caractere # deve ser seguido de 6 letras ou números.")
     private String hexHtmlColor;
     @OneToMany(mappedBy="category")
     private List<SubCategory> subCategoryList = new ArrayList<>();
@@ -34,19 +39,11 @@ public class Category {
     }
 
     public Category(String name, String urlCode) {
-        nonEmptyFieldValidation(urlCode, "Url");
-        urlValidation(urlCode);
-        nonEmptyFieldValidation(name, "Nome");
-
         this.name = name;
         this.urlCode = urlCode;
     }
 
     public Category(String name, String urlCode, String shortDescription, boolean isActive, Integer orderToShow, String pathImg, String hexHtmlColor) {
-        nonEmptyFieldValidation(urlCode, "Url");
-        urlValidation(urlCode);
-        nonEmptyFieldValidation(name, "Nome");
-
         this.name = name;
         this.urlCode = urlCode;
         this.shortDescription = shortDescription;
