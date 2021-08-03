@@ -12,29 +12,28 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
     <body>
-        <h1>Categorias</h1>
-        <a class="btn btn-primary" href="categories/new">Nova Categoria</a>
-        <table class="table table-bordered espacamento">
-            <tr>
-                <th>Nome da categoria</th>
-                <th>Ativo</th>
-                <th>Editar</th>
-                <th>Desativar</th>
-            </tr>
-                <c:forEach items="${categories}" var="category">
+        <div class="container">
+            <h1>Categorias</h1>
+            <a class="btn btn-primary" href="categories/new">Nova Categoria</a>
+            <table class="table table-bordered espacamento">
                 <tr>
-                    <td>${category.name}</td>
-                    <td>${category.active}</td>
-                    <td><a href="/editarCategoria?id=${category.id}">Editar</a></td>
-                    <td><form action="/desativarCategoria" method="post">
-                        <input type="text" hidden name="id" value="${category.id}">
-                        <input type="submit" value="${category.active ? 'Inativar' : 'Ativar'}">
-                    </form></td>
+                    <th>Nome</th>
+                    <th>Código</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
                 </tr>
+                <c:forEach items="${categories}" var="category">
+                    <tr>
+                        <td>${category.name}</td>
+                        <td>${category.urlCode}</td>
+                        <td>${category.active ? 'Ativo' : 'Inativo'}</td>
+                        <td><a href="/admin/subcategories/${category.id}">Subcategorias</a></td>
+                        <td><a href="/admin/categories/${category.urlCode}">Editar</a></td>
+                    </tr>
                 </c:forEach>
-        </table>
-        <a href="/novaCategoria">Criar nova categoria</a>
-
+            </table>
+        </div>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
 </html>
