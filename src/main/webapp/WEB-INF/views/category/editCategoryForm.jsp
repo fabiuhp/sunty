@@ -33,7 +33,7 @@
                <div class="form-group">
                    <label>Ativo?</label>
                    <select class="form-control" name="active" >
-                       <option value="Selecione" selected>Selecione</option>
+                       <option value="Selecione">Selecione</option>
                        <option value="true" selected="selected">Ativo</option>
                        <option value="false">Inativo</option>
                    </select>
