@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -20,14 +21,20 @@
                <div class="form-group">
                    <label>Nome</label>
                    <input class="form-control" type="text" name="name">
+                   <form:errors path="category.name" cssStyle="color: red"/>
                </div>
                <div class="form-group">
                    <label>UrlCode</label>
                    <input class="form-control" type="text" name="urlCode">
+                   <form:errors path="category.urlCode" cssStyle="color: red"/>
                </div>
                <div class="form-group">
                    <label>Descrição breve</label>
                    <input class="form-control" type="text" name="shortDescription">
+               </div>
+               <div class="form-group">
+                   <label>Texto guia</label>
+                   <input class="form-control" type="text" name="guideText">
                </div>
                <div class="form-group">
                    <label>Ativo?</label>
@@ -36,18 +43,22 @@
                        <option value="true">Ativo</option>
                        <option value="false">Inativo</option>
                    </select>
+                   <form:errors path="category.active" cssStyle="color: red"/>
                </div>
                <div class="form-group">
                    <label>Cor em hexadecimal</label>
                    <input class="form-control" type="text" name="hexHtmlColor">
+                   <form:errors path="category.hexHtmlColor" cssStyle="color: red"/>
                </div>
                <div class="form-group">
                    <label>Ordem</label>
                    <input class="form-control" type="text" name="orderToShow">
+                   <form:errors path="category.orderToShow" cssStyle="color: red"/>
                </div>
                <div class="form-group">
                    <label>Local da imagem</label>
                    <input class="form-control" type="text" name="pathImg">
+                   <form:errors path="category.pathImg" cssStyle="color: red"/>
                </div>
                <input class="btn btn-default" type="submit" value="Criar">
            </form>

@@ -15,21 +15,21 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Nome da categoria não pode ser nulo.")
-    @Size(max = 255, message = "Nome não pode ter mais de 255 caracteres.")
+    @NotBlank(message = "{name.nao.nulo}")
+    @Size(max = 255, message = "{name.size.max}")
     private String name;
-    @NotBlank(message = "Código da categoria não pode ser nulo.")
-    @Size(max = 255, message = "Nome não pode ter mais de 255 caracteres.")
-    @Pattern(regexp = "[-a-z]+", message = "Apenas letras maiúsculas e hífen permitidos.")
+    @NotBlank(message = "{url.nao.nulo}")
+    @Size(max = 255, message = "{url.size.max}")
+    @Pattern(regexp = "[-a-z]+", message = "{url.regex}")
     private String urlCode;
     private String shortDescription;
     private String guideText;
     private boolean isActive = true;
     private Integer orderToShow;
-    @Size(max = 255, message = "Nome não pode ter mais de 255 caracteres.")
+    @Size(max = 255, message = "{pathImg.size.max}")
     private String pathImg;
-    @Size(max = 7, message = "Cor hexadecimal não pode ter mais de 7 caracteres.")
-    @Pattern(regexp = "#\\w{6}", message = "Primeiro caractere # deve ser seguido de 6 letras ou números.")
+    @Size(max = 7, message = "{hexHtmlColor.size.max}")
+    @Pattern(regexp = "#\\w{6}", message = "{hexHtmlColor.regex}")
     private String hexHtmlColor;
     @OneToMany(mappedBy="category")
     private List<SubCategory> subCategoryList = new ArrayList<>();

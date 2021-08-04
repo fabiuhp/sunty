@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +31,10 @@ public class CategoryAdminController {
     }
 
     @PostMapping
-    public String create(@Valid Category category) {
+    public String create(@Valid Category category, BindingResult result) {
+        if (result.hasErrors()){
+            return "category/newCategoryForm";
+        }
         categoryRepository.save(category);
         return "redirect:/admin/categories";
     }
