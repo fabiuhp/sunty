@@ -52,7 +52,7 @@
                </div>
                <div class="form-group">
                    <label>Ordem</label>
-                   <input class="form-control" type="text" name="orderToShow">
+                   <input class="form-control" type="number" name="orderToShow">
                    <form:errors path="category.orderToShow" cssStyle="color: red"/>
                </div>
                <div class="form-group">
