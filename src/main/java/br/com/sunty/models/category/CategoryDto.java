@@ -7,24 +7,20 @@ public class CategoryDto {
     private final String urlCode;
     private final String shortDescription;
     private final String guideText;
-    private final boolean active;
     private final Integer orderToShow;
-    private final String pathImg;
     private final String hexHtmlColor;
     private final int totalCourse;
-    private final List<SubCategoryDto> subCategoryDtoList;
+    private final List<SubCategoryDto> subCategories;
 
     public CategoryDto(Category category) {
         this.name = category.getName();
         this.urlCode = category.getUrlCode();
         this.shortDescription = category.getShortDescription();
         this.guideText = category.getGuideText();
-        this.active = category.getActive();
         this.orderToShow = category.getOrderToShow();
-        this.pathImg = category.getPathImg();
         this.hexHtmlColor = category.getHexHtmlColor();
         this.totalCourse = category.getCoursesQuantity();
-        this.subCategoryDtoList = category.getActiveSubCategoryList().stream().map(SubCategoryDto::new).toList();
+        this.subCategories = category.getActiveSubCategoryList().stream().map(SubCategoryDto::new).toList();
     }
 
     public String getName() {
@@ -51,19 +47,11 @@ public class CategoryDto {
         return shortDescription;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public String getPathImg() {
-        return pathImg;
-    }
-
     public int getTotalCourse() {
         return totalCourse;
     }
 
-    public List<SubCategoryDto> getSubCategoryDtoList() {
-        return subCategoryDtoList;
+    public List<SubCategoryDto> getSubCategories() {
+        return subCategories;
     }
 }

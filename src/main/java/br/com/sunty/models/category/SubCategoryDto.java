@@ -10,13 +10,13 @@ public class SubCategoryDto {
     private final String name;
     private final String urlCode;
     private final String guideText;
-    private final List<CourseDto> courseDtos;
+    private final List<CourseDto> courses;
 
     public SubCategoryDto(SubCategory subCategory) {
         this.name = subCategory.getName();
         this.urlCode = subCategory.getUrlCode();
         this.guideText = subCategory.getGuideText();
-        this.courseDtos = subCategory.getPublicCourses().stream().map(CourseDto::new).collect(Collectors.toList());
+        this.courses = subCategory.getPublicCourses().stream().map(CourseDto::new).collect(Collectors.toList());
     }
 
     public String getName() {
@@ -31,7 +31,7 @@ public class SubCategoryDto {
         return guideText;
     }
 
-    public List<CourseDto> getCourseDtos() {
-        return courseDtos;
+    public List<CourseDto> getCourses() {
+        return courses;
     }
 }

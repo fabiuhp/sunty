@@ -1,24 +1,16 @@
 package br.com.sunty.models.course;
 
 public class CourseDto {
-    private Long id;
     private String name;
+    private String urlCode;
     private int timeToFinishInHours;
-    private Long subCategoryId;
-    private String subCategoryName;
-    private String instructorName;
+    private String developedSkills;
 
     public CourseDto(Course course) {
-        this.id = course.getId();
         this.name = course.getName();
         this.timeToFinishInHours = course.getTimeToFinishInHours();
-        this.subCategoryId = course.getSubCategory().getId();
-        this.subCategoryName = course.getSubCategory().getName();
-        this.instructorName = course.getInstructor().getName();
-    }
-
-    public Long getId() {
-        return id;
+        this.urlCode = course.getUrlCode();
+        this.developedSkills = course.getDevelopedSkills();
     }
 
     public String getName() {
@@ -29,15 +21,11 @@ public class CourseDto {
         return timeToFinishInHours;
     }
 
-    public Long getSubCategoryId() {
-        return subCategoryId;
+    public String getUrlCode() {
+        return urlCode;
     }
 
-    public String getSubCategoryName() {
-        return subCategoryName;
-    }
-
-    public String getInstructorName() {
-        return instructorName;
+    public String getDevelopedSkills() {
+        return developedSkills;
     }
 }

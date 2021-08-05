@@ -2,7 +2,6 @@ package br.com.sunty.controller;
 
 import br.com.sunty.models.category.Category;
 import br.com.sunty.repository.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +16,14 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/admin/categories", produces = {"application/json", "application/xml"})
+@RequestMapping(value = "/admin/categories", produces = {"application/json", "application/xml"}) //todo
 public class CategoryAdminController {
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
+
+    public CategoryAdminController(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     @GetMapping
     public String findAll(Model model) {
@@ -40,8 +42,7 @@ public class CategoryAdminController {
     }
 
     @GetMapping("/new")
-    public String createForm(Model model) {
-        model.addAttribute("category", new Category());
+    public String createForm() {
         return "category/newCategoryForm";
     }
 
@@ -54,7 +55,10 @@ public class CategoryAdminController {
     }
 
     @PostMapping("/{urlCode}")
-    public String update(Category category) {
+    public String update(@Valid Category category, BindingResult result, Model model) {
+        if (result.hasErrors()){
+            return "category/editCategoryForm";
+        }
         categoryRepository.save(category);
         return "redirect:/admin/categories";
     }
