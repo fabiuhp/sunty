@@ -21,12 +21,12 @@
                <div class="form-group">
                    <label>Nome</label>
                    <input class="form-control" type="text" name="name">
-                   <form:errors path="category.name" cssStyle="color: red"/>
+                   <form:errors path="category.name" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>UrlCode</label>
                    <input class="form-control" type="text" name="urlCode">
-                   <form:errors path="category.urlCode" cssStyle="color: red"/>
+                   <form:errors path="category.urlCode" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Descrição breve</label>
@@ -43,22 +43,22 @@
                        <option value="true"selected="selected">Ativo</option>
                        <option value="false">Inativo</option>
                    </select>
-                   <form:errors path="category.active" cssStyle="color: red"/>
+                   <form:errors path="category.active" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Cor em hexadecimal</label>
                    <input class="form-control" type="text" name="hexHtmlColor">
-                   <form:errors path="category.hexHtmlColor" cssStyle="color: red"/>
+                   <form:errors path="category.hexHtmlColor" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Ordem</label>
                    <input class="form-control" type="number" name="orderToShow">
-                   <form:errors path="category.orderToShow" cssStyle="color: red"/>
+                   <form:errors path="category.orderToShow" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Local da imagem</label>
                    <input class="form-control" type="text" name="pathImg">
-                   <form:errors path="category.pathImg" cssStyle="color: red"/>
+                   <form:errors path="category.pathImg" cssClass="text-danger"/>
                </div>
                <input class="btn btn-default" type="submit" value="Criar">
            </form>
