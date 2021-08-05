@@ -11,6 +11,7 @@ public class CategoryDto {
     private final Integer orderToShow;
     private final String pathImg;
     private final String hexHtmlColor;
+    private final int totalCourse;
     private final List<SubCategoryDto> subCategoryDtoList;
 
     public CategoryDto(Category category) {
@@ -22,6 +23,7 @@ public class CategoryDto {
         this.orderToShow = category.getOrderToShow();
         this.pathImg = category.getPathImg();
         this.hexHtmlColor = category.getHexHtmlColor();
+        this.totalCourse = category.getCoursesQuantity();
         this.subCategoryDtoList = category.getActiveSubCategoryList().stream().map(SubCategoryDto::new).toList();
     }
 
@@ -55,6 +57,10 @@ public class CategoryDto {
 
     public String getPathImg() {
         return pathImg;
+    }
+
+    public int getTotalCourse() {
+        return totalCourse;
     }
 
     public List<SubCategoryDto> getSubCategoryDtoList() {
