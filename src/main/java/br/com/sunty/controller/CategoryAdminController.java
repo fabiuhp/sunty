@@ -16,7 +16,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/admin/categories", produces = {"application/json", "application/xml"}) //todo
 public class CategoryAdminController {
 
     private final CategoryRepository categoryRepository;
@@ -25,14 +24,14 @@ public class CategoryAdminController {
         this.categoryRepository = categoryRepository;
     }
 
-    @GetMapping
+    @GetMapping(value = "/admin/categories")
     public String findAll(Model model) {
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("categories", categories);
         return "category/categoriesList";
     }
 
-    @PostMapping
+    @PostMapping(value = "/admin/categories")
     public String create(@Valid Category category, BindingResult result) {
         if (result.hasErrors()){
             return "category/newCategoryForm";
@@ -41,12 +40,12 @@ public class CategoryAdminController {
         return "redirect:/admin/categories";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/admin/categories/new")
     public String createForm() {
         return "category/newCategoryForm";
     }
 
-    @GetMapping("/{urlCode}")
+    @GetMapping("/admin/categories/{urlCode}")
     public String editar(@PathVariable String urlCode, Model model) {
         Category category = categoryRepository.findByUrlCode(urlCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, urlCode));
@@ -54,7 +53,7 @@ public class CategoryAdminController {
         return "category/editCategoryForm";
     }
 
-    @PostMapping("/{urlCode}")
+    @PostMapping("/admin/categories/{urlCode}")
     public String update(@Valid Category category, BindingResult result, Model model) {
         if (result.hasErrors()){
             return "category/editCategoryForm";
