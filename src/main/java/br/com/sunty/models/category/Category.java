@@ -21,7 +21,7 @@ public class Category {
     private String name;
     @NotBlank(message = "{category.url.not.null}")
     @Size(max = 255, message = "{category.url.size.max}")
-    @Pattern(regexp = "[-a-z]+", message = "{category.url.regex}")
+    @Pattern(regexp = "[a-z]+([a-z-]*)[a-z]", message = "{category.url.regex}")
     private String urlCode;
     private String shortDescription;
     private String guideText;
@@ -31,7 +31,7 @@ public class Category {
     @Size(max = 255, message = "{category.pathImg.size.max}")
     private String pathImg;
     @Size(max = 7, message = "{category.hexHtmlColor.size.max}")
-    @Pattern(regexp = "#\\w{6}", message = "{category.hexHtmlColor.regex}")
+    @Pattern(regexp = "#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$", message = "{category.hexHtmlColor.regex}")
     private String hexHtmlColor;
     @OneToMany(mappedBy="category")
     private List<SubCategory> subCategoryList = new ArrayList<>();

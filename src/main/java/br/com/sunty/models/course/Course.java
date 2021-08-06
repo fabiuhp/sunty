@@ -152,7 +152,7 @@ public class Course {
         this.subCategory = subCategory;
     }
 
-    public boolean getPublic() {
+    public boolean isPublic() {
         return visibility == CourseVisibility.PUBLICA;
     }
 
