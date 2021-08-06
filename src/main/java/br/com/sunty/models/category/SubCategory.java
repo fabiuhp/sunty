@@ -138,7 +138,7 @@ public class SubCategory {
 
     public List<Course> getPublicCourses() {
         return courseList.stream()
-                .filter(Course::getPublic)
+                .filter(Course::isPublic)
                 .collect(Collectors.toList());
     }
 }

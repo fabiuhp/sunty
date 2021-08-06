@@ -37,8 +37,8 @@
                    <label>Ativo?</label>
                    <select class="form-control" name="active" >
                        <option value="Selecione">Selecione</option>
-                       <option value="true" selected="selected">Ativo</option>
-                       <option value="false">Inativo</option>
+                       <option value="true" ${category.active ? 'selected' : ''}>Ativo</option>
+                       <option value="false" ${category.active ? '' : 'selected'}>Inativo</option>
                    </select>
                    <form:errors path="category.active" cssClass="text-danger"/>
                </div>
