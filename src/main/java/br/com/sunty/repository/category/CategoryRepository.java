@@ -1,8 +1,7 @@
-package br.com.sunty.repository;
+package br.com.sunty.repository.category;
 
 import br.com.sunty.models.category.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 

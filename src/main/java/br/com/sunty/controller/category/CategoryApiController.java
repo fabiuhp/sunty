@@ -1,8 +1,8 @@
-package br.com.sunty.controller;
+package br.com.sunty.controller.category;
 
 import br.com.sunty.models.category.Category;
 import br.com.sunty.models.category.CategoryDto;
-import br.com.sunty.repository.CategoryRepository;
+import br.com.sunty.repository.category.CategoryRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
