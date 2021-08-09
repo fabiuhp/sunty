@@ -61,13 +61,4 @@ public class CategoryTest {
         assertEquals("abc/path", category.getPathImg());
         assertEquals("#abc123", category.getHexHtmlColor());
     }
-
-    @Test
-    public void shouldValidateActiveAsNumber() {
-        Category category = new Category("abc", "abc-abc", "abc description", true, 1, "abc/path", "#abc123");
-        Category category2 = new Category("abc", "abc-abc", "abc description", false, 1, "abc/path", "#abc123");
-
-        assertEquals(category.getActiveAsNumber(), 1);
-        assertEquals(category2.getActiveAsNumber(), 0);
-    }
 }

@@ -5,7 +5,8 @@ import br.com.sunty.models.course.Course;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static org.apache.commons.lang3.Validate.*;
 
 @Entity
 @Table(name = "sub_category")
@@ -28,6 +29,11 @@ public class SubCategory {
     public SubCategory(){}
 
     public SubCategory(String name, String urlCode, Category category) {
+        notBlank(urlCode);
+        matchesPattern(urlCode, "[-a-z]+");
+        notBlank(name);
+        notNull(category);
+
         this.name = name;
         this.urlCode = urlCode;
         this.category = category;
@@ -132,13 +138,9 @@ public class SubCategory {
         return courseList.stream().mapToInt(Course::getTimeToFinishInHours).sum();
     }
 
-    public int getActiveAsNumber() {
-        return this.isActive ? 1 : 0;
-    }
-
     public List<Course> getPublicCourses() {
         return courseList.stream()
                 .filter(Course::isPublic)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

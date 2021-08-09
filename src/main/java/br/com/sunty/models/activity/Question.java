@@ -7,7 +7,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
-import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
+import static org.apache.commons.lang3.Validate.notBlank;
 
 @Entity
 @Table(name = "question")
@@ -20,7 +20,7 @@ public class Question extends Activity {
     public Question(String name, String urlCode, Section section, String description, QuestionType questionType) {
         super(name, urlCode, section);
 
-        nonEmptyFieldValidation(description, "Descrição");
+        notBlank(description);
 
         this.description = description;
         this.questionType = questionType;

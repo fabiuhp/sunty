@@ -4,37 +4,22 @@
     <head>
         <title>Lista de categorias</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <style>
-            .container-edited {
-                width: 70%;
-            }
-            .space {
-                margin-bottom: 30px;
-                margin-top: 50px;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
     </head>
     <body>
-       <div class="container container-edited">
-           <h1 class="space">Nova categoria</h1>
+       <div class="container cont">
+           <h1 class="spacing">Nova categoria</h1>
            <form action="/admin/categories" method="post">
                <div class="form-group">
                    <label>Nome</label>
-                   <input placeholder="Nome da categoria" class="form-control" type="text" name="name">
+                   <input placeholder="Digite aqui o nome da categoria" class="form-control" type="text" name="name">
                    <form:errors path="category.name" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Código</label>
-                   <input placeholder="Código da categoria" class="form-control" type="text" name="urlCode">
+                   <input placeholder="Por exemplo: desenvolvimento, mobile (não use letras maiúsculas, acentos ou caracteres especiais)" class="form-control" type="text" name="urlCode">
                    <form:errors path="category.urlCode" cssClass="text-danger"/>
-               </div>
-               <div class="form-group">
-                   <label>Descrição breve</label>
-                   <input placeholder="Descrição da categoria" class="form-control" type="text" name="shortDescription">
-               </div>
-               <div class="form-group">
-                   <label>Texto guia</label>
-                   <input placeholder="Texto guia da categoria" class="form-control" type="text" name="guideText">
                </div>
                <div class="form-group">
                    <label>Ativo?</label>
@@ -46,19 +31,27 @@
                    <form:errors path="category.active" cssClass="text-danger"/>
                </div>
                <div class="form-group">
-                   <label>Cor em hexadecimal</label>
-                   <input placeholder="Cor em hexadecimal da categoria" class="form-control" type="text" name="hexHtmlColor">
-                   <form:errors path="category.hexHtmlColor" cssClass="text-danger"/>
-               </div>
-               <div class="form-group">
                    <label>Ordem</label>
                    <input placeholder="Ordem da categoria" class="form-control" type="number" name="orderToShow">
                    <form:errors path="category.orderToShow" cssClass="text-danger"/>
                </div>
                <div class="form-group">
-                   <label>Local da imagem</label>
-                   <input placeholder="Local da imagem da categoria" class="form-control" type="text" name="pathImg">
+                   <label>Guia de estudo</label>
+                   <textarea class="form-control" placeholder="Um texto apontando para formações  para ajudar pessoas perdidas" name="guideText" rows="3"></textarea>
+               </div>
+               <div class="form-group">
+                   <label>Caminho do ícone</label>
+                   <input placeholder="Por exemplo: /imagens/categorias" class="form-control" type="text" name="pathImg">
                    <form:errors path="category.pathImg" cssClass="text-danger"/>
+               </div>
+               <div class="form-group">
+                   <label>Cor em hexadecimal</label>
+                   <input placeholder="Cor em hexadecimal da categoria" class="form-control" type="text" name="hexHtmlColor">
+                   <form:errors path="category.hexHtmlColor" cssClass="text-danger"/>
+               </div>
+               <div class="form-group">
+                   <label>Descrição</label>
+                   <input placeholder="Por exemplo: iOS, Android, PhoneGap" class="form-control" type="text" name="shortDescription">
                </div>
                <input class="btn btn-success" type="submit" value="Enviar">
            </form>

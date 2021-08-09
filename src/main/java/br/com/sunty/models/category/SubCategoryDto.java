@@ -3,7 +3,6 @@ package br.com.sunty.models.category;
 import br.com.sunty.models.course.CourseDto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SubCategoryDto {
 
@@ -16,7 +15,7 @@ public class SubCategoryDto {
         this.name = subCategory.getName();
         this.urlCode = subCategory.getUrlCode();
         this.guideText = subCategory.getGuideText();
-        this.courses = subCategory.getPublicCourses().stream().map(CourseDto::new).collect(Collectors.toList());
+        this.courses = subCategory.getPublicCourses().stream().map(CourseDto::new).toList();
     }
 
     public String getName() {

@@ -3,20 +3,12 @@
 <html>
     <head>
         <title>Lista de categorias</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <style>
-            .cont {
-                width: 70%;
-            }
-            .space {
-                margin-bottom: 30px;
-                margin-top: 50px;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
     </head>
     <body>
        <div class="container cont">
-           <h1 class="space">Editar categoria</h1>
+           <h1 class="spacing">Editar categoria</h1>
            <form action="/admin/categories/${category.urlCode}" method="post">
                <input type="hidden" name="id" value="${category.id}">
                <div class="form-group">
@@ -60,6 +52,5 @@
                <input class="btn btn-success" type="submit" value="Enviar">
            </form>
        </div>
-       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    </body>
+      </body>
 </html>

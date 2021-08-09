@@ -4,8 +4,8 @@ import br.com.sunty.models.course.Course;
 
 import javax.persistence.*;
 
-import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
-import static br.com.sunty.models.validations.Validation.urlValidation;
+import static org.apache.commons.lang3.Validate.matchesPattern;
+import static org.apache.commons.lang3.Validate.notBlank;
 
 @Entity
 @Table(name = "section")
@@ -26,9 +26,9 @@ public class Section {
     }
 
     public Section(String name, String urlCode) {
-        nonEmptyFieldValidation(name, "Nome");
-        nonEmptyFieldValidation(urlCode, "Url");
-        urlValidation(urlCode);
+        notBlank(name);
+        notBlank(urlCode);
+        matchesPattern(urlCode, "[-a-z]+");
 
         this.name = name;
         this.urlCode = urlCode;

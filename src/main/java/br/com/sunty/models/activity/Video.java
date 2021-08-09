@@ -5,7 +5,7 @@ import br.com.sunty.models.section.Section;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
+import static org.apache.commons.lang3.Validate.notBlank;
 
 @Entity
 @Table(name = "video")
@@ -19,7 +19,7 @@ public class Video extends Activity {
     public Video(String name, String urlCode, Section section, String url) {
         super(name, urlCode, section);
 
-        nonEmptyFieldValidation(url, "Url");
+        notBlank(url);
         this.url = url;
     }
 

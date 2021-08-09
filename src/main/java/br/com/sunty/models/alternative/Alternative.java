@@ -4,8 +4,8 @@ import br.com.sunty.models.activity.Question;
 
 import javax.persistence.*;
 
-import static br.com.sunty.models.validations.Validation.classNonNullValidation;
-import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
+import static org.apache.commons.lang3.Validate.notBlank;
+import static org.apache.commons.lang3.Validate.notNull;
 
 @Entity
 @Table(name = "alternative")
@@ -22,8 +22,8 @@ public class Alternative {
     private Question question;
 
     public Alternative(String explanation, boolean isCorrect, Question question) {
-        nonEmptyFieldValidation(explanation, "Explicação");
-        classNonNullValidation(question, "Questão");
+        notBlank(explanation);
+        notNull(question);
 
         this.explanation = explanation;
         this.isCorrect = isCorrect;

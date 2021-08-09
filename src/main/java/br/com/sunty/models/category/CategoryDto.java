@@ -9,7 +9,7 @@ public class CategoryDto {
     private final String guideText;
     private final Integer orderToShow;
     private final String hexHtmlColor;
-    private final int totalCourse;
+    private final int totalCourses;
     private final List<SubCategoryDto> subCategories;
 
     public CategoryDto(Category category) {
@@ -19,7 +19,7 @@ public class CategoryDto {
         this.guideText = category.getGuideText();
         this.orderToShow = category.getOrderToShow();
         this.hexHtmlColor = category.getHexHtmlColor();
-        this.totalCourse = category.getCoursesQuantity();
+        this.totalCourses = category.getCoursesQuantity();
         this.subCategories = category.getActiveSubCategoryList().stream().map(SubCategoryDto::new).toList();
     }
 
@@ -47,8 +47,8 @@ public class CategoryDto {
         return shortDescription;
     }
 
-    public int getTotalCourse() {
-        return totalCourse;
+    public int getTotalCourses() {
+        return totalCourses;
     }
 
     public List<SubCategoryDto> getSubCategories() {
