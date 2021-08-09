@@ -2,11 +2,10 @@ package br.com.sunty.models.course;
 
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.instructor.Instructor;
-import br.com.sunty.models.section.Section;
 
 import javax.persistence.*;
 
-import static br.com.sunty.models.validations.Validation.*;
+import static org.apache.commons.lang3.Validate.*;
 
 @Entity
 @Table(name = "course")
@@ -40,12 +39,12 @@ public class Course {
     public Course() {}
 
     public Course(String name, String urlCode, int timeToFinishInHours, Instructor instructor, SubCategory subCategory) {
-        nonEmptyFieldValidation(name, "Nome");
-        nonEmptyFieldValidation(urlCode, "Url");
-        urlValidation(urlCode);
-        intervalValidation(MINIMUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH, timeToFinishInHours, "O tempo do curso deve ser entre 1 e 20 horas.");
-        classNonNullValidation(instructor, "Instrutor");
-        classNonNullValidation(subCategory, "Categoria");
+        notBlank(name);
+        notBlank(urlCode);
+        matchesPattern(urlCode, "[-a-z]+");
+        exclusiveBetween(MINIMUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH, timeToFinishInHours);
+        notNull(instructor);
+        notNull(subCategory);
 
         this.name = name;
         this.urlCode = urlCode;
@@ -55,12 +54,12 @@ public class Course {
     }
 
     public Course(String name, String urlCode, int timeToFinishInHours, CourseVisibility visibility, String targetAudience, Instructor instructor, String syllabus, String developedSkills, SubCategory subCategory) {
-        nonEmptyFieldValidation(name, "Nome");
-        nonEmptyFieldValidation(urlCode, "Url");
-        urlValidation(urlCode);
-        intervalValidation(MINIMUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH, timeToFinishInHours, "O tempo do curso deve ser entre 1 e 20 horas.");
-        classNonNullValidation(instructor, "Instrutor");
-        classNonNullValidation(subCategory, "Subcategoria");
+        notBlank(name);
+        notBlank(urlCode);
+        matchesPattern(urlCode, "[-a-z]+");
+        exclusiveBetween(MINIMUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH, timeToFinishInHours);
+        notNull(instructor);
+        notNull(subCategory);
 
         this.name = name;
         this.urlCode = urlCode;
@@ -151,6 +150,10 @@ public class Course {
 
     public void setSubCategory(SubCategory subCategory) {
         this.subCategory = subCategory;
+    }
+
+    public boolean isPublic() {
+        return visibility == CourseVisibility.PUBLICA;
     }
 
     @Override

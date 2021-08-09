@@ -1,7 +1,6 @@
 package br.com.sunty.dao;
 
 import br.com.sunty.models.course.Course;
-import br.com.sunty.models.instructor.Instructor;
 
 import javax.persistence.EntityManager;
 import java.util.List;

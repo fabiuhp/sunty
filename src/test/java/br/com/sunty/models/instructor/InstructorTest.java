@@ -2,7 +2,8 @@ package br.com.sunty.models.instructor;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InstructorTest {
 
@@ -15,7 +16,7 @@ class InstructorTest {
 
     @Test
     public void shouldNotCreateInstructorNullName() {
-        assertThrows(IllegalArgumentException.class, () -> new Instructor(null));
+        assertThrows(NullPointerException.class, () -> new Instructor(null));
     }
 
     @Test

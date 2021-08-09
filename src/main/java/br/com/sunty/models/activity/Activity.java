@@ -4,7 +4,7 @@ import br.com.sunty.models.section.Section;
 
 import javax.persistence.*;
 
-import static br.com.sunty.models.validations.Validation.*;
+import static org.apache.commons.lang3.Validate.*;
 
 @MappedSuperclass
 public abstract class Activity {
@@ -24,10 +24,10 @@ public abstract class Activity {
     }
 
     public Activity(String name, String urlCode, Section section) {
-        nonEmptyFieldValidation(urlCode, "Url");
-        urlValidation(urlCode);
-        nonEmptyFieldValidation(name, "Nome");
-        classNonNullValidation(section, "Seção");
+        notBlank(urlCode);
+        matchesPattern(urlCode, "[-a-z]+");
+        notBlank(name);
+        notNull(section);
 
         this.name = name;
         this.urlCode = urlCode;
