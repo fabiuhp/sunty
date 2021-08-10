@@ -20,7 +20,7 @@ public class CategoryApiController {
 
     @GetMapping(value = "/api/categories", produces = { "application/json", "application/xml" })
     public ResponseEntity<List<CategoryDto>> findAll() {
-        List<Category> categories =  categoryRepository.findAll();
+        List<Category> categories =  categoryRepository.findAllByIsActive(true);
         List<CategoryDto> categoriesDto = categories.stream().map(CategoryDto::new).toList();
         return ResponseEntity.ok(categoriesDto);
     }

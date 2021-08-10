@@ -2,7 +2,7 @@ package br.com.sunty.models.instructor;
 
 import javax.persistence.*;
 
-import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
+import static org.apache.commons.lang3.Validate.notBlank;
 
 @Entity
 @Table(name = "instructor")
@@ -17,7 +17,7 @@ public class Instructor {
     }
 
     public Instructor(String name) {
-        nonEmptyFieldValidation(name, "Nome");
+        notBlank(name);
 
         this.name = name;
     }

@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
@@ -35,7 +34,7 @@ public class CategoryAdminController {
     @PostMapping("/admin/categories")
     public String create(@Valid Category category, BindingResult result) {
         if (result.hasErrors()){
-            return "category/newCategoryForm";
+            return createForm();
         }
         categoryRepository.save(category);
         return "redirect:/admin/categories";

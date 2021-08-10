@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.apache.commons.lang3.Validate.matchesPattern;
+import static org.apache.commons.lang3.Validate.notBlank;
+
 @Entity
 @Table(name = "category")
 public class Category {
@@ -41,13 +44,16 @@ public class Category {
     }
 
     public Category(String name, String urlCode) {
+        notBlank(urlCode);
+        matchesPattern(urlCode, "[-a-z]+");
+        notBlank(name);
+
         this.name = name;
         this.urlCode = urlCode;
     }
 
     public Category(String name, String urlCode, String shortDescription, boolean isActive, Integer orderToShow, String pathImg, String hexHtmlColor) {
-        this.name = name;
-        this.urlCode = urlCode;
+        this(name, urlCode);
         this.shortDescription = shortDescription;
         this.isActive = isActive;
         this.orderToShow = orderToShow;
@@ -168,12 +174,8 @@ public class Category {
         return subCategoryList.stream().mapToInt(SubCategory::numberOfCourses).sum();
     }
 
-    public int getTotalTimeToFinishAnHours() {
+    public int getTotalTimeToFinishInHours() {
         return subCategoryList.stream().mapToInt(SubCategory::totalTimeToFinishInHours).sum();
-    }
-
-    public int getActiveAsNumber() {
-        return this.isActive ? 1 : 0;
     }
 
     public void toggle() {

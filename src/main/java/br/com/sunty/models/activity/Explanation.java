@@ -5,7 +5,7 @@ import br.com.sunty.models.section.Section;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import static br.com.sunty.models.validations.Validation.nonEmptyFieldValidation;
+import static org.apache.commons.lang3.Validate.notBlank;
 
 @Entity
 @Table(name = "explanation")
@@ -18,7 +18,7 @@ public class Explanation extends Activity {
 
     public Explanation(String name, String urlCode, Section section, String text) {
         super(name, urlCode, section);
-        nonEmptyFieldValidation(text, "Text");
+        notBlank(text);
 
         this.text = text;
     }
