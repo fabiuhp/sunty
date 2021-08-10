@@ -1,7 +1,7 @@
-package br.com.sunty.controller;
+package br.com.sunty.controller.category;
 
 import br.com.sunty.models.category.Category;
-import br.com.sunty.repository.CategoryRepository;
+import br.com.sunty.repository.category.CategoryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/admin/categories", produces = {"application/json", "application/xml"}) //todo
 public class CategoryAdminController {
 
     private final CategoryRepository categoryRepository;
