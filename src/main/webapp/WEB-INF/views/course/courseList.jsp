@@ -14,7 +14,7 @@
                 <tr>
                     <th>Nome</th>
                     <th>Código</th>
-                    <th>Status</th>
+                    <th>Visibilidade</th>
                     <th></th>
                 </tr>
                 <c:forEach items="${courses.content}" var="course">
