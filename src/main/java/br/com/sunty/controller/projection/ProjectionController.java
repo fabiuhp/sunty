@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-public class ReportController {
+public class ProjectionController {
 
     private final InstructorRepository instructorRepository;
     private final CourseRepository courseRepository;
 
-    public ReportController(InstructorRepository instructorRepository, CourseRepository courseRepository) {
+    public ProjectionController(InstructorRepository instructorRepository, CourseRepository courseRepository) {
         this.instructorRepository = instructorRepository;
         this.courseRepository = courseRepository;
     }
