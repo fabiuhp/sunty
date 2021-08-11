@@ -24,7 +24,7 @@
                         <td>${subcategory.name}</td>
                         <td>${subcategory.urlCode}</td>
                         <td>${subcategory.active ? 'Ativo' : 'Inativo'}</td>
-                        <td><a href="/admin/courses/${category.urlCode}/${subcategory.urlCode}">Cursos</a></td>
+                        <td><a href="/admin/courses/${category.urlCode}/${subcategory.urlCode}/">Cursos</a></td>
                         <td><a href="/admin/subcategories/${category.urlCode}/${subcategory.urlCode}">Editar</a></td>
                     </tr>
                 </c:forEach>

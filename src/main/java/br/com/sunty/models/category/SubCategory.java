@@ -134,6 +134,10 @@ public class SubCategory {
         return courseList.size();
     }
 
+    public List<Course> getCourseList() {
+        return courseList;
+    }
+
     public int totalTimeToFinishInHours() {
         return courseList.stream().mapToInt(Course::getTimeToFinishInHours).sum();
     }
