@@ -13,7 +13,7 @@ public interface InstructorRepository extends JpaRepository<Instructor, Long> {
             "from instructor i " +
             "inner join course c on i.id = c.instructor_id " +
             "group by i.name " +
-            "order by COUNT(c.instructor_id) desc " +
+            "order by count desc " +
             "limit 1", nativeQuery = true)
     List<InstructorProjection> instructorWithMoreCourses();
 }
