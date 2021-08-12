@@ -42,4 +42,14 @@ public class CourseAdminController {
         model.addAttribute("courses", courses);
         return "course/courseList";
     }
+
+    @GetMapping("/admin/courses/{categoryUrlCode}/{subcategoryUrlCode}/new")
+    public String redirectNew(){
+        return "course/newCourseForm";
+    }
+
+    @GetMapping("/admin/courses/{course.urlCode}")
+    public String redirectEdit(){
+        return "course/editCourseForm";
+    }
 }

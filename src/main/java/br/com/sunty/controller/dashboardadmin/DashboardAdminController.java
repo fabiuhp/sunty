@@ -1,4 +1,4 @@
-package br.com.sunty.controller.projection;
+package br.com.sunty.controller.dashboardadmin;
 
 import br.com.sunty.models.course.CourseProjection;
 import br.com.sunty.models.instructor.InstructorProjection;
@@ -11,14 +11,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-public class ProjectionController {
+public class DashboardAdminController {
 
     private final InstructorRepository instructorRepository;
     private final CourseRepository courseRepository;
 
-    public ProjectionController(InstructorRepository instructorRepository, CourseRepository courseRepository) {
+    public DashboardAdminController(InstructorRepository instructorRepository, CourseRepository courseRepository) {
         this.instructorRepository = instructorRepository;
         this.courseRepository = courseRepository;
+    }
+
+    @GetMapping("/admin")
+    public String redirectToDashboard(){
+        return "redirect:/admin/dashboard";
     }
 
     @GetMapping("/admin/dashboard")

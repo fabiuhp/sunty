@@ -12,11 +12,13 @@ import java.util.List;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
-    @Query(value = "select category.name, count(c.id) as count " +
-            "from category" +
-            " left join sub_category sc on category.id = sc.category_id" +
-            " left join course c on sc.id = c.subcategory_id " +
-            "group by category.name;", nativeQuery = true)
+    @Query(value = """
+            select category.name, count(c.id) as count
+            from category
+            left join sub_category sc on category.id = sc.category_id
+            left join course c on sc.id = c.subcategory_id
+            group by category.name;
+            """, nativeQuery = true)
     List<CourseProjection> categoriesWithNumberOfCourses();
 
     Page<Course> findAllBySubCategory(SubCategory subCategory, Pageable pageable);
