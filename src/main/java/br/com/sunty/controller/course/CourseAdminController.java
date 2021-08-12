@@ -48,7 +48,7 @@ public class CourseAdminController {
         return "course/newCourseForm";
     }
 
-    @GetMapping("/admin/courses/{course.urlCode}")
+    @GetMapping("/admin/courses/{courseurlCode}")
     public String redirectEdit(){
         return "course/editCourseForm";
     }
