@@ -27,7 +27,7 @@
                 </c:forEach>
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
-                        <c:forEach begin="1" end="${courses.totalPages}" var="course" varStatus="loop">
+                        <c:forEach begin="1" end="${courses.totalPages}" varStatus="loop">
                             <li><a href="?page=${loop.index-1}">${loop.index}</a></li>
                         </c:forEach>
                     </ul>
