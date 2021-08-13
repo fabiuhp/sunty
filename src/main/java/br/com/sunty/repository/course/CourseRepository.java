@@ -13,7 +13,7 @@ import java.util.List;
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
     @Query(value = """
-            select category.name, count(c.id) as count
+            select category.name, count(c.id) as coursesquantity
             from category
             left join sub_category sc on category.id = sc.category_id
             left join course c on sc.id = c.subcategory_id

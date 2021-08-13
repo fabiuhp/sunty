@@ -10,11 +10,11 @@ import java.util.List;
 public interface InstructorRepository extends JpaRepository<Instructor, Long> {
 
     @Query(value = """
-            select i.name, COUNT(c.instructor_id) as count 
-            from instructor i 
-            inner join course c on i.id = c.instructor_id 
-            group by i.name 
-            order by count desc 
+            select i.name, COUNT(c.instructor_id) as coursesquantity
+            from instructor i
+            inner join course c on i.id = c.instructor_id
+            group by i.name
+            order by coursesquantity desc
             limit 1
             """, nativeQuery = true)
     List<InstructorProjection> instructorWithMoreCourses();

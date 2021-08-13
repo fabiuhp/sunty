@@ -32,6 +32,6 @@ public class DashboardAdminController {
         List<CourseProjection> courseProjections = courseRepository.categoriesWithNumberOfCourses();
         model.addAttribute("instructorProjections", instructorProjections);
         model.addAttribute("courseProjections", courseProjections);
-        return "projection/projectionList";
+        return "dashboardadmin/dashboardAdminList";
     }
 }

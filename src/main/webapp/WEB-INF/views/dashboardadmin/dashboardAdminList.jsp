@@ -17,7 +17,7 @@
                 <c:forEach items="${courseProjections}" var="course">
                     <tr>
                         <td>${course.name}</td>
-                        <td>${course.count}</td>
+                        <td>${course.coursesquantity}</td>
                     </tr>
                 </c:forEach>
             </table>
@@ -31,7 +31,7 @@
                 <c:forEach items="${instructorProjections}" var="instructor">
                     <tr>
                         <td>${instructor.name}</td>
-                        <td>${instructor.count}</td>
+                        <td>${instructor.coursesquantity}</td>
                     </tr>
                 </c:forEach>
             </table>
