@@ -40,12 +40,27 @@ public class SubCategory {
     }
 
     public SubCategory(String name, String urlCode, String shortDescription, boolean isActive, Integer orderToShow, Category category) {
-        this.name = name;
-        this.urlCode = urlCode;
+        this(name, urlCode, category);
         this.shortDescription = shortDescription;
         this.isActive = isActive;
         this.orderToShow = orderToShow;
-        this.category = category;
+    }
+
+    public SubCategory(String name, String urlCode, String shortDescription, Boolean active, Integer orderToShow, String guideText, Category category) {
+        this(name, urlCode, category);
+        this.shortDescription = shortDescription;
+        this.isActive = active;
+        this.orderToShow = orderToShow;
+        this.guideText = guideText;
+    }
+
+    public SubCategory(Long id, String name, String urlCode, String shortDescription, Boolean active, Integer orderToShow, String guideText, Category category) {
+        this(name, urlCode, category);
+        this.id = id;
+        this.shortDescription = shortDescription;
+        this.isActive = active;
+        this.orderToShow = orderToShow;
+        this.guideText = guideText;
     }
 
     public Long getId() {
@@ -132,6 +147,18 @@ public class SubCategory {
 
     public int numberOfCourses() {
         return courseList.size();
+    }
+
+    public List<Course> getCourseList() {
+        return courseList;
+    }
+
+    public Long getCategoryId () {
+        return this.category.getId();
+    }
+
+    public String getCategoryName() {
+        return this.category.getName();
     }
 
     public int totalTimeToFinishInHours() {

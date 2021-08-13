@@ -1,7 +1,10 @@
-package br.com.sunty.controller;
+package br.com.sunty.controller.category;
 
 import br.com.sunty.models.category.Category;
-import br.com.sunty.repository.CategoryRepository;
+import br.com.sunty.models.category.dto.category.AdminCategoryDto;
+import br.com.sunty.models.category.dto.category.AdminEditCategoryForm;
+import br.com.sunty.models.category.dto.category.AdminNewCategoryForm;
+import br.com.sunty.repository.category.CategoryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,40 +26,44 @@ public class CategoryAdminController {
         this.categoryRepository = categoryRepository;
     }
 
-    @GetMapping(value = "/admin/categories")
+    @GetMapping("/admin/categories")
     public String findAll(Model model) {
         List<Category> categories = categoryRepository.findAll();
-        model.addAttribute("categories", categories);
+        List<AdminCategoryDto> adminCategoryDto = categories.stream().map(AdminCategoryDto::new).toList();
+        model.addAttribute("categories", adminCategoryDto);
         return "category/categoriesList";
     }
 
-    @PostMapping(value = "/admin/categories")
-    public String create(@Valid Category category, BindingResult result) {
-        if (result.hasErrors()){
-            return createForm();
+    @GetMapping("/admin/categories/new")
+    public String createForm(AdminNewCategoryForm adminNewCategoryForm) {
+        return "category/newCategoryForm";
+    }
+
+    @PostMapping("/admin/categories")
+    public String create(@Valid AdminNewCategoryForm dto, BindingResult result) {
+        if (result.hasErrors()) {
+            return createForm(dto);
         }
+        Category category = dto.toModel();
         categoryRepository.save(category);
         return "redirect:/admin/categories";
     }
 
-    @GetMapping("/admin/categories/new")
-    public String createForm() {
-        return "category/newCategoryForm";
-    }
-
     @GetMapping("/admin/categories/{urlCode}")
-    public String editar(@PathVariable String urlCode, Model model) {
+    public String edit(@PathVariable String urlCode, Model model) {
         Category category = categoryRepository.findByUrlCode(urlCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, urlCode));
+
         model.addAttribute("category", category);
         return "category/editCategoryForm";
     }
 
     @PostMapping("/admin/categories/{urlCode}")
-    public String update(@Valid Category category, BindingResult result, Model model) {
-        if (result.hasErrors()){
+    public String update(@Valid AdminEditCategoryForm adminEditCategoryForm, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             return "category/editCategoryForm";
         }
+        Category category = adminEditCategoryForm.toModel();
         categoryRepository.save(category);
         return "redirect:/admin/categories";
     }

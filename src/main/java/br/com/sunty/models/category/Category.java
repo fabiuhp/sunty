@@ -1,10 +1,6 @@
 package br.com.sunty.models.category;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,22 +15,13 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "{category.name.not.null}")
-    @Size(max = 255, message = "{category.name.size.max}")
     private String name;
-    @NotBlank(message = "{category.url.not.null}")
-    @Size(max = 255, message = "{category.url.size.max}")
-    @Pattern(regexp = "[a-z]+([a-z-]*)[a-z]", message = "{category.url.regex}")
     private String urlCode;
     private String shortDescription;
     private String guideText;
     private boolean isActive = true;
-    @Positive
     private Integer orderToShow;
-    @Size(max = 255, message = "{category.pathImg.size.max}")
     private String pathImg;
-    @Size(max = 7, message = "{category.hexHtmlColor.size.max}")
-    @Pattern(regexp = "#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$", message = "{category.hexHtmlColor.regex}")
     private String hexHtmlColor;
     @OneToMany(mappedBy="category")
     private List<SubCategory> subCategoryList = new ArrayList<>();
@@ -59,6 +46,16 @@ public class Category {
         this.orderToShow = orderToShow;
         this.pathImg = pathImg;
         this.hexHtmlColor = hexHtmlColor;
+    }
+
+    public Category(String name, String urlCode, String shortDescription, String guideText, boolean isActive, Integer orderToShow, String pathImg, String hexHtmlColor) {
+        this(name, urlCode, shortDescription, isActive, orderToShow, pathImg, hexHtmlColor);
+        this.guideText = guideText;
+    }
+
+    public Category(Long id, String name, String urlCode, String shortDescription, String guideText, boolean isActive, Integer orderToShow, String pathImg, String hexHtmlColor) {
+        this(name, urlCode, shortDescription, guideText, isActive, orderToShow, pathImg, hexHtmlColor);
+        this.id = id;
     }
 
     public Long getId() {

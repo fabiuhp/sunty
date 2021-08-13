@@ -1,8 +1,11 @@
-package br.com.sunty.models.category;
+package br.com.sunty.models.category.dto.category;
+
+import br.com.sunty.models.category.Category;
+import br.com.sunty.models.category.dto.subcategory.ApiSubCategoryDto;
 
 import java.util.List;
 
-public class CategoryDto {
+public class ApiCategoryDto {
     private final String name;
     private final String urlCode;
     private final String shortDescription;
@@ -10,9 +13,9 @@ public class CategoryDto {
     private final Integer orderToShow;
     private final String hexHtmlColor;
     private final int totalCourses;
-    private final List<SubCategoryDto> subCategories;
+    private final List<ApiSubCategoryDto> subCategories;
 
-    public CategoryDto(Category category) {
+    public ApiCategoryDto(Category category) {
         this.name = category.getName();
         this.urlCode = category.getUrlCode();
         this.shortDescription = category.getShortDescription();
@@ -20,7 +23,7 @@ public class CategoryDto {
         this.orderToShow = category.getOrderToShow();
         this.hexHtmlColor = category.getHexHtmlColor();
         this.totalCourses = category.getCoursesQuantity();
-        this.subCategories = category.getActiveSubCategoryList().stream().map(SubCategoryDto::new).toList();
+        this.subCategories = category.getActiveSubCategoryList().stream().map(ApiSubCategoryDto::new).toList();
     }
 
     public String getName() {
@@ -51,7 +54,7 @@ public class CategoryDto {
         return totalCourses;
     }
 
-    public List<SubCategoryDto> getSubCategories() {
+    public List<ApiSubCategoryDto> getSubCategories() {
         return subCategories;
     }
 }
