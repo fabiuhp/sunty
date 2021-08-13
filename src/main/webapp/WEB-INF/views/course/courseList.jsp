@@ -8,7 +8,7 @@
 </head>
     <body>
         <div class="container">
-            <h2>${subCategory.name}</h2>
+            <h2>${subCategory}</h2>
             <h1>Course</h1>
             <a class="btn btn-primary" href="new">Novo curso</a>
             <table class="table table-bordered spacing">

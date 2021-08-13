@@ -1,12 +1,12 @@
 package br.com.sunty.models.course;
 
-public class CourseDto {
+public class ApiCourseDto {
     private String name;
     private String urlCode;
     private int timeToFinishInHours;
     private String developedSkills;
 
-    public CourseDto(Course course) {
+    public ApiCourseDto(Course course) {
         this.name = course.getName();
         this.timeToFinishInHours = course.getTimeToFinishInHours();
         this.urlCode = course.getUrlCode();

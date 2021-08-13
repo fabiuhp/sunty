@@ -13,39 +13,39 @@
            <form action="/admin/subcategories" method="post">
                <div class="form-group">
                    <label>Nome</label>
-                   <input placeholder="Digite aqui o nome da subcategoria" class="form-control" type="text" name="name">
-                   <form:errors path="subcategory.name" cssClass="text-danger"/>
+                   <input value="${adminNewSubCategoryForm.name}" placeholder="Digite aqui o nome da subcategoria" class="form-control" type="text" name="name">
+                   <form:errors path="adminNewSubCategoryForm.name" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Código</label>
-                   <input placeholder="Por exemplo: desenvolvimento, mobile (não use letras maiúsculas, acentos ou caracteres especiais)" class="form-control" type="text" name="urlCode">
-                   <form:errors path="subcategory.urlCode" cssClass="text-danger"/>
+                   <input value="${adminNewSubCategoryForm.urlCode}" placeholder="Por exemplo: desenvolvimento, mobile (não use letras maiúsculas, acentos ou caracteres especiais)" class="form-control" type="text" name="urlCode">
+                   <form:errors path="adminNewSubCategoryForm.urlCode" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Ativo?</label>
                    <select class="form-control" name="active">
                        <option value="Selecione">Selecione</option>
-                       <option value="true"selected="selected">Ativo</option>
+                       <option value="true" selected="selected">Ativo</option>
                        <option value="false">Inativo</option>
                    </select>
-                   <form:errors path="subcategory.active" cssClass="text-danger"/>
+                   <form:errors path="adminNewSubCategoryForm.active" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Ordem</label>
-                   <input placeholder="Ordem da subcategoria" class="form-control" type="number" name="orderToShow">
-                   <form:errors path="subcategory.orderToShow" cssClass="text-danger"/>
+                   <input value="${adminNewSubCategoryForm.orderToShow}" placeholder="Ordem da subcategoria" class="form-control" type="number" name="orderToShow">
+                   <form:errors path="adminNewSubCategoryForm.orderToShow" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Guia de estudo</label>
-                   <textarea class="form-control" placeholder="Um texto apontando para formações  para ajudar pessoas perdidas" name="guideText" rows="3"></textarea>
+                   <textarea class="form-control" placeholder="Um texto apontando para formações  para ajudar pessoas perdidas" name="guideText" rows="3">${adminNewSubCategoryForm.name}</textarea>
                </div>
                <div class="form-group">
                    <label>Descrição</label>
-                   <input placeholder="Por exemplo: iOS, Android, PhoneGap" class="form-control" type="text" name="shortDescription">
+                   <input value="${adminNewSubCategoryForm.shortDescription}" placeholder="Por exemplo: iOS, Android, PhoneGap" class="form-control" type="text" name="shortDescription">
                </div>
                <div class="form-group">
                    <label for="category">Categoria</label>
-                   <select id="category" class="form-control" name="category">
+                   <select id="category" class="form-control" name="categoryId">
                        <c:forEach items="${categories}" var="category">
                            <option value="${category.id}">${category.name}</option>
                        </c:forEach>

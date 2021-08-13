@@ -1,6 +1,7 @@
 package br.com.sunty.controller.course;
 
 import br.com.sunty.models.category.SubCategory;
+import br.com.sunty.models.course.AdminCourseDto;
 import br.com.sunty.models.course.Course;
 import br.com.sunty.repository.course.CourseRepository;
 import br.com.sunty.repository.subcategory.SubCategoryRepository;
@@ -26,8 +27,7 @@ public class CourseAdminController {
 
 
     @GetMapping("/admin/courses/{categoryUrlCode}/{subcategoryUrlCode}")
-    public String findAll(@PathVariable String categoryUrlCode,
-                          @PathVariable String subcategoryUrlCode,
+    public String findAll(@PathVariable String subcategoryUrlCode,
                           @PageableDefault(size = 5)
                           Pageable pageable,
                           Model model) {
@@ -36,10 +36,10 @@ public class CourseAdminController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, subcategoryUrlCode));
 
         Page<Course> courses = courseRepository.findAllBySubCategory(subCategory, pageable);
+        Page<AdminCourseDto> courseDtos = courses.map(AdminCourseDto::new);
 
-        model.addAttribute("subCategory", subCategory);
-        model.addAttribute("category", categoryUrlCode);
-        model.addAttribute("courses", courses);
+        model.addAttribute("subCategory", subCategory.getName());
+        model.addAttribute("courses", courseDtos);
         return "course/courseList";
     }
 

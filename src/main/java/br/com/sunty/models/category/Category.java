@@ -27,6 +27,7 @@ public class Category {
     @Pattern(regexp = "[a-z]+([a-z-]*)[a-z]", message = "{category.url.regex}")
     private String urlCode;
     private String shortDescription;
+    @Size(max = 255, message = "{category.guideText.size.max}")
     private String guideText;
     private boolean isActive = true;
     @Positive
@@ -59,6 +60,16 @@ public class Category {
         this.orderToShow = orderToShow;
         this.pathImg = pathImg;
         this.hexHtmlColor = hexHtmlColor;
+    }
+
+    public Category(String name, String urlCode, String shortDescription, String guideText, boolean isActive, Integer orderToShow, String pathImg, String hexHtmlColor) {
+        this(name, urlCode, shortDescription, isActive, orderToShow, pathImg, hexHtmlColor);
+        this.guideText = guideText;
+    }
+
+    public Category(Long id, String name, String urlCode, String shortDescription, String guideText, boolean isActive, Integer orderToShow, String pathImg, String hexHtmlColor) {
+        this(name, urlCode, shortDescription, guideText, isActive, orderToShow, pathImg, hexHtmlColor);
+        this.id = id;
     }
 
     public Long getId() {

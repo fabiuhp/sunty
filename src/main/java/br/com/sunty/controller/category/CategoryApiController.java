@@ -1,7 +1,7 @@
 package br.com.sunty.controller.category;
 
 import br.com.sunty.models.category.Category;
-import br.com.sunty.models.category.CategoryDto;
+import br.com.sunty.models.category.dto.ApiCategoryDto;
 import br.com.sunty.repository.category.CategoryRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +19,9 @@ public class CategoryApiController {
     }
 
     @GetMapping(value = "/api/categories", produces = { "application/json", "application/xml" })
-    public ResponseEntity<List<CategoryDto>> findAll() {
+    public ResponseEntity<List<ApiCategoryDto>> findAll() {
         List<Category> categories =  categoryRepository.findAllByIsActive(true);
-        List<CategoryDto> categoriesDto = categories.stream().map(CategoryDto::new).toList();
+        List<ApiCategoryDto> categoriesDto = categories.stream().map(ApiCategoryDto::new).toList();
         return ResponseEntity.ok(categoriesDto);
     }
 }

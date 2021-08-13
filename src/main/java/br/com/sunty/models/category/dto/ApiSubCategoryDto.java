@@ -1,21 +1,22 @@
-package br.com.sunty.models.category;
+package br.com.sunty.models.category.dto;
 
-import br.com.sunty.models.course.CourseDto;
+import br.com.sunty.models.category.SubCategory;
+import br.com.sunty.models.course.ApiCourseDto;
 
 import java.util.List;
 
-public class SubCategoryDto {
+public class ApiSubCategoryDto {
 
     private final String name;
     private final String urlCode;
     private final String guideText;
-    private final List<CourseDto> courses;
+    private final List<ApiCourseDto> courses;
 
-    public SubCategoryDto(SubCategory subCategory) {
+    public ApiSubCategoryDto(SubCategory subCategory) {
         this.name = subCategory.getName();
         this.urlCode = subCategory.getUrlCode();
         this.guideText = subCategory.getGuideText();
-        this.courses = subCategory.getPublicCourses().stream().map(CourseDto::new).toList();
+        this.courses = subCategory.getPublicCourses().stream().map(ApiCourseDto::new).toList();
     }
 
     public String getName() {
@@ -30,7 +31,7 @@ public class SubCategoryDto {
         return guideText;
     }
 
-    public List<CourseDto> getCourses() {
+    public List<ApiCourseDto> getCourses() {
         return courses;
     }
 }
