@@ -1,4 +1,4 @@
-package br.com.sunty.models.category.dto;
+package br.com.sunty.models.category.dto.subcategory;
 
 import br.com.sunty.models.category.Category;
 import br.com.sunty.models.category.SubCategory;
@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-public class AdminNewSubCategoryForm {
+public class AdminEditSubCategoryForm {
 
     @NotBlank(message = "{subcategory.name.not.null}")
     @Size(max = 255, message = "{subcategory.name.size.max}")
@@ -28,7 +28,7 @@ public class AdminNewSubCategoryForm {
     private final String shortDescription;
     private final Long categoryId;
 
-    public AdminNewSubCategoryForm(String name, String urlCode, Boolean active, Integer orderToShow, String guideText, String pathImg, String hexHtmlColor, String shortDescription, Long categoryId) {
+    public AdminEditSubCategoryForm(String name, String urlCode, Boolean active, Integer orderToShow, String guideText, String pathImg, String hexHtmlColor, String shortDescription, Long categoryId) {
         this.name = name;
         this.urlCode = urlCode;
         this.active = active;

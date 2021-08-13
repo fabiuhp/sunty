@@ -1,6 +1,7 @@
-package br.com.sunty.models.category.dto;
+package br.com.sunty.models.category.dto.category;
 
 import br.com.sunty.models.category.Category;
+import br.com.sunty.models.category.dto.subcategory.ApiSubCategoryDto;
 
 import java.util.List;
 

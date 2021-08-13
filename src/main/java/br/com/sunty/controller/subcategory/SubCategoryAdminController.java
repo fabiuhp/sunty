@@ -2,10 +2,10 @@ package br.com.sunty.controller.subcategory;
 
 import br.com.sunty.models.category.Category;
 import br.com.sunty.models.category.SubCategory;
-import br.com.sunty.models.category.dto.AdminCategoryDto;
-import br.com.sunty.models.category.dto.AdminEditSubCategoryForm;
-import br.com.sunty.models.category.dto.AdminNewSubCategoryForm;
-import br.com.sunty.models.category.dto.AdminSubCategoryDto;
+import br.com.sunty.models.category.dto.category.AdminCategoryDto;
+import br.com.sunty.models.category.dto.subcategory.AdminEditSubCategoryForm;
+import br.com.sunty.models.category.dto.subcategory.AdminNewSubCategoryForm;
+import br.com.sunty.models.category.dto.subcategory.AdminSubCategoryDto;
 import br.com.sunty.repository.category.CategoryRepository;
 import br.com.sunty.repository.subcategory.SubCategoryRepository;
 import org.springframework.http.HttpStatus;

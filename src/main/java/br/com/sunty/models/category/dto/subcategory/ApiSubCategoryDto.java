@@ -1,4 +1,4 @@
-package br.com.sunty.models.category.dto;
+package br.com.sunty.models.category.dto.subcategory;
 
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.course.ApiCourseDto;

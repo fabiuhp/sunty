@@ -1,9 +1,9 @@
 package br.com.sunty.controller.category;
 
 import br.com.sunty.models.category.Category;
-import br.com.sunty.models.category.dto.AdminCategoryDto;
-import br.com.sunty.models.category.dto.AdminEditCategoryForm;
-import br.com.sunty.models.category.dto.AdminNewCategoryForm;
+import br.com.sunty.models.category.dto.category.AdminCategoryDto;
+import br.com.sunty.models.category.dto.category.AdminEditCategoryForm;
+import br.com.sunty.models.category.dto.category.AdminNewCategoryForm;
 import br.com.sunty.repository.category.CategoryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

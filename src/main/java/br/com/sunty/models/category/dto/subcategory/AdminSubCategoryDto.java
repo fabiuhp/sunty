@@ -1,4 +1,4 @@
-package br.com.sunty.models.category.dto;
+package br.com.sunty.models.category.dto.subcategory;
 
 import br.com.sunty.models.category.SubCategory;
 
@@ -6,13 +6,13 @@ public class AdminSubCategoryDto {
 
     private final String name;
     private final String urlCode;
-    private Boolean isActive;
+    private final Boolean active;
     private final Integer orderToShow;
 
     public AdminSubCategoryDto(SubCategory subCategory) {
         this.name = subCategory.getName();
         this.urlCode = subCategory.getUrlCode();
-        this.isActive = subCategory.getActive();
+        this.active = subCategory.getActive();
         this.orderToShow = subCategory.getOrderToShow();
     }
 
@@ -25,7 +25,7 @@ public class AdminSubCategoryDto {
     }
 
     public Boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public Integer getOrderToShow() {
