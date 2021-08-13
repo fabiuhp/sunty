@@ -46,8 +46,8 @@
                </div>
                <div class="form-group">
                    <label for="category">Categoria</label>
-                   <select id="category" class="form-control" name="category">
-                           <option value="${subCategory.category.id}">${subCategory.category.name}</option>
+                   <select id="category" class="form-control" name="categoryId">
+                           <option value="${subCategory.categoryId}">${subCategory.categoryName}</option>
                    </select>
                </div>
                <input class="btn btn-success" type="submit" value="Enviar">

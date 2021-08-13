@@ -17,13 +17,13 @@ public class AdminCategoryDto {
     private final String urlCode;
     @Positive
     private final Integer orderToShow;
-    private final boolean isActive;
+    private final boolean active;
 
     public AdminCategoryDto(Category category) {
         this.name = category.getName();
         this.urlCode = category.getUrlCode();
         this.orderToShow = category.getOrderToShow();
-        this.isActive = category.getActive();
+        this.active = category.getActive();
     }
 
     public String getName() {
@@ -39,6 +39,6 @@ public class AdminCategoryDto {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 }

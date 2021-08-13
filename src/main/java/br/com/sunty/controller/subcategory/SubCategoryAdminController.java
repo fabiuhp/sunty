@@ -4,6 +4,7 @@ import br.com.sunty.models.category.Category;
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.category.dto.category.AdminCategoryDto;
 import br.com.sunty.models.category.dto.subcategory.AdminEditSubCategoryForm;
+import br.com.sunty.models.category.dto.subcategory.AdminEditSubCategoryView;
 import br.com.sunty.models.category.dto.subcategory.AdminNewSubCategoryForm;
 import br.com.sunty.models.category.dto.subcategory.AdminSubCategoryDto;
 import br.com.sunty.repository.category.CategoryRepository;
@@ -31,14 +32,14 @@ public class SubCategoryAdminController {
         this.categoryRepository = categoryRepository;
     }
 
-    @GetMapping("/admin/subcategories/{urlCode}")
-    public String findAll(@PathVariable String urlCode, Model model) {
-        Category category = categoryRepository.findByUrlCode(urlCode)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, urlCode));
-        AdminCategoryDto adminSubCategoryDto = new AdminCategoryDto(category);
+    @GetMapping("/admin/subcategories/{categoryUrlCode}")
+    public String findAll(@PathVariable String categoryUrlCode, Model model) {
+        AdminCategoryDto adminSubCategoryDto = categoryRepository.findByUrlCode(categoryUrlCode)
+                .map(AdminCategoryDto::new)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, categoryUrlCode));
 
-        List<SubCategory> subCategoryList = category.getSubCategoryList();
-        List<AdminSubCategoryDto> subCategoryDtoList = subCategoryList.stream().map(AdminSubCategoryDto::new).toList();
+        List<AdminSubCategoryDto> subCategoryDtoList = subCategoryRepository.findAllByCategoryUrlCode(categoryUrlCode)
+                .stream().map(AdminSubCategoryDto::new).toList();
 
         model.addAttribute("category", adminSubCategoryDto);
         model.addAttribute("subCategoryList", subCategoryDtoList);
@@ -47,10 +48,11 @@ public class SubCategoryAdminController {
 
     @GetMapping("/admin/subcategories/{categoryCode}/{subcategoryCode}")
     public String edit(@PathVariable String categoryCode, @PathVariable String subcategoryCode, Model model) {
-        SubCategory subCategory = subCategoryRepository.findByUrlCode(subcategoryCode)
+        AdminEditSubCategoryView adminSubCategoryDto = subCategoryRepository.findByUrlCode(subcategoryCode)
+                .map(AdminEditSubCategoryView::new)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, subcategoryCode));
 
-        model.addAttribute("subCategory", subCategory);
+        model.addAttribute("subCategory", adminSubCategoryDto);
         return "subcategory/editSubCategoryForm";
     }
 
