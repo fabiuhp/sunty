@@ -1,7 +1,7 @@
 package br.com.sunty.models.category.dto.subcategory;
 
 import br.com.sunty.models.category.SubCategory;
-import br.com.sunty.models.course.ApiCourseDto;
+import br.com.sunty.models.course.dto.ApiCourseDto;
 
 import java.util.List;
 

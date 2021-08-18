@@ -1,4 +1,6 @@
-package br.com.sunty.models.course;
+package br.com.sunty.models.course.dto;
+
+import br.com.sunty.models.course.Course;
 
 public class ApiCourseDto {
     private String name;

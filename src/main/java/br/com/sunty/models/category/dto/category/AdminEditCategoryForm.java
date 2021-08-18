@@ -1,6 +1,9 @@
 package br.com.sunty.models.category.dto.category;
 
 import br.com.sunty.models.category.Category;
+import br.com.sunty.repository.category.CategoryRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -39,18 +42,21 @@ public class AdminEditCategoryForm {
         this.shortDescription = shortDescription;
     }
 
-    public Category toModel() {
-        return new Category(
-                this.getId(),
-                this.getName(),
-                this.getUrlCode(),
-                this.getShortDescription(),
-                this.getGuideText(),
-                this.isActive(),
-                this.getOrderToShow(),
-                this.getPathImg(),
-                this.getHexHtmlColor()
-                );
+    public static Category toModel(CategoryRepository categoryRepository, AdminEditCategoryForm adminEditCategoryForm) {
+        Category category = categoryRepository.findById(adminEditCategoryForm.getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        category.setId(adminEditCategoryForm.getId());
+        category.setName(adminEditCategoryForm.getName());
+        category.setUrlCode(adminEditCategoryForm.getUrlCode());
+        category.setShortDescription(adminEditCategoryForm.getShortDescription());
+        category.setGuideText(adminEditCategoryForm.getGuideText());
+        category.setActive(adminEditCategoryForm.isActive());
+        category.setOrderToShow(adminEditCategoryForm.getOrderToShow());
+        category.setPathImg(adminEditCategoryForm.getPathImg());
+        category.setHexHtmlColor(adminEditCategoryForm.getHexHtmlColor());
+
+        return category;
     }
 
     public Long getId() {

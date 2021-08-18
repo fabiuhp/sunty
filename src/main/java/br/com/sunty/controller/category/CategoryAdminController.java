@@ -26,6 +26,20 @@ public class CategoryAdminController {
         this.categoryRepository = categoryRepository;
     }
 
+    @GetMapping("/{categoryCode}")
+    public String publicPageCategories(@PathVariable String categoryCode, Model model) {
+        Category category = categoryRepository.findByUrlCode(categoryCode)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, categoryCode));
+
+        model.addAttribute("category", category);
+        return "api/category/category";
+    }
+
+    @GetMapping("/")
+    public String homePage() {
+        return "redirect:/admin/categories";
+    }
+
     @GetMapping("/admin/categories")
     public String findAll(Model model) {
         List<Category> categories = categoryRepository.findAll();
@@ -63,7 +77,7 @@ public class CategoryAdminController {
         if (result.hasErrors()) {
             return "category/editCategoryForm";
         }
-        Category category = adminEditCategoryForm.toModel();
+        Category category = AdminEditCategoryForm.toModel(categoryRepository, adminEditCategoryForm);
         categoryRepository.save(category);
         return "redirect:/admin/categories";
     }
