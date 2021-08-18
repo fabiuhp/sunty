@@ -199,12 +199,11 @@
                             </c:forEach>
                         </a>
                         <c:if test="${category.subCategoryList.size() > 3}">
-                            e mais....
+                            e mais....,
                         </c:if>
                     </li>
                 </c:forEach>
             </ul>
-
         </section>
     </section>
 </main>
