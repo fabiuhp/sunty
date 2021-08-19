@@ -25,9 +25,8 @@
                <div class="form-group">
                    <label>Ativo?</label>
                    <select class="form-control" name="active" >
-                       <option value="Selecione">Selecione</option>
-                       <option value="true" ${subcategory.active ? 'selected' : ''}>Ativo</option>
-                       <option value="false" ${subcategory.active ? '' : 'selected'}>Inativo</option>
+                       <option value="true" ${subCategory.active ? 'selected' : ''}>Ativo</option>
+                       <option value="false" ${subCategory.active ? '' : 'selected'}>Inativo</option>
                    </select>
                    <form:errors path="subcategory.active" cssClass="text-danger"/>
                </div>
