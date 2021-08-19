@@ -15,12 +15,12 @@
                <div class="form-group">
                    <label>Nome</label>
                    <input placeholder="Digite aqui o nome da subcategoria" class="form-control" type="text" name="name"  value="${subCategory.name}">
-                   <form:errors path="subcategory.name" cssClass="text-danger"/>
+                   <form:errors path="adminEditSubCategoryForm.name" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Código</label>
                    <input placeholder="Por exemplo: desenvolvimento, mobile (não use letras maiúsculas, acentos ou caracteres especiais)" class="form-control" type="text" name="urlCode" value="${subCategory.urlCode}">
-                   <form:errors path="subcategory.urlCode" cssClass="text-danger"/>
+                   <form:errors path="adminEditSubCategoryForm.urlCode" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Ativo?</label>
@@ -28,12 +28,12 @@
                        <option value="true" ${subCategory.active ? 'selected' : ''}>Ativo</option>
                        <option value="false" ${subCategory.active ? '' : 'selected'}>Inativo</option>
                    </select>
-                   <form:errors path="subcategory.active" cssClass="text-danger"/>
+                   <form:errors path="adminEditSubCategoryForm.active" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Ordem</label>
                    <input placeholder="Ordem da subcategoria" class="form-control" type="number" name="orderToShow" value="${subCategory.orderToShow}">
-                   <form:errors path="subcategory.orderToShow" cssClass="text-danger"/>
+                   <form:errors path="adminEditSubCategoryForm.orderToShow" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Guia de estudo</label>

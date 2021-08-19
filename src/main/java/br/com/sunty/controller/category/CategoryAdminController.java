@@ -26,7 +26,7 @@ public class CategoryAdminController {
         this.categoryRepository = categoryRepository;
     }
 
-    @GetMapping("/{categoryCode}")
+    @GetMapping("/{categoryCode:[a-z-]+}")
     public String publicPageCategories(@PathVariable String categoryCode, Model model) {
         Category category = categoryRepository.findByUrlCode(categoryCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, categoryCode));
