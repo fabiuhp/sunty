@@ -48,12 +48,10 @@ public class CourseAdminController {
                           Pageable pageable,
                           Model model) {
 
-        AdminSubCategoryDto adminSubCategoryDto = subCategoryRepository.findByUrlCode(subcategoryUrlCode)
-                .map(AdminSubCategoryDto::new)
-                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, subcategoryUrlCode));
-
         SubCategory subcategory = subCategoryRepository.findByUrlCode(subcategoryUrlCode)
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, subcategoryUrlCode));
+
+        AdminSubCategoryDto adminSubCategoryDto = new AdminSubCategoryDto(subcategory);
 
         Page<Course> courses = courseRepository.findAllBySubCategory(subcategory, pageable);
         Page<AdminCourseDto> courseDtos = courses.map(AdminCourseDto::new);
