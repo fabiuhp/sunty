@@ -48,12 +48,11 @@ public class CourseAdminController {
                           Pageable pageable,
                           Model model) {
 
-        SubCategory subcategory = subCategoryRepository.findByUrlCode(subcategoryUrlCode)
+        AdminSubCategoryDto adminSubCategoryDto = subCategoryRepository.findByUrlCode(subcategoryUrlCode)
+                .map(AdminSubCategoryDto::new)
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, subcategoryUrlCode));
 
-        AdminSubCategoryDto adminSubCategoryDto = new AdminSubCategoryDto(subcategory);
-
-        Page<Course> courses = courseRepository.findAllBySubCategory(subcategory, pageable);
+        Page<Course> courses = courseRepository.findAllBySubCategory_UrlCode(subcategoryUrlCode, pageable);
         Page<AdminCourseDto> courseDtos = courses.map(AdminCourseDto::new);
 
         model.addAttribute("subCategory", adminSubCategoryDto);
@@ -82,7 +81,7 @@ public class CourseAdminController {
         SubCategory subCategory = subCategoryRepository.findById(adminNewCourseForm.getSubCategoryId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        Course course = adminNewCourseForm.toModel(instructor, subCategory, adminNewCourseForm);
+        Course course = adminNewCourseForm.toModel(instructor, subCategory);
         courseRepository.save(course);
         return String.format("redirect:/admin/courses/%s/%s", course.getCategoryUrlCode(), course.getSubCategoryUrlCode());
     }
@@ -125,10 +124,10 @@ public class CourseAdminController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         SubCategory subCategory = subCategoryRepository.findById(adminEditCourseForm.getSubCategoryId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        Course course = courseRepository.findById(adminEditCourseForm.getId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        courseRepository.save(adminEditCourseForm.toModel(course, instructor, subCategory, adminEditCourseForm));
+        Course course = adminEditCourseForm.toModel(instructor, subCategory);
+
+        courseRepository.save(course);
         return "redirect:/admin/courses/" + categoryUrlCode + "/" + subcategoryUrlCode;
     }
 }

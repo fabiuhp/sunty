@@ -39,18 +39,18 @@ public class AdminEditCategoryForm {
         this.shortDescription = shortDescription;
     }
 
-    public Category toModel(Category category, AdminEditCategoryForm adminEditCategoryForm) {
-        category.setId(adminEditCategoryForm.getId());
-        category.setName(adminEditCategoryForm.getName());
-        category.setUrlCode(adminEditCategoryForm.getUrlCode());
-        category.setShortDescription(adminEditCategoryForm.getShortDescription());
-        category.setGuideText(adminEditCategoryForm.getGuideText());
-        category.setActive(adminEditCategoryForm.isActive());
-        category.setOrderToShow(adminEditCategoryForm.getOrderToShow());
-        category.setPathImg(adminEditCategoryForm.getPathImg());
-        category.setHexHtmlColor(adminEditCategoryForm.getHexHtmlColor());
-
-        return category;
+    public Category toModel() {
+        return new Category(
+                this.id,
+                this.name,
+                this.urlCode,
+                this.shortDescription,
+                this.guideText,
+                this.active,
+                this.orderToShow,
+                this.pathImg,
+                this.hexHtmlColor
+        );
     }
 
     public Long getId() {

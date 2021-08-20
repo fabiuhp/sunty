@@ -31,19 +31,19 @@ public class AdminEditCourseForm {
         this.subCategoryId = subCategoryId;
     }
 
-    public Course toModel(Course course, Instructor instructor, SubCategory subCategory, AdminEditCourseForm adminEditCourseForm) {
-        course.setId(adminEditCourseForm.getId());
-        course.setName(adminEditCourseForm.getName());
-        course.setUrlCode(adminEditCourseForm.getUrlCode());
-        course.setTimeToFinishInHours(adminEditCourseForm.getTimeToFinishInHours());
-        course.setVisibility(adminEditCourseForm.getVisibility());
-        course.setTargetAudience(adminEditCourseForm.getTargetAudience());
-        course.setInstructor(instructor);
-        course.setSyllabus(adminEditCourseForm.getSyllabus());
-        course.setDevelopedSkills(adminEditCourseForm.getDevelopedSkills());
-        course.setSubCategory(subCategory);
-
-        return course;
+    public Course toModel(Instructor instructor,SubCategory subCategory) {
+        return new Course(
+                this.id,
+                this.name,
+                this.urlCode,
+                this.timeToFinishInHours,
+                this.visibility,
+                this.targetAudience,
+                instructor,
+                this.syllabus,
+                this.developedSkills,
+                subCategory
+        );
     }
 
     public Long getId() {

@@ -40,16 +40,16 @@ public class AdminNewCourseForm {
         this.subCategoryId = subCategoryId;
     }
 
-    public Course toModel(Instructor instructor, SubCategory subCategory, AdminNewCourseForm adminNewCourseForm) {
+    public Course toModel(Instructor instructor, SubCategory subCategory) {
         return new Course(
-                adminNewCourseForm.getName(),
-                adminNewCourseForm.getUrlCode(),
-                adminNewCourseForm.getTimeToFinishInHours(),
-                adminNewCourseForm.getVisibility(),
-                adminNewCourseForm.getTargetAudience(),
+                this.name,
+                this.urlCode,
+                this.timeToFinishInHours,
+                this.visibility,
+                this.targetAudience,
                 instructor,
-                adminNewCourseForm.getSyllabus(),
-                adminNewCourseForm.getDevelopedSkills(),
+                this.syllabus,
+                this.developedSkills,
                 subCategory
         );
     }

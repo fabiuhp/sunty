@@ -24,4 +24,5 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     Page<Course> findAllBySubCategory(SubCategory subcategory, Pageable pageable);
     Optional<Course> findByUrlCode(String urlCode);
+    Page<Course> findAllBySubCategory_UrlCode(String subCategoryUrlCode, Pageable pageable);
 }
