@@ -4,6 +4,7 @@ import br.com.sunty.models.category.Category;
 import br.com.sunty.models.category.dto.category.AdminCategoryDto;
 import br.com.sunty.models.category.dto.category.AdminEditCategoryForm;
 import br.com.sunty.models.category.dto.category.AdminNewCategoryForm;
+import br.com.sunty.models.category.dto.category.ApiCategoryDetailsDto;
 import br.com.sunty.repository.category.CategoryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -28,10 +29,11 @@ public class CategoryAdminController {
 
     @GetMapping("/{categoryCode:[a-z-]+}")
     public String publicPageCategories(@PathVariable String categoryCode, Model model) {
-        Category category = categoryRepository.findByUrlCode(categoryCode)
+        Category category = categoryRepository.findCategoryActiveByUrlCode(categoryCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, categoryCode));
+        ApiCategoryDetailsDto apiCategoryDetailsDto = new ApiCategoryDetailsDto(category);
 
-        model.addAttribute("category", category);
+        model.addAttribute("category", apiCategoryDetailsDto);
         return "api/category/category";
     }
 

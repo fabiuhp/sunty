@@ -175,7 +175,7 @@
     <div class="subcategories">
         <p class="subcategories__label">O que você quer aprender?</p>
         <ul class="subcategories__list">
-            <c:forEach items="${category.activeSubCategoryList}" var="subcategory">
+            <c:forEach items="${category.apiSubCategoryDetailsDtos}" var="subcategory">
                 <li class="subcategories__item">
                     <a href="#${subcategory.urlCode}" class="subcategories__link">
                         <span class="subcategories__name">${subcategory.name}</span>
@@ -184,11 +184,11 @@
             </c:forEach>
         </ul>
     </div>
-    <c:forEach items="${category.activeSubCategoryList}" var="subcategory">
+    <c:forEach items="${category.apiSubCategoryDetailsDtos}" var="subcategory">
         <div class="subcategory">
             <h2 id="${subcategory.urlCode}" class="subcategory__name">${subcategory.name}</h2>
             <ul class="courses__list">
-                <c:forEach items="${subcategory.courseList}" var="course">
+                <c:forEach items="${subcategory.coursesDetails}" var="course">
                     <li class="course-card">
                         <h3 class="course-card__name">${course.name}</h3>
                         <p class="course-card__hours">${course.timeToFinishInHours}h</p>
