@@ -76,19 +76,25 @@ public class CourseAdminController {
         if (result.hasErrors()){
             return createForm(model);
         }
-        Course course = adminNewCourseForm.toModel(instructorRepository, subCategoryRepository, adminNewCourseForm);
+
+        Instructor instructor = instructorRepository.findById(adminNewCourseForm.getInstructorId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        SubCategory subCategory = subCategoryRepository.findById(adminNewCourseForm.getSubCategoryId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        Course course = adminNewCourseForm.toModel(instructor, subCategory, adminNewCourseForm);
         courseRepository.save(course);
-        return "redirect:/admin/courses/%s/%s,  course.getCategoryUrlCode(),  course.getSubCategoryUrlCode()";
+        return String.format("redirect:/admin/courses/%s/%s", course.getCategoryUrlCode(), course.getSubCategoryUrlCode());
     }
 
-    @GetMapping("/admin/courses/{category}/{subcategory}/{course}")
-    public String edit(@PathVariable String category,
-                       @PathVariable String subcategory,
-                       @PathVariable String course,
+    @GetMapping("/admin/courses/{categoryUrlCode}/{subcategoryUrlCode}/{courseCode}")
+    public String edit(@PathVariable String categoryUrlCode,
+                       @PathVariable String subcategoryUrlCode,
+                       @PathVariable String courseCode,
                        Model model) {
-        AdminEditCourseView adminEditCourseView = courseRepository.findByUrlCode(course)
+        AdminEditCourseView adminEditCourseView = courseRepository.findByUrlCode(courseCode)
                 .map(AdminEditCourseView::new)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, course));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, courseCode));
         List<Instructor> instructors = instructorRepository.findAll();
         Instructor instructor = instructorRepository.findById(adminEditCourseView.getInstructorId())
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
@@ -101,8 +107,8 @@ public class CourseAdminController {
         model.addAttribute("subCategory", subCategory);
         model.addAttribute("instructors", instructors);
         model.addAttribute("instructor", instructor);
-        model.addAttribute("subcategory", subcategory);
-        model.addAttribute("category", category);
+        model.addAttribute("subcategory", subcategoryUrlCode);
+        model.addAttribute("category", categoryUrlCode);
         return "course/editCourseForm";
     }
 

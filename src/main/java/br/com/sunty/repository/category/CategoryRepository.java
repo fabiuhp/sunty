@@ -21,4 +21,16 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
             order by c.orderToShow
             """)
     List<Category> findActiveCategoriesWithActiveSubCategoriesAndPublicCourses();
+
+    @Query(value = """
+        SELECT DISTINCT c FROM Category c 
+        JOIN FETCH c.subCategoryList s
+        JOIN s.courseList co 
+        WHERE c.isActive = true
+        AND s.isActive = true 
+        AND co.visibility = 'PUBLICA'
+        AND c.urlCode = :urlCode
+        ORDER BY c.orderToShow, s.orderToShow        
+        """)
+    Optional<Category> findCategoryActiveByUrlCode(String urlCode);
 }

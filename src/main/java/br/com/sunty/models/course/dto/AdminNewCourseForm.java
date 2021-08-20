@@ -4,10 +4,6 @@ import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.course.Course;
 import br.com.sunty.models.course.CourseVisibility;
 import br.com.sunty.models.instructor.Instructor;
-import br.com.sunty.repository.instructor.InstructorRepository;
-import br.com.sunty.repository.subcategory.SubCategoryRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.constraints.*;
 
@@ -44,12 +40,7 @@ public class AdminNewCourseForm {
         this.subCategoryId = subCategoryId;
     }
 
-    public Course toModel(InstructorRepository instructorRepository, SubCategoryRepository subCategoryRepository, AdminNewCourseForm adminNewCourseForm) {
-        Instructor instructor = instructorRepository.findById(adminNewCourseForm.getInstructorId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        SubCategory subCategory = subCategoryRepository.findById(adminNewCourseForm.getSubCategoryId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
+    public Course toModel(Instructor instructor, SubCategory subCategory, AdminNewCourseForm adminNewCourseForm) {
         return new Course(
                 adminNewCourseForm.getName(),
                 adminNewCourseForm.getUrlCode(),

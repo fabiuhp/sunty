@@ -22,4 +22,8 @@ public class AdminCourseDto {
     public CourseVisibility getVisibility() {
         return visibility;
     }
+
+    public String getVisibilityDisplayName() {
+        return this.visibility.getDisplayName();
+    }
 }

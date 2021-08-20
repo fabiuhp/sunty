@@ -22,7 +22,7 @@
                     <tr>
                         <td>${course.name}</td>
                         <td>${course.urlCode}</td>
-                        <td>${course.visibility}</td>
+                        <td>${course.visibilityDisplayName}</td>
                         <td><a href="/admin/courses/${categoryUrlCode}/${subCategory.name}/${course.urlCode}">Editar</a></td>
                     </tr>
                 </c:forEach>
