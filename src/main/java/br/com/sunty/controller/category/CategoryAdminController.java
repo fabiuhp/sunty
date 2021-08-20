@@ -79,7 +79,10 @@ public class CategoryAdminController {
         if (result.hasErrors()) {
             return "category/editCategoryForm";
         }
-        Category category = AdminEditCategoryForm.toModel(categoryRepository, adminEditCategoryForm);
+        Category category1 = categoryRepository.findById(adminEditCategoryForm.getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        Category category = adminEditCategoryForm.toModel(category1, adminEditCategoryForm);
         categoryRepository.save(category);
         return "redirect:/admin/categories";
     }

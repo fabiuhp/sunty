@@ -4,11 +4,6 @@ import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.course.Course;
 import br.com.sunty.models.course.CourseVisibility;
 import br.com.sunty.models.instructor.Instructor;
-import br.com.sunty.repository.course.CourseRepository;
-import br.com.sunty.repository.instructor.InstructorRepository;
-import br.com.sunty.repository.subcategory.SubCategoryRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 public class AdminEditCourseForm {
 
@@ -36,14 +31,7 @@ public class AdminEditCourseForm {
         this.subCategoryId = subCategoryId;
     }
 
-    public static Course toModel(CourseRepository courseRepository, InstructorRepository instructorRepository, SubCategoryRepository subCategoryRepository, AdminEditCourseForm adminEditCourseForm) {
-        Instructor instructor = instructorRepository.findById(adminEditCourseForm.getInstructorId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        SubCategory subCategory = subCategoryRepository.findById(adminEditCourseForm.getSubCategoryId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        Course course = courseRepository.findById(adminEditCourseForm.getId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
+    public Course toModel(Course course, Instructor instructor, SubCategory subCategory, AdminEditCourseForm adminEditCourseForm) {
         course.setId(adminEditCourseForm.getId());
         course.setName(adminEditCourseForm.getName());
         course.setUrlCode(adminEditCourseForm.getUrlCode());

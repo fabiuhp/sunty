@@ -121,7 +121,14 @@ public class CourseAdminController {
         if (result.hasErrors()){
             return "course/editCourseForm";
         }
-        courseRepository.save(AdminEditCourseForm.toModel(courseRepository, instructorRepository, subCategoryRepository, adminEditCourseForm));
+        Instructor instructor = instructorRepository.findById(adminEditCourseForm.getInstructorId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        SubCategory subCategory = subCategoryRepository.findById(adminEditCourseForm.getSubCategoryId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Course course = courseRepository.findById(adminEditCourseForm.getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        courseRepository.save(adminEditCourseForm.toModel(course, instructor, subCategory, adminEditCourseForm));
         return "redirect:/admin/courses/" + categoryUrlCode + "/" + subcategoryUrlCode;
     }
 }
