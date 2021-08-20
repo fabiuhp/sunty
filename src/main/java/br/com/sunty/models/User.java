@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario  implements UserDetails {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +20,7 @@ public class Usuario  implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_perfis")
-    private List<Perfil> perfis = new ArrayList<>();
+    private List<Profile> perfis = new ArrayList<>();
 
     public Long getId() {
         return id;

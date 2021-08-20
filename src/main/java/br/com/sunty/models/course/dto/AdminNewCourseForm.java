@@ -16,10 +16,12 @@ public class AdminNewCourseForm {
     @NotBlank(message = "{course.name.not.null}")
     @Size(max = 255, message = "{course.name.size.max}")
     private final String name;
+
     @NotBlank(message = "{course.url.not.null}")
     @Size(max = 255, message = "{course.url.size.max}")
     @Pattern(regexp = "[a-z]+([a-z-]*)[a-z]", message = "{course.url.regex}")
     private final String urlCode;
+
     @Min(value = 1)
     @Max(value = 20)
     private final int timeToFinishInHours;

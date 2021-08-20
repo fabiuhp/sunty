@@ -80,7 +80,7 @@ public class CourseAdminController {
         }
         Course course = adminNewCourseForm.toModel(instructorRepository, subCategoryRepository, adminNewCourseForm);
         courseRepository.save(course);
-        return "redirect:/admin/courses/" + course.getCategoryUrlCode() + "/" + course.getSubCategoryUrlCode();
+        return "redirect:/admin/courses/%s/%s,  course.getCategoryUrlCode(),  course.getSubCategoryUrlCode()";
     }
 
     @GetMapping("/admin/courses/{category}/{subcategory}/{course}")

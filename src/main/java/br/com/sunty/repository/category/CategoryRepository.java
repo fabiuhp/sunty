@@ -20,5 +20,5 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
             where c.isActive = true and sc.isActive = true and course.visibility = 'PUBLICA'
             order by c.orderToShow
             """)
-    List<Category> findAllActiveCategoriesWhereCategoryIsActiveAndCourseVisibilityIsTrueAndSubCategoryIsActive();
+    List<Category> findActiveCategoriesWithActiveSubCategoriesAndPublicCourses();
 }

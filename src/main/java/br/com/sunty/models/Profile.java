@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "perfil")
-public class Perfil implements GrantedAuthority {
+public class Profile implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

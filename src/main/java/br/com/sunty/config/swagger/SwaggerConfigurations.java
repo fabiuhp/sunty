@@ -1,6 +1,6 @@
 package br.com.sunty.config.swagger;
 
-import br.com.sunty.models.Usuario;
+import br.com.sunty.models.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -14,9 +14,9 @@ public class SwaggerConfigurations {
     public Docket suntyApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("br.com.sunty"))
+                .apis(RequestHandlerSelectors.basePackage("br.com.sunty.controller.category.api"))
                 .paths(PathSelectors.ant("/**"))
                 .build()
-                .ignoredParameterTypes(Usuario.class);
+                .ignoredParameterTypes(User.class);
     }
 }

@@ -19,7 +19,7 @@ public class LoginController {
 
     @GetMapping("/login")
     String login(Model model) {
-        List<Category> categories = categoryRepository.findAllActiveCategoriesWhereCategoryIsActiveAndCourseVisibilityIsTrueAndSubCategoryIsActive();
+        List<Category> categories = categoryRepository.findActiveCategoriesWithActiveSubCategoriesAndPublicCourses();
 
         model.addAttribute("categories", categories);
         return "login/login";

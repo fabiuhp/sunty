@@ -1,4 +1,4 @@
-package br.com.sunty.controller.category;
+package br.com.sunty.controller.category.api;
 
 import br.com.sunty.models.category.Category;
 import br.com.sunty.models.category.dto.category.ApiCategoryDto;
@@ -21,7 +21,7 @@ public class CategoryApiController {
     }
 
     @GetMapping(value = "/api/categories", produces = { "application/json", "application/xml" })
-    @Cacheable(value = "apiListaCategorias")
+    @Cacheable(value = "apiCategoriesList")
     public ResponseEntity<List<ApiCategoryDto>> findAll() {
         List<Category> categories =  categoryRepository.findAllByIsActive(true);
         List<ApiCategoryDto> categoriesDto = categories.stream().map(ApiCategoryDto::new).toList();
@@ -29,10 +29,8 @@ public class CategoryApiController {
     }
 
     @GetMapping(value = "/api/bGltcGEtby1jYWNoZS1kYS1hcGktYWU")
-    @CacheEvict(value = "apiListaCategorias", allEntries = true)
-    public ResponseEntity<List<ApiCategoryDto>> limparCache() {
-        List<Category> categories =  categoryRepository.findAllByIsActive(true);
-        List<ApiCategoryDto> categoriesDto = categories.stream().map(ApiCategoryDto::new).toList();
-        return ResponseEntity.ok(categoriesDto);
+    @CacheEvict(value = "apiCategoriesList", allEntries = true)
+    public ResponseEntity<?> clearCache() {
+        return ResponseEntity.ok("Cache limpo com sucesso");
     }
 }

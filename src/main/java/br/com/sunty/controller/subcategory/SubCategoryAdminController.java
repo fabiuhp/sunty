@@ -68,7 +68,7 @@ public class SubCategoryAdminController {
 
     @GetMapping("/admin/subcategories/new")
     public String createForm(Model model) {
-        List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = categoryRepository.findAllByOrderByName();
         model.addAttribute("categories", categories);
         return "subcategory/newSubCategoryForm";
     }
