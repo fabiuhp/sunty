@@ -14,12 +14,12 @@
                <div class="form-group">
                    <label>Nome</label>
                    <input placeholder="Nome da categoria" class="form-control" type="text" name="name" value="${category.name}">
-                   <form:errors path="category.name" cssClass="text-danger"/>
+                   <form:errors path="adminEditCategoryForm.name" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Código</label>
                    <input placeholder="Código da categoria" class="form-control" type="text" name="urlCode" value="${category.urlCode}">
-                   <form:errors path="category.urlCode" cssClass="text-danger"/>
+                   <form:errors path="adminEditCategoryForm.urlCode" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Descrição breve</label>
@@ -32,22 +32,22 @@
                        <option value="true" ${category.active ? 'selected' : ''}>Ativo</option>
                        <option value="false" ${category.active ? '' : 'selected'}>Inativo</option>
                    </select>
-                   <form:errors path="category.active" cssClass="text-danger"/>
+                   <form:errors path="adminEditCategoryForm.active" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Cor em hexadecimal</label>
                    <input placeholder="Cor da categoria em hexadecimal" class="form-control" type="text" name="hexHtmlColor" value="${category.hexHtmlColor}">
-                   <form:errors path="category.hexHtmlColor" cssClass="text-danger"/>
+                   <form:errors path="adminEditCategoryForm.hexHtmlColor" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Ordem</label>
                    <input placeholder="Ordem da categoria" class="form-control" type="text" name="orderToShow"  value="${category.orderToShow}">
-                   <form:errors path="category.orderToShow" cssClass="text-danger"/>
+                   <form:errors path="adminEditCategoryForm.orderToShow" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Local da imagem</label>
                    <input placeholder="Local da imagem da categoria" class="form-control" type="text" name="pathImg" value="${category.pathImg}">
-                   <form:errors path="category.pathImg" cssClass="text-danger"/>
+                   <form:errors path="adminEditCategoryForm.pathImg" cssClass="text-danger"/>
                </div>
                <input class="btn btn-success" type="submit" value="Enviar">
            </form>

@@ -4,6 +4,7 @@ import br.com.sunty.models.category.Category;
 import br.com.sunty.models.category.dto.category.AdminCategoryDto;
 import br.com.sunty.models.category.dto.category.AdminEditCategoryForm;
 import br.com.sunty.models.category.dto.category.AdminNewCategoryForm;
+import br.com.sunty.models.category.dto.category.ApiCategoryDetailsDto;
 import br.com.sunty.repository.category.CategoryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,21 @@ public class CategoryAdminController {
 
     public CategoryAdminController(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
+    }
+
+    @GetMapping("/{categoryCode:[a-z-]+}")
+    public String publicPageCategories(@PathVariable String categoryCode, Model model) {
+        ApiCategoryDetailsDto apiCategoryDetailsDto = categoryRepository.findCategoryActiveByUrlCode(categoryCode)
+                .map(ApiCategoryDetailsDto::new)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, categoryCode));
+
+        model.addAttribute("category", apiCategoryDetailsDto);
+        return "api/category/category";
+    }
+
+    @GetMapping("/")
+    public String homePage() {
+        return "redirect:/admin/categories";
     }
 
     @GetMapping("/admin/categories")
@@ -63,6 +79,7 @@ public class CategoryAdminController {
         if (result.hasErrors()) {
             return "category/editCategoryForm";
         }
+
         Category category = adminEditCategoryForm.toModel();
         categoryRepository.save(category);
         return "redirect:/admin/categories";

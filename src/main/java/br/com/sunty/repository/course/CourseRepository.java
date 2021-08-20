@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
@@ -21,5 +22,7 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
             """, nativeQuery = true)
     List<CourseProjection> categoriesWithNumberOfCourses();
 
-    Page<Course> findAllBySubCategory(SubCategory subCategory, Pageable pageable);
+    Page<Course> findAllBySubCategory(SubCategory subcategory, Pageable pageable);
+    Optional<Course> findByUrlCode(String urlCode);
+    Page<Course> findAllBySubCategory_UrlCode(String subCategoryUrlCode, Pageable pageable);
 }

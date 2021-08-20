@@ -41,16 +41,16 @@ public class AdminEditCategoryForm {
 
     public Category toModel() {
         return new Category(
-                this.getId(),
-                this.getName(),
-                this.getUrlCode(),
-                this.getShortDescription(),
-                this.getGuideText(),
-                this.isActive(),
-                this.getOrderToShow(),
-                this.getPathImg(),
-                this.getHexHtmlColor()
-                );
+                this.id,
+                this.name,
+                this.urlCode,
+                this.shortDescription,
+                this.guideText,
+                this.active,
+                this.orderToShow,
+                this.pathImg,
+                this.hexHtmlColor
+        );
     }
 
     public Long getId() {

@@ -23,7 +23,7 @@ public class DashboardAdminController {
 
     @GetMapping("/admin")
     public String redirectToDashboard(){
-        return "redirect:/admin/dashboard";
+        return "login/";
     }
 
     @GetMapping("/admin/dashboard")

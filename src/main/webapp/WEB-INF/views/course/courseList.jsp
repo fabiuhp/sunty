@@ -8,9 +8,9 @@
 </head>
     <body>
         <div class="container">
-            <h2>${subCategory}</h2>
+            <h2>${subCategory.name}</h2>
             <h1>Course</h1>
-            <a class="btn btn-primary" href="new">Novo curso</a>
+            <a class="btn btn-primary" href="/admin/courses/new">Novo curso</a>
             <table class="table table-bordered spacing">
                 <tr>
                     <th>Nome</th>
@@ -22,8 +22,8 @@
                     <tr>
                         <td>${course.name}</td>
                         <td>${course.urlCode}</td>
-                        <td>${course.visibility}</td>
-                        <td><a href="/admin/courses/${course.urlCode}">Editar</a></td>
+                        <td>${course.visibilityDisplayName}</td>
+                        <td><a href="/admin/courses/${categoryUrlCode}/${subCategory.name}/${course.urlCode}">Editar</a></td>
                     </tr>
                 </c:forEach>
                 <nav aria-label="Page navigation">

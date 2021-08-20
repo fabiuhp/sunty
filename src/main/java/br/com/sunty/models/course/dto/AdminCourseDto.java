@@ -1,4 +1,7 @@
-package br.com.sunty.models.course;
+package br.com.sunty.models.course.dto;
+
+import br.com.sunty.models.course.Course;
+import br.com.sunty.models.course.CourseVisibility;
 
 public class AdminCourseDto {
     private final String name;
@@ -21,9 +24,5 @@ public class AdminCourseDto {
 
     public CourseVisibility getVisibility() {
         return visibility;
-    }
-
-    public String getVisibilityDisplayName() {
-        return this.visibility.getDisplayName();
     }
 }

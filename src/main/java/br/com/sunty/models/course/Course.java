@@ -54,22 +54,16 @@ public class Course {
     }
 
     public Course(String name, String urlCode, int timeToFinishInHours, CourseVisibility visibility, String targetAudience, Instructor instructor, String syllabus, String developedSkills, SubCategory subCategory) {
-        notBlank(name);
-        notBlank(urlCode);
-        matchesPattern(urlCode, "[-a-z]+");
-        exclusiveBetween(MINIMUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH, timeToFinishInHours);
-        notNull(instructor);
-        notNull(subCategory);
-
-        this.name = name;
-        this.urlCode = urlCode;
-        this.timeToFinishInHours = timeToFinishInHours;
+        this(name, urlCode, timeToFinishInHours, instructor, subCategory);
         this.visibility = visibility;
         this.targetAudience = targetAudience;
-        this.instructor = instructor;
         this.syllabus = syllabus;
         this.developedSkills = developedSkills;
-        this.subCategory = subCategory;
+    }
+
+    public Course(Long id, String name, String urlCode, int timeToFinishInHours, CourseVisibility visibility, String targetAudience, Instructor instructor, String syllabus, String developedSkills, SubCategory subCategory) {
+        this(name, urlCode, timeToFinishInHours, visibility, targetAudience, instructor, syllabus, developedSkills, subCategory);
+        this.id = id;
     }
 
     public Long getId() {
@@ -154,6 +148,22 @@ public class Course {
 
     public boolean isPublic() {
         return visibility == CourseVisibility.PUBLICA;
+    }
+
+    public String getSubCategoryUrlCode() {
+        return this.subCategory.getUrlCode();
+    }
+
+    public String getCategoryUrlCode() {
+        return this.subCategory.getCategory().getUrlCode();
+    }
+
+    public Long getInstructorId() {
+        return this.getInstructor().getId();
+    }
+
+    public Long getSubCategoryId() {
+        return this.subCategory.getId();
     }
 
     @Override
