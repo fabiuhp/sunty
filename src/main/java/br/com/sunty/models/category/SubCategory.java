@@ -19,7 +19,7 @@ public class SubCategory {
     private String urlCode;
     private String shortDescription;
     private String guideText;
-    private boolean isActive;
+    private boolean active;
     private Integer orderToShow;
     @ManyToOne
     private Category category;
@@ -39,17 +39,17 @@ public class SubCategory {
         this.category = category;
     }
 
-    public SubCategory(String name, String urlCode, String shortDescription, boolean isActive, Integer orderToShow, Category category) {
+    public SubCategory(String name, String urlCode, String shortDescription, boolean active, Integer orderToShow, Category category) {
         this(name, urlCode, category);
         this.shortDescription = shortDescription;
-        this.isActive = isActive;
+        this.active = active;
         this.orderToShow = orderToShow;
     }
 
     public SubCategory(String name, String urlCode, String shortDescription, Boolean active, Integer orderToShow, String guideText, Category category) {
         this(name, urlCode, category);
         this.shortDescription = shortDescription;
-        this.isActive = active;
+        this.active = active;
         this.orderToShow = orderToShow;
         this.guideText = guideText;
     }
@@ -58,7 +58,7 @@ public class SubCategory {
         this(name, urlCode, category);
         this.id = id;
         this.shortDescription = shortDescription;
-        this.isActive = active;
+        this.active = active;
         this.orderToShow = orderToShow;
         this.guideText = guideText;
     }
@@ -104,11 +104,11 @@ public class SubCategory {
     }
 
     public boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     public Integer getOrderToShow() {
@@ -135,7 +135,7 @@ public class SubCategory {
                 ", urlCode='" + urlCode + '\'' +
                 ", shortDescription='" + shortDescription + '\'' +
                 ", guideText='" + guideText + '\'' +
-                ", isActive=" + isActive +
+                ", isActive=" + active +
                 ", order=" + orderToShow +
                 ", category=" + category +
                 '}';

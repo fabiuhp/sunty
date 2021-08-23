@@ -23,7 +23,7 @@ public class CategoryApiController {
     @GetMapping(value = "/api/categories", produces = { "application/json", "application/xml" })
     @Cacheable(value = "apiCategoriesList")
     public ResponseEntity<List<ApiCategoryDto>> findAll() {
-        List<Category> categories =  categoryRepository.findAllByIsActive(true);
+        List<Category> categories =  categoryRepository.findAllByActive(true);
         List<ApiCategoryDto> categoriesDto = categories.stream().map(ApiCategoryDto::new).toList();
         return ResponseEntity.ok(categoriesDto);
     }

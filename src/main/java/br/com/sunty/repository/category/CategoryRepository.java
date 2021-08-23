@@ -10,14 +10,14 @@ import java.util.Optional;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     Optional<Category> findByUrlCode(String urlCode);
 
-    List<Category> findAllByIsActive(boolean active);
+    List<Category> findAllByActive(boolean active);
 
     List<Category> findAllByOrderByName();
 
     @Query(value = """
             select distinct c from Category c
             join c.subCategoryList sc join sc.courseList course
-            where c.isActive = true and sc.isActive = true and course.visibility = 'PUBLICA'
+            where c.active = true and sc.active = true and course.visibility = 'PUBLICA'
             order by c.orderToShow
             """)
     List<Category> findActiveCategoriesWithActiveSubCategoriesAndPublicCourses();
@@ -26,8 +26,8 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
         SELECT DISTINCT c FROM Category c
         JOIN FETCH c.subCategoryList s
         JOIN s.courseList co
-        WHERE c.isActive = true
-        AND s.isActive = true
+        WHERE c.active = true
+        AND s.active = true
         AND co.visibility = 'PUBLICA'
         AND c.urlCode = :urlCode
         ORDER BY c.orderToShow, s.orderToShow
