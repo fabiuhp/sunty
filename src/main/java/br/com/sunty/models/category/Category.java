@@ -1,12 +1,13 @@
 package br.com.sunty.models.category;
 
+import org.springframework.util.Assert;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.Validate.matchesPattern;
-import static org.apache.commons.lang3.Validate.notBlank;
 
 @Entity
 @Table(name = "category")
@@ -31,9 +32,9 @@ public class Category {
     }
 
     public Category(String name, String urlCode) {
-        notBlank(urlCode);
+        Assert.hasText(urlCode, "{category.url.not.null}");
         matchesPattern(urlCode, "[-a-z]+");
-        notBlank(name);
+        Assert.hasText(name, "{category.name.not.null}");
 
         this.name = name;
         this.urlCode = urlCode;

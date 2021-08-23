@@ -1,12 +1,13 @@
 package br.com.sunty.models.category;
 
 import br.com.sunty.models.course.Course;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.apache.commons.lang3.Validate.*;
+import static org.apache.commons.lang3.Validate.matchesPattern;
 
 @Entity
 @Table(name = "sub_category")
@@ -29,10 +30,10 @@ public class SubCategory {
     public SubCategory(){}
 
     public SubCategory(String name, String urlCode, Category category) {
-        notBlank(urlCode);
+        Assert.hasText(urlCode, "{subcategory.url.not.null}");
         matchesPattern(urlCode, "[-a-z]+");
-        notBlank(name);
-        notNull(category);
+        Assert.hasText(name, "{subcategory.name.not.null}");
+        Assert.notNull(category, "{subcategory.category.not.null}");
 
         this.name = name;
         this.urlCode = urlCode;

@@ -2,10 +2,12 @@ package br.com.sunty.models.course;
 
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.instructor.Instructor;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 
-import static org.apache.commons.lang3.Validate.*;
+import static org.apache.commons.lang3.Validate.exclusiveBetween;
+import static org.apache.commons.lang3.Validate.matchesPattern;
 
 @Entity
 @Table(name = "course")
@@ -39,12 +41,12 @@ public class Course {
     public Course() {}
 
     public Course(String name, String urlCode, int timeToFinishInHours, Instructor instructor, SubCategory subCategory) {
-        notBlank(name);
-        notBlank(urlCode);
+        Assert.hasText(name, "{course.name.not.null}");
+        Assert.hasText(urlCode, "{course.url.not.null}");
         matchesPattern(urlCode, "[-a-z]+");
         exclusiveBetween(MINIMUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH, timeToFinishInHours);
-        notNull(instructor);
-        notNull(subCategory);
+        Assert.notNull(instructor, "{course.instructor.not.null}");
+        Assert.notNull(subCategory, "{course.category.not.null}");
 
         this.name = name;
         this.urlCode = urlCode;
