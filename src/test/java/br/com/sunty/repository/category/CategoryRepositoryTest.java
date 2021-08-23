@@ -35,9 +35,9 @@ class CategoryRepositoryTest {
         List<Category> categories = categoryRepository.findAllByActive(true);
 
         assertThat(categories)
-                .hasSize(3)
+                .hasSize(2)
                 .extracting(Category::getUrlCode)
-                .contains("devops", "programacao", "front-end");
+                .containsExactly("programacao", "devops");
     }
 
     @Test
@@ -45,9 +45,9 @@ class CategoryRepositoryTest {
         List<Category> categories = categoryRepository.findAllByOrderByName();
 
         assertThat(categories)
-                .hasSize(4)
+                .hasSize(3)
                 .extracting(Category::getUrlCode)
-                .containsSequence("business", "devops", "front-end", "programacao");
+                .containsSequence("business", "devops", "programacao");
     }
 
     @Test
@@ -55,9 +55,9 @@ class CategoryRepositoryTest {
         List<Category> categories = categoryRepository.findActiveCategoriesWithActiveSubCategoriesAndPublicCourses();
 
         assertThat(categories)
-                .hasSize(3)
+                .hasSize(2)
                 .extracting(Category::getUrlCode)
-                .contains("front-end", "devops", "programacao");
+                .contains("devops", "programacao");
     }
 
     @Test
@@ -74,7 +74,6 @@ class CategoryRepositoryTest {
         String inactiveCategory = "business";
 
         assertThatThrownBy(() -> categoryRepository.findCategoryActiveByUrlCode(inactiveCategory)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)))
-                .isInstanceOf(ResponseStatusException.class);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
     }
 }
