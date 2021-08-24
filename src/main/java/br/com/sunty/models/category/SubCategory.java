@@ -112,6 +112,14 @@ public class SubCategory {
         this.active = active;
     }
 
+    public void activate() {
+        this.active = true;
+    }
+
+    public void inactivate() {
+        this.active = false;
+    }
+
     public Integer getOrderToShow() {
         return orderToShow;
     }

@@ -108,6 +108,10 @@ public class Course {
         this.visibility = visibility;
     }
 
+    public void publicVisibility() {
+        this.visibility = CourseVisibility.PUBLICA;
+    }
+
     public String getTargetAudience() {
         return targetAudience;
     }
