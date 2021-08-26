@@ -20,6 +20,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -67,11 +68,16 @@ class CategoryRepositoryTest {
     @Test
     void shouldFindByUrlCode() {
         String categoryName = "devops";
-        Category category = categoryRepository.findByUrlCode(categoryName)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Optional<Category> category = categoryRepository.findByUrlCode(categoryName);
+        Optional<Category> category2 = categoryRepository.findByUrlCode("inexistente");
 
-        assertThat(category.getName())
+        assertThat(category.isPresent())
+                .isTrue();
+        assertThat(category.get())
+                .extracting(Category::getName)
                 .isEqualTo(categoryName);
+        assertThat(category2.isEmpty())
+                .isTrue();
     }
 
     @Test

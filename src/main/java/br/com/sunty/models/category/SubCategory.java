@@ -38,6 +38,7 @@ public class SubCategory {
         this.name = name;
         this.urlCode = urlCode;
         this.category = category;
+        category.addSubCategory(this);
     }
 
     public SubCategory(String name, String urlCode, String shortDescription, boolean active, Integer orderToShow, Category category) {
