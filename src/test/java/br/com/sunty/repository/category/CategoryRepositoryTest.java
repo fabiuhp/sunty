@@ -83,11 +83,16 @@ class CategoryRepositoryTest {
     @Test
     void shouldFindAllByActive() {
         List<Category> categories = categoryRepository.findAllByActive(true);
+        List<Category> categoriesInactives = categoryRepository.findAllByActive(false);
 
         assertThat(categories)
                 .hasSize(2)
                 .extracting(Category::getUrlCode)
                 .containsExactly("programacao", "devops");
+        assertThat(categoriesInactives)
+                .hasSize(1)
+                .extracting(Category::getUrlCode)
+                .containsExactly("business");
     }
 
     @Test
@@ -112,11 +117,11 @@ class CategoryRepositoryTest {
 
     @Test
     void shouldFindCategoryActiveByUrlCode() {
-        String activeCategory = "programacao";
-        Category category = categoryRepository.findCategoryActiveByUrlCode(activeCategory)
+        Category activeCategory = categoryRepository.findCategoryActiveByUrlCode("programacao")
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        assertThat(category).isNotNull();
+        assertThat(activeCategory)
+                .isNotNull();
     }
 
     @Test

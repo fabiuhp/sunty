@@ -25,6 +25,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -95,6 +96,12 @@ class CourseRepositoryTest {
     }
 
     @Test
+    void shouldNotFindByUrlCode() {
+        assertThatThrownBy(() -> courseRepository.findByUrlCode("erro")
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+    }
+
+    @Test
     void findAllBySubCategory_UrlCode() {
         PageRequest pageable = PageRequest.of(0, 5);
         Page<Course> courses = courseRepository.findAllBySubCategory_UrlCode("agil", pageable);
@@ -106,5 +113,15 @@ class CourseRepositoryTest {
                 .extracting(Course::getUrlCode)
                 .containsExactly("agil-basico");
 
+    }
+
+    @Test
+    void NotFindAllBySubCategory_UrlCode() {
+        PageRequest pageable = PageRequest.of(0, 5);
+        Page<Course> courses = courseRepository.findAllBySubCategory_UrlCode("erro", pageable);
+        List<Course> coursesList = courses.getContent();
+
+        assertThat(coursesList)
+                .isEmpty();
     }
 }

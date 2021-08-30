@@ -22,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -65,12 +66,25 @@ class SubCategoryRepositoryTest {
 
     @Test
     void shouldFindByUrlCode() {
-        String subCategoryName = "agil";
-        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryName)
+        SubCategory subCategory = subCategoryRepository.findByUrlCode("agil")
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         assertThat(subCategory.getUrlCode())
-                .isEqualTo(subCategoryName);
+                .isEqualTo("agil");
+    }
+
+    @Test
+    void shouldNotFindByUrlCode() {
+        assertThatThrownBy(() -> subCategoryRepository.findByUrlCode("erro")
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+    }
+
+    @Test
+    void shouldNotFindAllByCategoryUrlCode() {
+        List<SubCategory> subCategories = subCategoryRepository.findAllByCategoryUrlCode("erro");
+
+        assertThat(subCategories)
+                .isEmpty();
     }
 
     @Test
