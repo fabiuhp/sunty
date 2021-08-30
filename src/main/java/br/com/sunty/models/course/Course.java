@@ -2,6 +2,8 @@ package br.com.sunty.models.course;
 
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.instructor.Instructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import static org.apache.commons.lang3.Validate.matchesPattern;
 
 @Entity
 @Table(name = "course")
+@Data
+@NoArgsConstructor
 public class Course {
     public static final int MINIMUM_TIME_TO_FINISH = 1;
     public static final int MAXIMUM_TIME_TO_FINISH = 20;
@@ -37,8 +41,6 @@ public class Course {
 
     @ManyToOne
     private SubCategory subCategory;
-
-    public Course() {}
 
     public Course(String name, String urlCode, int timeToFinishInHours, Instructor instructor, SubCategory subCategory) {
         Assert.hasText(name, "{course.name.not.null}");
@@ -69,90 +71,6 @@ public class Course {
         this.id = id;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public void setUrlCode(String urlCode) {
-        this.urlCode = urlCode;
-    }
-
-    public Integer getTimeToFinishInHours() {
-        return timeToFinishInHours;
-    }
-
-    public void setTimeToFinishInHours(Integer timeToFinishInHours) {
-        this.timeToFinishInHours = timeToFinishInHours;
-    }
-
-    public CourseVisibility getVisibility() {
-        return visibility;
-    }
-
-    public void setVisibility(CourseVisibility visibility) {
-        this.visibility = visibility;
-    }
-
-    public void publicVisibility() {
-        this.visibility = CourseVisibility.PUBLICA;
-    }
-
-    public String getTargetAudience() {
-        return targetAudience;
-    }
-
-    public void setTargetAudience(String targetAudience) {
-        this.targetAudience = targetAudience;
-    }
-
-    public Instructor getInstructor() {
-        return instructor;
-    }
-
-    public void setInstructor(Instructor instructor) {
-        this.instructor = instructor;
-    }
-
-    public String getSyllabus() {
-        return syllabus;
-    }
-
-    public void setSyllabus(String syllabus) {
-        this.syllabus = syllabus;
-    }
-
-    public String getDevelopedSkills() {
-        return developedSkills;
-    }
-
-    public void setDevelopedSkills(String developedSkills) {
-        this.developedSkills = developedSkills;
-    }
-
-    public SubCategory getSubCategory() {
-        return subCategory;
-    }
-
-    public void setSubCategory(SubCategory subCategory) {
-        this.subCategory = subCategory;
-    }
-
     public boolean isPublic() {
         return visibility == CourseVisibility.PUBLICA;
     }
@@ -171,21 +89,5 @@ public class Course {
 
     public Long getSubCategoryId() {
         return this.subCategory.getId();
-    }
-
-    @Override
-    public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", urlCode='" + urlCode + '\'' +
-                ", timeToFinishInHours=" + timeToFinishInHours +
-                ", visibility=" + visibility +
-                ", targetAudience='" + targetAudience + '\'' +
-                ", instructor=" + instructor +
-                ", syllabus='" + syllabus + '\'' +
-                ", developedSkills='" + developedSkills + '\'' +
-                ", category=" + subCategory +
-                '}';
     }
 }

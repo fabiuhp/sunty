@@ -1,6 +1,7 @@
 package br.com.sunty.models.category;
 
 import br.com.sunty.models.course.Course;
+import lombok.Data;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import static org.apache.commons.lang3.Validate.matchesPattern;
 
 @Entity
 @Table(name = "sub_category")
+@Data
 public class SubCategory {
 
     @Id
@@ -65,76 +67,8 @@ public class SubCategory {
         this.guideText = guideText;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public void setUrlCode(String urlCode) {
-        this.urlCode = urlCode;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
-
-    public String getGuideText() {
-        return guideText;
-    }
-
-    public void setGuideText(String guideText) {
-        this.guideText = guideText;
-    }
-
-    public boolean getActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
     public void activate() {
         this.active = true;
-    }
-
-    public void inactivate() {
-        this.active = false;
-    }
-
-    public Integer getOrderToShow() {
-        return orderToShow;
-    }
-
-    public void setOrderToShow(Integer order) {
-        this.orderToShow = order;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     @Override
@@ -169,10 +103,6 @@ public class SubCategory {
 
     public String getCategoryName() {
         return this.category.getName();
-    }
-
-    public int totalTimeToFinishInHours() {
-        return courseList.stream().mapToInt(Course::getTimeToFinishInHours).sum();
     }
 
     public List<Course> getPublicCourses() {

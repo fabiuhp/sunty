@@ -1,6 +1,8 @@
 package br.com.sunty.models.alternative;
 
 import br.com.sunty.models.activity.Question;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -9,6 +11,8 @@ import static org.apache.commons.lang3.Validate.notNull;
 
 @Entity
 @Table(name = "alternative")
+@NoArgsConstructor
+@Data
 public class Alternative {
 
     @Id
@@ -28,68 +32,5 @@ public class Alternative {
         this.explanation = explanation;
         this.isCorrect = isCorrect;
         this.question = question;
-    }
-
-    public Alternative() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getExplanation() {
-        return explanation;
-    }
-
-    public void setExplanation(String explanation) {
-        this.explanation = explanation;
-    }
-
-    public Integer getOrderToShow() {
-        return orderToShow;
-    }
-
-    public void setOrderToShow(Integer order) {
-        this.orderToShow = order;
-    }
-
-    public boolean getCorrect() {
-        return isCorrect;
-    }
-
-    public void setCorrect(boolean correct) {
-        isCorrect = correct;
-    }
-
-    public String getJustification() {
-        return justification;
-    }
-
-    public void setJustification(String justification) {
-        this.justification = justification;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
-
-    @Override
-    public String toString() {
-        return "Alternative{" +
-                "id=" + id +
-                ", explanation='" + explanation + '\'' +
-                ", order=" + orderToShow +
-                ", isCorrect=" + isCorrect +
-                ", justification='" + justification + '\'' +
-                ", question=" + question +
-                '}';
     }
 }

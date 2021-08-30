@@ -1,6 +1,9 @@
 package br.com.sunty.models.activity;
 
 import br.com.sunty.models.section.Section;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,8 +12,11 @@ import javax.persistence.Table;
 
 import static org.apache.commons.lang3.Validate.notBlank;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "question")
+@Data
+@NoArgsConstructor
 public class Question extends Activity {
 
     private String description;
@@ -19,37 +25,9 @@ public class Question extends Activity {
 
     public Question(String name, String urlCode, Section section, String description, QuestionType questionType) {
         super(name, urlCode, section);
-
         notBlank(description);
 
         this.description = description;
         this.questionType = questionType;
-    }
-
-    public Question() {
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public QuestionType getQuestionType() {
-        return questionType;
-    }
-
-    public void setQuestionType(QuestionType questionType) {
-        this.questionType = questionType;
-    }
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "description='" + description + '\'' +
-                ", questionType=" + questionType +
-                '}';
     }
 }

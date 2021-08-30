@@ -1,5 +1,6 @@
 package br.com.sunty.models.category;
 
+import lombok.Data;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import static org.apache.commons.lang3.Validate.matchesPattern;
 
 @Entity
 @Table(name = "category")
+@Data
 public class Category {
 
     @Id
@@ -59,84 +61,8 @@ public class Category {
         this.id = id;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public void setUrlCode(String urlCode) {
-        this.urlCode = urlCode;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
-
-    public String getGuideText() {
-        return guideText;
-    }
-
-    public void setGuideText(String guideText) {
-        this.guideText = guideText;
-    }
-
-    public boolean getActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public void activate() {
-        active = true;
-    }
-
     public void inactivate() {
         active = false;
-    }
-
-    public Integer getOrderToShow() {
-        return orderToShow;
-    }
-
-    public void setOrderToShow(Integer order) {
-        this.orderToShow = order;
-    }
-
-    public String getPathImg() {
-        return pathImg;
-    }
-
-    public void setPathImg(String pathImg) {
-        this.pathImg = pathImg;
-    }
-
-    public String getHexHtmlColor() {
-        return hexHtmlColor;
-    }
-
-    public void setHexHtmlColor(String hexHtmlColor) {
-        this.hexHtmlColor = hexHtmlColor;
     }
 
     @Override
@@ -170,13 +96,5 @@ public class Category {
 
     public int getCoursesQuantity() {
         return subCategoryList.stream().mapToInt(SubCategory::numberOfCourses).sum();
-    }
-
-    public int getTotalTimeToFinishInHours() {
-        return subCategoryList.stream().mapToInt(SubCategory::totalTimeToFinishInHours).sum();
-    }
-
-    public void toggle() {
-        this.active = !active;
     }
 }
