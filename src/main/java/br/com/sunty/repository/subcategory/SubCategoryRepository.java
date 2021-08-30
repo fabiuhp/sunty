@@ -9,4 +9,9 @@ import java.util.Optional;
 public interface SubCategoryRepository extends JpaRepository<SubCategory, Long> {
     Optional<SubCategory> findByUrlCode(String urlCode);
     List<SubCategory> findAllByCategoryUrlCode(String categoryUrlCode);
+
+    boolean existsByUrlCodeAndIdNot(String urlCode, Long id);
+    boolean existsByUrlCode(String urlCode);
+    boolean existsByName(String name);
+    boolean existsByNameAndIdNot(String name, Long id);
 }

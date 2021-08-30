@@ -1,16 +1,15 @@
 package br.com.sunty.controller.category;
 
 import br.com.sunty.models.category.Category;
-import br.com.sunty.models.category.dto.category.AdminCategoryDto;
-import br.com.sunty.models.category.dto.category.AdminEditCategoryForm;
-import br.com.sunty.models.category.dto.category.AdminNewCategoryForm;
-import br.com.sunty.models.category.dto.category.ApiCategoryDetailsDto;
+import br.com.sunty.models.category.dto.category.*;
 import br.com.sunty.repository.category.CategoryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,9 +21,23 @@ import java.util.List;
 public class CategoryAdminController {
 
     private final CategoryRepository categoryRepository;
+    private final AdminNewCategoryFormValidator adminNewCategoryFormValidator;
+    private final AdminEditCategoryFormValidator adminEditCategoryFormValidator;
 
-    public CategoryAdminController(CategoryRepository categoryRepository) {
+    public CategoryAdminController(CategoryRepository categoryRepository, AdminNewCategoryFormValidator adminNewCategoryFormValidator, AdminEditCategoryFormValidator adminEditCategoryFormValidator) {
         this.categoryRepository = categoryRepository;
+        this.adminNewCategoryFormValidator = adminNewCategoryFormValidator;
+        this.adminEditCategoryFormValidator = adminEditCategoryFormValidator;
+    }
+
+    @InitBinder("adminNewCategoryForm")
+    void initBinderNew(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(adminNewCategoryFormValidator);
+    }
+
+    @InitBinder("adminEditCategoryForm")
+    void initBinderEdit(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(adminEditCategoryFormValidator);
     }
 
     @GetMapping("/{categoryCode:[a-z-]+}")
@@ -66,16 +79,16 @@ public class CategoryAdminController {
     }
 
     @GetMapping("/admin/categories/{urlCode}")
-    public String edit(@PathVariable String urlCode, Model model) {
+    public String edit(@PathVariable String urlCode, AdminEditCategoryForm adminEditCategoryForm,Model model) {
         Category category = categoryRepository.findByUrlCode(urlCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, urlCode));
 
-        model.addAttribute("category", category);
+        model.addAttribute("adminEditCategoryForm", new AdminEditCategoryForm(category));
         return "category/editCategoryForm";
     }
 
     @PostMapping("/admin/categories/{urlCode}")
-    public String update(@Valid AdminEditCategoryForm adminEditCategoryForm, BindingResult result, Model model) {
+    public String update(@PathVariable String urlCode, @Valid AdminEditCategoryForm adminEditCategoryForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "category/editCategoryForm";
         }

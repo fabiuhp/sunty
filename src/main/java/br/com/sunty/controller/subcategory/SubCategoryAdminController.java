@@ -3,17 +3,16 @@ package br.com.sunty.controller.subcategory;
 import br.com.sunty.models.category.Category;
 import br.com.sunty.models.category.SubCategory;
 import br.com.sunty.models.category.dto.category.AdminCategoryDto;
-import br.com.sunty.models.category.dto.subcategory.AdminEditSubCategoryForm;
-import br.com.sunty.models.category.dto.subcategory.AdminEditSubCategoryView;
-import br.com.sunty.models.category.dto.subcategory.AdminNewSubCategoryForm;
-import br.com.sunty.models.category.dto.subcategory.AdminSubCategoryDto;
+import br.com.sunty.models.category.dto.subcategory.*;
 import br.com.sunty.repository.category.CategoryRepository;
 import br.com.sunty.repository.subcategory.SubCategoryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,10 +25,31 @@ public class SubCategoryAdminController {
 
     private final SubCategoryRepository subCategoryRepository;
     private final CategoryRepository categoryRepository;
+    private final AdminNewSubCategoryFormValidator adminNewSubCategoryFormValidator;
+    private final AdminEditSubCategoryFormValidator adminEditSubCategoryFormValidator;
+    private final AdminEditSubCategoryViewValidator adminEditSubCategoryViewValidator;
 
-    public SubCategoryAdminController(SubCategoryRepository subCategoryRepository, CategoryRepository categoryRepository) {
+    public SubCategoryAdminController(SubCategoryRepository subCategoryRepository, CategoryRepository categoryRepository, AdminNewSubCategoryFormValidator adminNewSubCategoryFormValidator, AdminEditSubCategoryFormValidator adminEditSubCategoryFormValidator, AdminEditSubCategoryViewValidator adminEditSubCategoryViewValidator) {
         this.subCategoryRepository = subCategoryRepository;
         this.categoryRepository = categoryRepository;
+        this.adminNewSubCategoryFormValidator = adminNewSubCategoryFormValidator;
+        this.adminEditSubCategoryFormValidator = adminEditSubCategoryFormValidator;
+        this.adminEditSubCategoryViewValidator = adminEditSubCategoryViewValidator;
+    }
+
+    @InitBinder("adminNewSubCategoryForm")
+    void initBinderNew(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(adminNewSubCategoryFormValidator);
+    }
+
+    @InitBinder("adminEditSubCategoryForm")
+    void initBinderEdit(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(adminEditSubCategoryFormValidator);
+    }
+
+    @InitBinder("adminEditSubCategoryForm")
+    void initBinderEditView(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(adminEditSubCategoryViewValidator);
     }
 
     @GetMapping("/admin/subcategories/{categoryUrlCode}")

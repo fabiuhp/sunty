@@ -2,18 +2,20 @@ package br.com.sunty.models.category.dto.category;
 
 import br.com.sunty.models.category.Category;
 import br.com.sunty.models.category.dto.subcategory.ApiSubCategoryDto;
+import lombok.Value;
 
 import java.util.List;
 
+@Value
 public class ApiCategoryDto {
-    private final String name;
-    private final String urlCode;
-    private final String shortDescription;
-    private final String guideText;
-    private final Integer orderToShow;
-    private final String hexHtmlColor;
-    private final int totalCourses;
-    private final List<ApiSubCategoryDto> subCategories;
+    String name;
+    String urlCode;
+    String shortDescription;
+    String guideText;
+    Integer orderToShow;
+    String hexHtmlColor;
+    int totalCourses;
+    List<ApiSubCategoryDto> subCategories;
 
     public ApiCategoryDto(Category category) {
         this.name = category.getName();
@@ -24,30 +26,6 @@ public class ApiCategoryDto {
         this.hexHtmlColor = category.getHexHtmlColor();
         this.totalCourses = category.getCoursesQuantity();
         this.subCategories = category.getActiveSubCategoryList().stream().map(ApiSubCategoryDto::new).toList();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public Integer getOrderToShow() {
-        return orderToShow;
-    }
-
-    public String getHexHtmlColor() {
-        return hexHtmlColor;
-    }
-
-    public String getGuideText() {
-        return guideText;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
     }
 
     public int getTotalCourses() {

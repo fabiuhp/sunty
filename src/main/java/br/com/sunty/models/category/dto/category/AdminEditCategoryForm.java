@@ -1,42 +1,56 @@
 package br.com.sunty.models.category.dto.category;
 
 import br.com.sunty.models.category.Category;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AdminEditCategoryForm {
-    private final Long id;
+    private Long id;
+
     @NotBlank(message = "{category.name.not.null}")
     @Size(max = 255, message = "{category.name.size.max}")
-    private final String name;
+    private String name;
+
     @NotBlank(message = "{category.url.not.null}")
     @Size(max = 255, message = "{category.url.size.max}")
     @Pattern(regexp = "[a-z]+([a-z-]*)[a-z]", message = "{category.url.regex}")
-    private final String urlCode;
-    private final boolean active;
+    private String urlCode;
+
+    private boolean active;
+
     @Positive
-    private final Integer orderToShow;
-    private final String guideText;
+    private Integer orderToShow;
+
+    private String guideText;
+
     @Size(max = 255, message = "{category.pathImg.size.max}")
-    private final String pathImg;
+    private String pathImg;
+
     @Size(max = 7, message = "{category.hexHtmlColor.size.max}")
     @Pattern(regexp = "#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$", message = "{category.hexHtmlColor.regex}")
-    private final String hexHtmlColor;
-    private final String shortDescription;
+    private String hexHtmlColor;
 
-    public AdminEditCategoryForm(Long id, String name, String urlCode, boolean active, Integer orderToShow, String guideText, String pathImg, String hexHtmlColor, String shortDescription) {
-        this.id = id;
-        this.name = name;
-        this.urlCode = urlCode;
-        this.active = active;
-        this.orderToShow = orderToShow;
-        this.guideText = guideText;
-        this.pathImg = pathImg;
-        this.hexHtmlColor = hexHtmlColor;
-        this.shortDescription = shortDescription;
+    private String shortDescription;
+
+    public AdminEditCategoryForm(Category category) {
+        this.id = category.getId();
+        this.name = category.getName();
+        this.urlCode = category.getUrlCode();
+        this.active = category.getActive();
+        this.orderToShow = category.getOrderToShow();
+        this.guideText = category.getGuideText();
+        this.shortDescription = category.getShortDescription();
+        this.hexHtmlColor = category.getHexHtmlColor();
+        this.pathImg = category.getPathImg();
     }
 
     public Category toModel() {
@@ -51,41 +65,5 @@ public class AdminEditCategoryForm {
                 this.pathImg,
                 this.hexHtmlColor
         );
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public Integer getOrderToShow() {
-        return orderToShow;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public String getGuideText() {
-        return guideText;
-    }
-
-    public String getPathImg() {
-        return pathImg;
-    }
-
-    public String getHexHtmlColor() {
-        return hexHtmlColor;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
     }
 }

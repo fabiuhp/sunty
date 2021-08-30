@@ -33,4 +33,9 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
         ORDER BY c.orderToShow, s.orderToShow
         """)
     Optional<Category> findCategoryActiveByUrlCode(String urlCode);
+
+    boolean existsByUrlCodeAndIdNot(String urlCode, Long id);
+    boolean existsByUrlCode(String urlCode);
+    boolean existsByName(String name);
+    boolean existsByNameAndIdNot(String name, Long id);
 }

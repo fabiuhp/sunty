@@ -9,44 +9,43 @@
     <body>
        <div class="container cont">
            <h1 class="spacing">Editar categoria</h1>
-           <form action="/admin/categories/${category.urlCode}" method="post">
-               <input type="hidden" name="id" value="${category.id}">
+           <form action="/admin/categories/${adminEditCategoryForm.urlCode}" method="post">
+               <input type="hidden" name="id" value="${adminEditCategoryForm.id}">
                <div class="form-group">
                    <label>Nome</label>
-                   <input placeholder="Nome da categoria" class="form-control" type="text" name="name" value="${category.name}">
+                   <input placeholder="Nome da categoria" class="form-control" type="text" name="name" value="${adminEditCategoryForm.name}">
                    <form:errors path="adminEditCategoryForm.name" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Código</label>
-                   <input placeholder="Código da categoria" class="form-control" type="text" name="urlCode" value="${category.urlCode}">
+                   <input placeholder="Código da categoria" class="form-control" type="text" name="urlCode" value="${adminEditCategoryForm.urlCode}">
                    <form:errors path="adminEditCategoryForm.urlCode" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Descrição breve</label>
-                   <input placeholder="Descrição breve da categoria" class="form-control" type="text" name="shortDescription" value="${category.shortDescription}">
+                   <input placeholder="Descrição breve da categoria" class="form-control" type="text" name="shortDescription" value="${adminEditCategoryForm.shortDescription}">
                </div>
                <div class="form-group">
                    <label>Ativo?</label>
                    <select class="form-control" name="active" >
-                       <option value="Selecione">Selecione</option>
-                       <option value="true" ${category.active ? 'selected' : ''}>Ativo</option>
-                       <option value="false" ${category.active ? '' : 'selected'}>Inativo</option>
+                       <option value="true" ${adminEditCategoryForm.active ? 'selected' : ''}>Ativo</option>
+                       <option value="false" ${adminEditCategoryForm.active ? '' : 'selected'}>Inativo</option>
                    </select>
                    <form:errors path="adminEditCategoryForm.active" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Cor em hexadecimal</label>
-                   <input placeholder="Cor da categoria em hexadecimal" class="form-control" type="text" name="hexHtmlColor" value="${category.hexHtmlColor}">
+                   <input placeholder="Cor da categoria em hexadecimal" class="form-control" type="text" name="hexHtmlColor" value="${adminEditCategoryForm.hexHtmlColor}">
                    <form:errors path="adminEditCategoryForm.hexHtmlColor" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Ordem</label>
-                   <input placeholder="Ordem da categoria" class="form-control" type="text" name="orderToShow"  value="${category.orderToShow}">
+                   <input placeholder="Ordem da categoria" class="form-control" type="text" name="orderToShow"  value="${adminEditCategoryForm.orderToShow}">
                    <form:errors path="adminEditCategoryForm.orderToShow" cssClass="text-danger"/>
                </div>
                <div class="form-group">
                    <label>Local da imagem</label>
-                   <input placeholder="Local da imagem da categoria" class="form-control" type="text" name="pathImg" value="${category.pathImg}">
+                   <input placeholder="Local da imagem da categoria" class="form-control" type="text" name="pathImg" value="${adminEditCategoryForm.pathImg}">
                    <form:errors path="adminEditCategoryForm.pathImg" cssClass="text-danger"/>
                </div>
                <input class="btn btn-success" type="submit" value="Enviar">
