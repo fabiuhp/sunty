@@ -36,7 +36,7 @@
                </div>
                <div class="form-group">
                    <label>Guia de estudo</label>
-                   <textarea class="form-control" placeholder="Um texto apontando para formações  para ajudar pessoas perdidas" name="guideText" rows="3">${adminNewSubCategoryForm.name}</textarea>
+                   <textarea class="form-control" placeholder="Um texto apontando para formações  para ajudar pessoas perdidas" name="guideText" rows="3">${adminNewSubCategoryForm.guideText}</textarea>
                </div>
                <div class="form-group">
                    <label>Descrição</label>

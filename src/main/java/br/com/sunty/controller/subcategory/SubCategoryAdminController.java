@@ -27,14 +27,12 @@ public class SubCategoryAdminController {
     private final CategoryRepository categoryRepository;
     private final AdminNewSubCategoryFormValidator adminNewSubCategoryFormValidator;
     private final AdminEditSubCategoryFormValidator adminEditSubCategoryFormValidator;
-    private final AdminEditSubCategoryViewValidator adminEditSubCategoryViewValidator;
 
-    public SubCategoryAdminController(SubCategoryRepository subCategoryRepository, CategoryRepository categoryRepository, AdminNewSubCategoryFormValidator adminNewSubCategoryFormValidator, AdminEditSubCategoryFormValidator adminEditSubCategoryFormValidator, AdminEditSubCategoryViewValidator adminEditSubCategoryViewValidator) {
+    public SubCategoryAdminController(SubCategoryRepository subCategoryRepository, CategoryRepository categoryRepository, AdminNewSubCategoryFormValidator adminNewSubCategoryFormValidator, AdminEditSubCategoryFormValidator adminEditSubCategoryFormValidator) {
         this.subCategoryRepository = subCategoryRepository;
         this.categoryRepository = categoryRepository;
         this.adminNewSubCategoryFormValidator = adminNewSubCategoryFormValidator;
         this.adminEditSubCategoryFormValidator = adminEditSubCategoryFormValidator;
-        this.adminEditSubCategoryViewValidator = adminEditSubCategoryViewValidator;
     }
 
     @InitBinder("adminNewSubCategoryForm")
@@ -45,11 +43,6 @@ public class SubCategoryAdminController {
     @InitBinder("adminEditSubCategoryForm")
     void initBinderEdit(WebDataBinder webDataBinder) {
         webDataBinder.addValidators(adminEditSubCategoryFormValidator);
-    }
-
-    @InitBinder("adminEditSubCategoryForm")
-    void initBinderEditView(WebDataBinder webDataBinder) {
-        webDataBinder.addValidators(adminEditSubCategoryViewValidator);
     }
 
     @GetMapping("/admin/subcategories/{categoryUrlCode}")
@@ -67,12 +60,14 @@ public class SubCategoryAdminController {
     }
 
     @GetMapping("/admin/subcategories/{categoryCode}/{subcategoryCode}")
-    public String edit(@PathVariable String categoryCode, @PathVariable String subcategoryCode, Model model) {
-        AdminEditSubCategoryView adminSubCategoryDto = subCategoryRepository.findByUrlCode(subcategoryCode)
-                .map(AdminEditSubCategoryView::new)
+    public String edit(@PathVariable String categoryCode,
+                       @PathVariable String subcategoryCode,
+                       AdminEditSubCategoryForm adminEditSubCategoryForm,
+                       Model model) {
+        SubCategory subCategory = subCategoryRepository.findByUrlCode(subcategoryCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, subcategoryCode));
 
-        model.addAttribute("subCategory", adminSubCategoryDto);
+        model.addAttribute("adminEditSubCategoryForm", new AdminEditSubCategoryForm(subCategory));
         return "subcategory/editSubCategoryForm";
     }
 
@@ -87,7 +82,7 @@ public class SubCategoryAdminController {
     }
 
     @GetMapping("/admin/subcategories/new")
-    public String createForm(Model model) {
+    public String createForm(AdminNewSubCategoryForm adminNewSubCategoryForm, Model model) {
         List<Category> categories = categoryRepository.findAllByOrderByName();
         model.addAttribute("categories", categories);
         return "subcategory/newSubCategoryForm";
@@ -96,7 +91,7 @@ public class SubCategoryAdminController {
     @PostMapping("/admin/subcategories")
     public String create(@Valid AdminNewSubCategoryForm adminNewSubCategoryForm, BindingResult result, Model model) {
         if (result.hasErrors()){
-            return createForm(model);
+            return createForm(adminNewSubCategoryForm, model);
         }
         SubCategory subCategory = adminNewSubCategoryForm.toModel(categoryRepository);
         subCategoryRepository.save(subCategory);

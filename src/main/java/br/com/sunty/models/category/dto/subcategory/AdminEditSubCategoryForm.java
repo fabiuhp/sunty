@@ -36,6 +36,18 @@ public class AdminEditSubCategoryForm {
     private Long categoryId;
     private String categoryName;
 
+    public AdminEditSubCategoryForm(SubCategory subCategory) {
+        this.id = subCategory.getId();
+        this.name = subCategory.getName();
+        this.urlCode = subCategory.getUrlCode();
+        this.active = subCategory.getActive();
+        this.orderToShow = subCategory.getOrderToShow();
+        this.guideText = subCategory.getGuideText();
+        this.shortDescription = subCategory.getShortDescription();
+        this.categoryId = subCategory.getCategoryId();
+        this.categoryName = subCategory.getCategoryName();
+    }
+
     public SubCategory toModel(CategoryRepository categoryRepository) {
         Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

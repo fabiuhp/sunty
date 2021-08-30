@@ -1,6 +1,5 @@
 package br.com.sunty.models.course.dto;
 
-import br.com.sunty.models.category.dto.category.AdminNewCategoryForm;
 import br.com.sunty.repository.course.CourseRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -17,16 +16,16 @@ public class AdminNewCourseFormValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return AdminNewCategoryForm.class.isAssignableFrom(clazz);
+        return AdminNewCourseForm.class.isAssignableFrom(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        AdminNewCategoryForm adminNewCategoryForm = (AdminNewCategoryForm) target;
-        if (courseRepository.existsByUrlCode(adminNewCategoryForm.getUrlCode())){
+        AdminNewCourseForm adminNewCourseForm = (AdminNewCourseForm) target;
+        if (courseRepository.existsByUrlCode(adminNewCourseForm.getUrlCode())){
             errors.rejectValue("urlCode", "category.url.duplicated");
         }
-        if (courseRepository.existsByName(adminNewCategoryForm.getName())) {
+        if (courseRepository.existsByName(adminNewCourseForm.getName())) {
             errors.rejectValue("name", "category.name.duplicated");
         }
     }

@@ -23,7 +23,8 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     Optional<Course> findByUrlCode(String urlCode);
     Page<Course> findAllBySubCategory_UrlCode(String subCategoryUrlCode, Pageable pageable);
 
+    boolean existsByUrlCodeAndIdNot(String urlCode, Long id);
     boolean existsByUrlCode(String urlCode);
-
     boolean existsByName(String name);
+    boolean existsByNameAndIdNot(String name, Long id);
 }
