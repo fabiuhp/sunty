@@ -72,7 +72,11 @@ public class Course {
     }
 
     public boolean isPublic() {
-        return visibility == CourseVisibility.PUBLICA;
+        return CourseVisibility.PUBLICA.equals(visibility);
+    }
+
+    public void visibilityPublic() {
+        this.visibility = CourseVisibility.PUBLICA;
     }
 
     public String getSubCategoryUrlCode() {
