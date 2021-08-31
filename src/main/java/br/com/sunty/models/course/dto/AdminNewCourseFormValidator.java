@@ -23,10 +23,10 @@ public class AdminNewCourseFormValidator implements Validator {
     public void validate(Object target, Errors errors) {
         AdminNewCourseForm adminNewCourseForm = (AdminNewCourseForm) target;
         if (courseRepository.existsByUrlCode(adminNewCourseForm.getUrlCode())){
-            errors.rejectValue("urlCode", "category.url.duplicated");
+            errors.rejectValue("urlCode", "course.url.duplicated");
         }
         if (courseRepository.existsByName(adminNewCourseForm.getName())) {
-            errors.rejectValue("name", "category.name.duplicated");
+            errors.rejectValue("name", "course.name.duplicated");
         }
     }
 }

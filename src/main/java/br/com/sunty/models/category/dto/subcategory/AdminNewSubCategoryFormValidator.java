@@ -23,10 +23,10 @@ public class AdminNewSubCategoryFormValidator implements Validator {
     public void validate(Object target, Errors errors) {
         AdminNewSubCategoryForm adminNewSubCategoryForm = (AdminNewSubCategoryForm) target;
         if (subCategoryRepository.existsByUrlCode(adminNewSubCategoryForm.getUrlCode())){
-            errors.rejectValue("urlCode", "category.url.duplicated");
+            errors.rejectValue("urlCode", "subcategory.url.duplicated");
         }
         if (subCategoryRepository.existsByName(adminNewSubCategoryForm.getName())) {
-            errors.rejectValue("name", "category.name.duplicated");
+            errors.rejectValue("name", "subcategory.name.duplicated");
         }
     }
 }

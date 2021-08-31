@@ -22,10 +22,10 @@ public class AdminEditSubCategoryFormValidator implements Validator {
     public void validate(Object target, Errors errors) {
         AdminEditSubCategoryForm adminEditSubCategoryForm = (AdminEditSubCategoryForm) target;
         if (subCategoryRepository.existsByUrlCodeAndIdNot(adminEditSubCategoryForm.getUrlCode(), adminEditSubCategoryForm.getId())) {
-            errors.rejectValue("urlCode", "category.url.duplicated");
+            errors.rejectValue("urlCode", "subcategory.url.duplicated");
         }
         if (subCategoryRepository.existsByNameAndIdNot(adminEditSubCategoryForm.getName(), adminEditSubCategoryForm.getId())) {
-            errors.rejectValue("name", "category.name.duplicated");
+            errors.rejectValue("name", "subcategory.name.duplicated");
         }
     }
 }

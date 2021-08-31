@@ -22,7 +22,7 @@ public class AdminEditCourseFormValidator implements Validator {
     public void validate(Object target, Errors errors) {
         AdminEditCourseForm adminEditCourseForm = (AdminEditCourseForm) target;
         if (courseRepository.existsByUrlCodeAndIdNot(adminEditCourseForm.getUrlCode(), adminEditCourseForm.getId())) {
-            errors.rejectValue("urlCode", "category.url.duplicated");
+            errors.rejectValue("urlCode", "course.url.duplicated");
         }
         if (courseRepository.existsByNameAndIdNot(adminEditCourseForm.getName(), adminEditCourseForm.getId())) {
             errors.rejectValue("name", "course.name.duplicated");
