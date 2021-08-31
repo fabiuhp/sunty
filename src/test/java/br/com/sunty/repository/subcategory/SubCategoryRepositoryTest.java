@@ -15,15 +15,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -79,8 +76,10 @@ class SubCategoryRepositoryTest {
 
     @Test
     void shouldNotFindByUrlCode() {
-        assertThatThrownBy(() -> subCategoryRepository.findByUrlCode("erro")
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+        Optional<SubCategory> erro = subCategoryRepository.findByUrlCode("erro");
+
+        assertThat(erro.isEmpty())
+                .isTrue();
     }
 
     @Test
