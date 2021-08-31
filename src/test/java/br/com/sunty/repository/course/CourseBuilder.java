@@ -12,7 +12,7 @@ public class CourseBuilder {
     }
 
     public CourseBuilder publicVisibility() {
-        course.publicVisibility();
+        course.isPublic();
         return this;
     }
 

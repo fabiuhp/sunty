@@ -14,6 +14,6 @@ public class AdminCategoryDto {
         this.name = category.getName();
         this.urlCode = category.getUrlCode();
         this.orderToShow = category.getOrderToShow();
-        this.active = category.getActive();
+        this.active = category.isActive();
     }
 }

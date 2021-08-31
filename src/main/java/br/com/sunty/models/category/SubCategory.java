@@ -71,20 +71,6 @@ public class SubCategory {
         this.active = true;
     }
 
-    @Override
-    public String toString() {
-        return "SubCategory{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", urlCode='" + urlCode + '\'' +
-                ", shortDescription='" + shortDescription + '\'' +
-                ", guideText='" + guideText + '\'' +
-                ", isActive=" + active +
-                ", order=" + orderToShow +
-                ", category=" + category +
-                '}';
-    }
-
     public void addCourse(Course course) {
         this.courseList.add(course);
     }

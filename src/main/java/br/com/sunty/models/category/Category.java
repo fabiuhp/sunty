@@ -65,28 +65,13 @@ public class Category {
         active = false;
     }
 
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", urlCode='" + urlCode + '\'' +
-                ", shortDescription='" + shortDescription + '\'' +
-                ", guideText='" + guideText + '\'' +
-                ", isActive=" + active +
-                ", order=" + orderToShow +
-                ", pathImg='" + pathImg + '\'' +
-                ", hexHtmlColor='" + hexHtmlColor + '\'' +
-                '}';
-    }
-
     public void addSubCategory(SubCategory subCategory) {
         this.subCategoryList.add(subCategory);
     }
 
     public List<SubCategory> getActiveSubCategoryList() {
         return subCategoryList.stream()
-                .filter(SubCategory::getActive)
+                .filter(SubCategory::isActive)
                 .collect(Collectors.toList());
     }
 

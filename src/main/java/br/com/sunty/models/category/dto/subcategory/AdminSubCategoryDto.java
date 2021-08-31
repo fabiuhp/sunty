@@ -14,7 +14,7 @@ public class AdminSubCategoryDto {
     public AdminSubCategoryDto(SubCategory subCategory) {
         this.name = subCategory.getName();
         this.urlCode = subCategory.getUrlCode();
-        this.active = subCategory.getActive();
+        this.active = subCategory.isActive();
         this.orderToShow = subCategory.getOrderToShow();
     }
 }

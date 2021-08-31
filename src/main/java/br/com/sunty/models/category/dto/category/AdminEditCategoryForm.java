@@ -45,7 +45,7 @@ public class AdminEditCategoryForm {
         this.id = category.getId();
         this.name = category.getName();
         this.urlCode = category.getUrlCode();
-        this.active = category.getActive();
+        this.active = category.isActive();
         this.orderToShow = category.getOrderToShow();
         this.guideText = category.getGuideText();
         this.shortDescription = category.getShortDescription();
