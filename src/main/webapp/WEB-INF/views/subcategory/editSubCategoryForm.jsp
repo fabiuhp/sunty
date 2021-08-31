@@ -1,14 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-    <head>
-        <title>Lista de categorias</title>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
-    </head>
-    <body>
-       <div class="container cont">
+<%@taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
+
+<templates:subcategory-template>
            <h1 class="spacing">Editar subcategoria</h1>
            <form action="/admin/subcategories/{categoryCode}/{subcategoryCode}" method="post">
                <input type="hidden" name="id" value="${adminEditSubCategoryForm.id}">
@@ -51,6 +46,4 @@
                </div>
                <input class="btn btn-success" type="submit" value="Enviar">
            </form>
-       </div>
-      </body>
-</html>
+</templates:subcategory-template>

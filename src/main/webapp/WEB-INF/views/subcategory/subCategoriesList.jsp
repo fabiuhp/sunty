@@ -1,13 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Lista de subcategorias</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
-</head>
-    <body>
-        <div class="container">
+<%@taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
+
+<templates:subcategory-template>
             <h2>${category.name}</h2>
             <h1>SubCategorias</h1>
             <a class="btn btn-primary" href="new">Nova Subcategoria</a>
@@ -29,6 +24,4 @@
                     </tr>
                 </c:forEach>
             </table>
-        </div>
-    </body>
-</html>
+</templates:subcategory-template>

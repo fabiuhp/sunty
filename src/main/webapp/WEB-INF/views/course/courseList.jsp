@@ -1,13 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Lista de cursos</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
-</head>
-    <body>
-        <div class="container">
+<%@taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
+
+<templates:course-template>
             <h2>${subCategory.name}</h2>
             <h1>Course</h1>
             <a class="btn btn-primary" href="/admin/courses/new">Novo curso</a>
@@ -34,6 +29,4 @@
                     </ul>
                 </nav>
             </table>
-        </div>
-    </body>
-</html>
+</templates:course-template>

@@ -1,13 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<html>
-    <head>
-        <title>Nova categorias</title>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
-    </head>
-    <body>
-       <div class="container cont">
+<%@taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
+
+<templates:category-template>
            <h1 class="spacing">Nova categoria</h1>
            <form action="/admin/categories" method="post">
                <div class="form-group">
@@ -53,6 +48,4 @@
                </div>
                <input class="btn btn-success" type="submit" value="Enviar">
            </form>
-       </div>
-    </body>
-</html>
+</templates:category-template>
