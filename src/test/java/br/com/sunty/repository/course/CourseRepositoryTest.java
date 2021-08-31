@@ -23,6 +23,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -89,10 +90,13 @@ class CourseRepositoryTest {
 
     @Test
     void findByUrlCode() {
-        Course course = courseRepository.findByUrlCode("agil-basico")
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Optional<Course> course = courseRepository.findByUrlCode("agil-basico");
+        assertThat(course.isPresent())
+                .isTrue();
 
-        assertThat(course).isNotNull();
+        assertThat(course.get())
+                .extracting(Course::getUrlCode)
+                .isEqualTo("agil-basico");
     }
 
     @Test

@@ -20,6 +20,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -66,10 +67,13 @@ class SubCategoryRepositoryTest {
 
     @Test
     void shouldFindByUrlCode() {
-        SubCategory subCategory = subCategoryRepository.findByUrlCode("agil")
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Optional<SubCategory> subCategory = subCategoryRepository.findByUrlCode("agil");
 
-        assertThat(subCategory.getUrlCode())
+        assertThat(subCategory.isPresent())
+                .isTrue();
+
+        assertThat(subCategory.get())
+                .extracting(SubCategory::getUrlCode)
                 .isEqualTo("agil");
     }
 
