@@ -117,11 +117,13 @@ class CategoryRepositoryTest {
 
     @Test
     void shouldFindCategoryActiveByUrlCode() {
-        Category activeCategory = categoryRepository.findCategoryActiveByUrlCode("programacao")
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Optional<Category> activeCategory = categoryRepository.findCategoryActiveByUrlCode("programacao");
 
-        assertThat(activeCategory)
-                .isNotNull();
+        assertThat(activeCategory.isPresent())
+                .isTrue();
+        assertThat(activeCategory.get())
+                .extracting(Category::getUrlCode)
+                .isEqualTo("programacao");
     }
 
     @Test
