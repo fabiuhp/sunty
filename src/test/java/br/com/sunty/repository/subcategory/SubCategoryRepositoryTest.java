@@ -15,11 +15,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -65,12 +64,30 @@ class SubCategoryRepositoryTest {
 
     @Test
     void shouldFindByUrlCode() {
-        String subCategoryName = "agil";
-        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryName)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Optional<SubCategory> subCategory = subCategoryRepository.findByUrlCode("agil");
 
-        assertThat(subCategory.getUrlCode())
-                .isEqualTo(subCategoryName);
+        assertThat(subCategory.isPresent())
+                .isTrue();
+
+        assertThat(subCategory.get())
+                .extracting(SubCategory::getUrlCode)
+                .isEqualTo("agil");
+    }
+
+    @Test
+    void shouldNotFindByUrlCode() {
+        Optional<SubCategory> erro = subCategoryRepository.findByUrlCode("erro");
+
+        assertThat(erro.isEmpty())
+                .isTrue();
+    }
+
+    @Test
+    void shouldNotFindAllByCategoryUrlCode() {
+        List<SubCategory> subCategories = subCategoryRepository.findAllByCategoryUrlCode("erro");
+
+        assertThat(subCategories)
+                .isEmpty();
     }
 
     @Test

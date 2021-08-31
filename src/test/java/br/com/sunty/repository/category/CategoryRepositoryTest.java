@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -83,11 +82,16 @@ class CategoryRepositoryTest {
     @Test
     void shouldFindAllByActive() {
         List<Category> categories = categoryRepository.findAllByActive(true);
+        List<Category> categoriesInactives = categoryRepository.findAllByActive(false);
 
         assertThat(categories)
                 .hasSize(2)
                 .extracting(Category::getUrlCode)
                 .containsExactly("programacao", "devops");
+        assertThat(categoriesInactives)
+                .hasSize(1)
+                .extracting(Category::getUrlCode)
+                .containsExactly("business");
     }
 
     @Test
@@ -112,12 +116,12 @@ class CategoryRepositoryTest {
 
     @Test
     void shouldFindCategoryActiveByUrlCode() {
-        Optional<Category> category = categoryRepository.findCategoryActiveByUrlCode("programacao");
+        Optional<Category> activeCategory = categoryRepository.findCategoryActiveByUrlCode("programacao");
 
-        assertThat(category.isPresent())
+        assertThat(activeCategory.isPresent())
                 .isTrue();
-        assertThat(category.get())
-                .extracting(Category::getName)
+        assertThat(activeCategory.get())
+                .extracting(Category::getUrlCode)
                 .isEqualTo("programacao");
     }
 
@@ -125,7 +129,9 @@ class CategoryRepositoryTest {
     void shouldNotFindCategoryActiveByUrlCode() {
         String inactiveCategory = "business";
 
-        assertThatThrownBy(() -> categoryRepository.findCategoryActiveByUrlCode(inactiveCategory)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+        Optional<Category> category = categoryRepository.findCategoryActiveByUrlCode(inactiveCategory);
+
+        assertThat(category.isEmpty())
+                .isTrue();
     }
 }

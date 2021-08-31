@@ -79,16 +79,6 @@ class CategoryApiControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 
-//    @Test
-//    void shouldFindAllActiveCategoriesXML() throws Exception {
-//        URI uri = new URI("/api/categories");
-//
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .get(uri)
-//                        .contentType(MediaType.APPLICATION_XML))
-//                .andExpect(status().isOk());
-//    }
-
     @Test
     void clearCache() throws Exception {
         URI uri = new URI("/api/bGltcGEtby1jYWNoZS1kYS1hcGktYWU");

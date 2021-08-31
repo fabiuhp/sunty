@@ -18,11 +18,10 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -88,10 +87,21 @@ class CourseRepositoryTest {
 
     @Test
     void findByUrlCode() {
-        Course course = courseRepository.findByUrlCode("agil-basico")
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Optional<Course> course = courseRepository.findByUrlCode("agil-basico");
+        assertThat(course.isPresent())
+                .isTrue();
 
-        assertThat(course).isNotNull();
+        assertThat(course.get())
+                .extracting(Course::getUrlCode)
+                .isEqualTo("agil-basico");
+    }
+
+    @Test
+    void shouldNotFindByUrlCode() {
+        Optional<Course> course = courseRepository.findByUrlCode("erro");
+
+        assertThat(course.isEmpty())
+                .isTrue();
     }
 
     @Test
@@ -106,5 +116,15 @@ class CourseRepositoryTest {
                 .extracting(Course::getUrlCode)
                 .containsExactly("agil-basico");
 
+    }
+
+    @Test
+    void NotFindAllBySubCategory_UrlCode() {
+        PageRequest pageable = PageRequest.of(0, 5);
+        Page<Course> courses = courseRepository.findAllBySubCategory_UrlCode("erro", pageable);
+        List<Course> coursesList = courses.getContent();
+
+        assertThat(coursesList)
+                .isEmpty();
     }
 }
