@@ -1,12 +1,13 @@
 package br.com.sunty.models.category;
 
 import br.com.sunty.models.course.Course;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.apache.commons.lang3.Validate.*;
+import static org.apache.commons.lang3.Validate.matchesPattern;
 
 @Entity
 @Table(name = "sub_category")
@@ -19,7 +20,7 @@ public class SubCategory {
     private String urlCode;
     private String shortDescription;
     private String guideText;
-    private boolean isActive;
+    private boolean active;
     private Integer orderToShow;
     @ManyToOne
     private Category category;
@@ -29,27 +30,28 @@ public class SubCategory {
     public SubCategory(){}
 
     public SubCategory(String name, String urlCode, Category category) {
-        notBlank(urlCode);
+        Assert.hasText(urlCode, "{subcategory.url.not.null}");
         matchesPattern(urlCode, "[-a-z]+");
-        notBlank(name);
-        notNull(category);
+        Assert.hasText(name, "{subcategory.name.not.null}");
+        Assert.notNull(category, "{subcategory.category.not.null}");
 
         this.name = name;
         this.urlCode = urlCode;
         this.category = category;
+        category.addSubCategory(this);
     }
 
-    public SubCategory(String name, String urlCode, String shortDescription, boolean isActive, Integer orderToShow, Category category) {
+    public SubCategory(String name, String urlCode, String shortDescription, boolean active, Integer orderToShow, Category category) {
         this(name, urlCode, category);
         this.shortDescription = shortDescription;
-        this.isActive = isActive;
+        this.active = active;
         this.orderToShow = orderToShow;
     }
 
     public SubCategory(String name, String urlCode, String shortDescription, Boolean active, Integer orderToShow, String guideText, Category category) {
         this(name, urlCode, category);
         this.shortDescription = shortDescription;
-        this.isActive = active;
+        this.active = active;
         this.orderToShow = orderToShow;
         this.guideText = guideText;
     }
@@ -58,7 +60,7 @@ public class SubCategory {
         this(name, urlCode, category);
         this.id = id;
         this.shortDescription = shortDescription;
-        this.isActive = active;
+        this.active = active;
         this.orderToShow = orderToShow;
         this.guideText = guideText;
     }
@@ -104,11 +106,19 @@ public class SubCategory {
     }
 
     public boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        this.active = active;
+    }
+
+    public void activate() {
+        this.active = true;
+    }
+
+    public void inactivate() {
+        this.active = false;
     }
 
     public Integer getOrderToShow() {
@@ -135,7 +145,7 @@ public class SubCategory {
                 ", urlCode='" + urlCode + '\'' +
                 ", shortDescription='" + shortDescription + '\'' +
                 ", guideText='" + guideText + '\'' +
-                ", isActive=" + isActive +
+                ", isActive=" + active +
                 ", order=" + orderToShow +
                 ", category=" + category +
                 '}';

@@ -1,12 +1,13 @@
 package br.com.sunty.models.category;
 
+import org.springframework.util.Assert;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.Validate.matchesPattern;
-import static org.apache.commons.lang3.Validate.notBlank;
 
 @Entity
 @Table(name = "category")
@@ -19,7 +20,7 @@ public class Category {
     private String urlCode;
     private String shortDescription;
     private String guideText;
-    private boolean isActive = true;
+    private boolean active = true;
     private Integer orderToShow;
     private String pathImg;
     private String hexHtmlColor;
@@ -31,30 +32,30 @@ public class Category {
     }
 
     public Category(String name, String urlCode) {
-        notBlank(urlCode);
+        Assert.hasText(urlCode, "{category.url.not.null}");
         matchesPattern(urlCode, "[-a-z]+");
-        notBlank(name);
+        Assert.hasText(name, "{category.name.not.null}");
 
         this.name = name;
         this.urlCode = urlCode;
     }
 
-    public Category(String name, String urlCode, String shortDescription, boolean isActive, Integer orderToShow, String pathImg, String hexHtmlColor) {
+    public Category(String name, String urlCode, String shortDescription, boolean active, Integer orderToShow, String pathImg, String hexHtmlColor) {
         this(name, urlCode);
         this.shortDescription = shortDescription;
-        this.isActive = isActive;
+        this.active = active;
         this.orderToShow = orderToShow;
         this.pathImg = pathImg;
         this.hexHtmlColor = hexHtmlColor;
     }
 
-    public Category(String name, String urlCode, String shortDescription, String guideText, boolean isActive, Integer orderToShow, String pathImg, String hexHtmlColor) {
-        this(name, urlCode, shortDescription, isActive, orderToShow, pathImg, hexHtmlColor);
+    public Category(String name, String urlCode, String shortDescription, String guideText, boolean active, Integer orderToShow, String pathImg, String hexHtmlColor) {
+        this(name, urlCode, shortDescription, active, orderToShow, pathImg, hexHtmlColor);
         this.guideText = guideText;
     }
 
-    public Category(Long id, String name, String urlCode, String shortDescription, String guideText, boolean isActive, Integer orderToShow, String pathImg, String hexHtmlColor) {
-        this(name, urlCode, shortDescription, guideText, isActive, orderToShow, pathImg, hexHtmlColor);
+    public Category(Long id, String name, String urlCode, String shortDescription, String guideText, boolean active, Integer orderToShow, String pathImg, String hexHtmlColor) {
+        this(name, urlCode, shortDescription, guideText, active, orderToShow, pathImg, hexHtmlColor);
         this.id = id;
     }
 
@@ -99,19 +100,19 @@ public class Category {
     }
 
     public boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     public void activate() {
-        isActive = true;
+        active = true;
     }
 
     public void inactivate() {
-        isActive = false;
+        active = false;
     }
 
     public Integer getOrderToShow() {
@@ -146,7 +147,7 @@ public class Category {
                 ", urlCode='" + urlCode + '\'' +
                 ", shortDescription='" + shortDescription + '\'' +
                 ", guideText='" + guideText + '\'' +
-                ", isActive=" + isActive +
+                ", isActive=" + active +
                 ", order=" + orderToShow +
                 ", pathImg='" + pathImg + '\'' +
                 ", hexHtmlColor='" + hexHtmlColor + '\'' +
@@ -176,6 +177,6 @@ public class Category {
     }
 
     public void toggle() {
-        this.isActive = !isActive;
+        this.active = !active;
     }
 }
