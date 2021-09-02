@@ -9,9 +9,9 @@ import static org.mockito.Mockito.*;
 
 class AdminEditSubCategoryFormValidatorTest {
 
-    @Test
-    void shouldFailWithDuplicatedName() {
-        AdminEditSubCategoryForm form = new AdminEditSubCategoryForm(
+
+    private AdminEditSubCategoryForm getAdminEditSubCategoryForm() {
+        return new AdminEditSubCategoryForm(
                 1L,
                 "SubCategoria",
                 "sub-categoria",
@@ -22,6 +22,11 @@ class AdminEditSubCategoryFormValidatorTest {
                 1L,
                 "Categoria"
         );
+    }
+
+    @Test
+    void shouldFailWithDuplicatedName() {
+        AdminEditSubCategoryForm form = getAdminEditSubCategoryForm();
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);
         when(repository.existsByNameAndIdNot("SubCategoria", 1L)).thenReturn(true);
@@ -35,17 +40,7 @@ class AdminEditSubCategoryFormValidatorTest {
 
     @Test
     void shouldPassWithDifferentName() {
-        AdminEditSubCategoryForm form = new AdminEditSubCategoryForm(
-                1L,
-                "SubCategoria",
-                "sub-categoria",
-                true,
-                1,
-                "Texto Guia",
-                "Texto guia",
-                1L,
-                "Categoria"
-        );
+        AdminEditSubCategoryForm form = getAdminEditSubCategoryForm();
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);
 
@@ -58,17 +53,7 @@ class AdminEditSubCategoryFormValidatorTest {
 
     @Test
     void shouldFailWithDuplicatedUrlCode() {
-        AdminEditSubCategoryForm form = new AdminEditSubCategoryForm(
-                1L,
-                "SubCategoria",
-                "sub-categoria",
-                true,
-                1,
-                "Texto Guia",
-                "Texto guia",
-                1L,
-                "Categoria"
-        );
+        AdminEditSubCategoryForm form = getAdminEditSubCategoryForm();
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);
         when(repository.existsByUrlCodeAndIdNot("sub-categoria", 1L)).thenReturn(true);
@@ -82,17 +67,7 @@ class AdminEditSubCategoryFormValidatorTest {
 
     @Test
     void shouldPassWithDifferentUrlCode() {
-        AdminEditSubCategoryForm form = new AdminEditSubCategoryForm(
-                1L,
-                "SubCategoria",
-                "sub-categoria",
-                true,
-                1,
-                "Texto Guia",
-                "Texto guia",
-                1L,
-                "Categoria"
-        );
+        AdminEditSubCategoryForm form = getAdminEditSubCategoryForm();
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);
 
