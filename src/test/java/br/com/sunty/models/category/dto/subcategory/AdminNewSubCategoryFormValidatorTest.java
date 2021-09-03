@@ -37,15 +37,7 @@ class AdminNewSubCategoryFormValidatorTest {
 
     @Test
     void validate__should_pass_with_different_name() {
-        AdminNewSubCategoryForm form = new AdminNewSubCategoryForm(
-                "SubCategoria",
-                "sub-categoria",
-                true,
-                1,
-                "Texto guia",
-                "descricao curta",
-                1L
-        );
+        AdminNewSubCategoryForm form = getAdminNewSubCategoryForm();
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);
 
@@ -58,15 +50,7 @@ class AdminNewSubCategoryFormValidatorTest {
 
     @Test
     void validate__should_fail_with_duplicated_urlCode() {
-        AdminNewSubCategoryForm form = new AdminNewSubCategoryForm(
-                "SubCategoria",
-                "sub-categoria",
-                true,
-                1,
-                "Texto guia",
-                "descricao curta",
-                1L
-        );
+        AdminNewSubCategoryForm form = getAdminNewSubCategoryForm();
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);
         when(repository.existsByUrlCode("sub-categoria")).thenReturn(true);
@@ -80,15 +64,7 @@ class AdminNewSubCategoryFormValidatorTest {
 
     @Test
     void validate__should_pass_with_different_urlCode() {
-        AdminNewSubCategoryForm form = new AdminNewSubCategoryForm(
-                "SubCategoria",
-                "sub-categoria",
-                true,
-                1,
-                "Texto guia",
-                "descricao curta",
-                1L
-        );
+        AdminNewSubCategoryForm form = getAdminNewSubCategoryForm();
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);
 
