@@ -3,6 +3,7 @@ package br.com.sunty.controller.category;
 import br.com.sunty.models.category.Category;
 import br.com.sunty.models.category.dto.category.*;
 import br.com.sunty.repository.category.CategoryRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,17 +19,12 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class CategoryAdminController {
 
     private final CategoryRepository categoryRepository;
     private final AdminNewCategoryFormValidator adminNewCategoryFormValidator;
     private final AdminEditCategoryFormValidator adminEditCategoryFormValidator;
-
-    public CategoryAdminController(CategoryRepository categoryRepository, AdminNewCategoryFormValidator adminNewCategoryFormValidator, AdminEditCategoryFormValidator adminEditCategoryFormValidator) {
-        this.categoryRepository = categoryRepository;
-        this.adminNewCategoryFormValidator = adminNewCategoryFormValidator;
-        this.adminEditCategoryFormValidator = adminEditCategoryFormValidator;
-    }
 
     @InitBinder("adminNewCategoryForm")
     void initBinderNew(WebDataBinder webDataBinder) {

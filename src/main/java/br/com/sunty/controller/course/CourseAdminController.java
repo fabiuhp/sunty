@@ -12,6 +12,7 @@ import br.com.sunty.models.instructor.Instructor;
 import br.com.sunty.repository.course.CourseRepository;
 import br.com.sunty.repository.instructor.InstructorRepository;
 import br.com.sunty.repository.subcategory.SubCategoryRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -32,20 +33,13 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Controller
+@AllArgsConstructor
 public class CourseAdminController {
     private final CourseRepository courseRepository;
     private final SubCategoryRepository subCategoryRepository;
     private final InstructorRepository instructorRepository;
     private final AdminNewCourseFormValidator adminNewCourseFormValidator;
     private final AdminEditCourseFormValidator adminEditCourseFormValidator;
-
-    public CourseAdminController(CourseRepository courseRepository, SubCategoryRepository subCategoryRepository, InstructorRepository instructorRepository, AdminNewCourseFormValidator adminNewCourseFormValidator, AdminEditCourseFormValidator adminEditCourseFormValidator) {
-        this.courseRepository = courseRepository;
-        this.subCategoryRepository = subCategoryRepository;
-        this.instructorRepository = instructorRepository;
-        this.adminNewCourseFormValidator = adminNewCourseFormValidator;
-        this.adminEditCourseFormValidator = adminEditCourseFormValidator;
-    }
 
     @InitBinder("adminNewCourseForm")
     void initBinderNew(WebDataBinder webDataBinder) {

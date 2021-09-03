@@ -6,6 +6,7 @@ import br.com.sunty.models.category.dto.category.AdminCategoryDto;
 import br.com.sunty.models.category.dto.subcategory.*;
 import br.com.sunty.repository.category.CategoryRepository;
 import br.com.sunty.repository.subcategory.SubCategoryRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,19 +22,13 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class SubCategoryAdminController {
 
     private final SubCategoryRepository subCategoryRepository;
     private final CategoryRepository categoryRepository;
     private final AdminNewSubCategoryFormValidator adminNewSubCategoryFormValidator;
     private final AdminEditSubCategoryFormValidator adminEditSubCategoryFormValidator;
-
-    public SubCategoryAdminController(SubCategoryRepository subCategoryRepository, CategoryRepository categoryRepository, AdminNewSubCategoryFormValidator adminNewSubCategoryFormValidator, AdminEditSubCategoryFormValidator adminEditSubCategoryFormValidator) {
-        this.subCategoryRepository = subCategoryRepository;
-        this.categoryRepository = categoryRepository;
-        this.adminNewSubCategoryFormValidator = adminNewSubCategoryFormValidator;
-        this.adminEditSubCategoryFormValidator = adminEditSubCategoryFormValidator;
-    }
 
     @InitBinder("adminNewSubCategoryForm")
     void initBinderNew(WebDataBinder webDataBinder) {
