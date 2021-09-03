@@ -3,7 +3,6 @@ package br.com.sunty.models.category;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SubCategoryTest {
     Category category = new Category("React", "react");
@@ -67,7 +66,7 @@ public class SubCategoryTest {
         assertEquals("abc", subCategory.getName());
         assertEquals("abc-abc", subCategory.getUrlCode());
         assertEquals("abc description", subCategory.getShortDescription());
-        assertTrue(subCategory.getActive());
+        assertTrue(subCategory.isActive());
         assertEquals(1, subCategory.getOrderToShow());
         assertEquals(category.getName(), subCategory.getCategory().getName());
         assertEquals(category.getUrlCode(), subCategory.getCategory().getUrlCode());

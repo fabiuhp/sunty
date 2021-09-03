@@ -1,13 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Lista de categorias</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
- </head>
-    <body>
-        <div class="container">
+
+<templates:category-template>
             <h1>Categorias</h1>
             <a class="btn btn-primary" href="categories/new">Nova Categoria</a>
             <table class="table table-bordered spacing">
@@ -28,6 +23,4 @@
                     </tr>
                 </c:forEach>
             </table>
-        </div>
-    </body>
-</html>
+</templates:category-template>

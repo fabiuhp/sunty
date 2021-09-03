@@ -56,7 +56,7 @@ public class CategoryTest {
         assertEquals("abc", category.getName());
         assertEquals("abc-abc", category.getUrlCode());
         assertEquals("abc description", category.getShortDescription());
-        assertTrue(category.getActive());
+        assertTrue(category.isActive());
         assertEquals(1, category.getOrderToShow());
         assertEquals("abc/path", category.getPathImg());
         assertEquals("#abc123", category.getHexHtmlColor());

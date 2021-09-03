@@ -5,12 +5,14 @@ import br.com.sunty.models.category.dto.subcategory.AdminSubCategoryDto;
 import br.com.sunty.models.course.AdminCourseDto;
 import br.com.sunty.models.course.Course;
 import br.com.sunty.models.course.dto.AdminEditCourseForm;
-import br.com.sunty.models.course.dto.AdminEditCourseView;
+import br.com.sunty.models.course.dto.AdminEditCourseFormValidator;
 import br.com.sunty.models.course.dto.AdminNewCourseForm;
+import br.com.sunty.models.course.dto.AdminNewCourseFormValidator;
 import br.com.sunty.models.instructor.Instructor;
 import br.com.sunty.repository.course.CourseRepository;
 import br.com.sunty.repository.instructor.InstructorRepository;
 import br.com.sunty.repository.subcategory.SubCategoryRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -18,7 +20,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
@@ -29,17 +33,23 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Controller
+@AllArgsConstructor
 public class CourseAdminController {
     private final CourseRepository courseRepository;
     private final SubCategoryRepository subCategoryRepository;
     private final InstructorRepository instructorRepository;
+    private final AdminNewCourseFormValidator adminNewCourseFormValidator;
+    private final AdminEditCourseFormValidator adminEditCourseFormValidator;
 
-    public CourseAdminController(CourseRepository courseRepository, SubCategoryRepository subCategoryRepository, InstructorRepository instructorRepository) {
-        this.courseRepository = courseRepository;
-        this.subCategoryRepository = subCategoryRepository;
-        this.instructorRepository = instructorRepository;
+    @InitBinder("adminNewCourseForm")
+    void initBinderNew(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(adminNewCourseFormValidator);
     }
 
+    @InitBinder("adminEditCourseForm")
+    void initBinderEdit(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(adminEditCourseFormValidator);
+    }
 
     @GetMapping("/admin/courses/{categoryUrlCode}/{subcategoryUrlCode}")
     public String findAll(@PathVariable String subcategoryUrlCode,
@@ -91,32 +101,30 @@ public class CourseAdminController {
                        @PathVariable String subcategoryUrlCode,
                        @PathVariable String courseCode,
                        Model model) {
-        AdminEditCourseView adminEditCourseView = courseRepository.findByUrlCode(courseCode)
-                .map(AdminEditCourseView::new)
+        Course course = courseRepository.findByUrlCode(courseCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, courseCode));
         List<Instructor> instructors = instructorRepository.findAll();
-        Instructor instructor = instructorRepository.findById(adminEditCourseView.getInstructorId())
+        Instructor instructor = instructorRepository.findById(course.getInstructorId())
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
         List<SubCategory> subCategories = subCategoryRepository.findAll();
-        SubCategory subCategory = subCategoryRepository.findById(adminEditCourseView.getSubCategoryId())
+        SubCategory subCategory = subCategoryRepository.findById(course.getSubCategoryId())
                 .orElseThrow(()-> new ResponseStatusException(NOT_FOUND));
 
-        model.addAttribute("course", adminEditCourseView);
+        model.addAttribute("adminEditCourseForm", new AdminEditCourseForm(course));
         model.addAttribute("subCategories", subCategories);
-        model.addAttribute("subCategory", subCategory);
         model.addAttribute("instructors", instructors);
-        model.addAttribute("instructor", instructor);
         model.addAttribute("subcategory", subcategoryUrlCode);
         model.addAttribute("category", categoryUrlCode);
         return "course/editCourseForm";
     }
 
     @PostMapping("/admin/courses/{category}/{subcategory}/{course}")
-    public String update(@Valid AdminEditCourseForm adminEditCourseForm,
-                         @PathVariable("category") String categoryUrlCode,
+    public String update(@PathVariable("category") String categoryUrlCode,
                          @PathVariable("subcategory") String subcategoryUrlCode,
                          @PathVariable("course") String courseUrlCode,
-                         BindingResult result, Model model) {
+                         @Valid AdminEditCourseForm adminEditCourseForm,
+                         BindingResult result,
+                         Model model) {
         if (result.hasErrors()){
             return "course/editCourseForm";
         }

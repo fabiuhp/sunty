@@ -4,6 +4,7 @@ import br.com.sunty.models.course.CourseProjection;
 import br.com.sunty.models.instructor.InstructorProjection;
 import br.com.sunty.repository.course.CourseRepository;
 import br.com.sunty.repository.instructor.InstructorRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,15 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class DashboardAdminController {
 
     private final InstructorRepository instructorRepository;
     private final CourseRepository courseRepository;
-
-    public DashboardAdminController(InstructorRepository instructorRepository, CourseRepository courseRepository) {
-        this.instructorRepository = instructorRepository;
-        this.courseRepository = courseRepository;
-    }
 
     @GetMapping("/admin")
     public String redirectToDashboard(){
