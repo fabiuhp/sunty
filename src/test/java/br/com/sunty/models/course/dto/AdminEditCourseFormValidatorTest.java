@@ -11,7 +11,7 @@ import static org.mockito.Mockito.*;
 class AdminEditCourseFormValidatorTest {
 
     @Test
-    void shouldFailWithDuplicatedName() {
+    void validate__should_fail_with_duplicated_name() {
         AdminEditCourseForm form = new AdminEditCourseForm(
                 1L,
                 "Course",
@@ -36,7 +36,7 @@ class AdminEditCourseFormValidatorTest {
     }
 
     @Test
-    void shouldPassWithDifferentName() {
+    void validate__should_pass_with_different_name() {
         AdminEditCourseForm form = new AdminEditCourseForm(
                 1L,
                 "Course",
@@ -60,7 +60,7 @@ class AdminEditCourseFormValidatorTest {
     }
 
     @Test
-    void shouldFailWithDuplicatedUrlCode() {
+    void validate__should_fail_with_duplicated_urlCode() {
         AdminEditCourseForm form = new AdminEditCourseForm(
                 1L,
                 "Course",
@@ -85,7 +85,7 @@ class AdminEditCourseFormValidatorTest {
     }
 
     @Test
-    void shouldPassWithDifferentUrlCode() {
+    void validate__should_pass_with_different_urlCode() {
         AdminEditCourseForm form = new AdminEditCourseForm(
                 1L,
                 "Course",

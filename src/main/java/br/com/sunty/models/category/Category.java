@@ -65,6 +65,18 @@ public class Category {
         active = false;
     }
 
+    public void activate() {
+        active = true;
+    }
+
+    public int getTotalTimeToFinishInHours() {
+        return subCategoryList.stream().mapToInt(SubCategory::totalTimeToFinishInHours).sum();
+    }
+
+    public void toggle() {
+        this.active = !active;
+    }
+
     public void addSubCategory(SubCategory subCategory) {
         this.subCategoryList.add(subCategory);
     }

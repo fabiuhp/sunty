@@ -25,7 +25,7 @@ class AdminEditSubCategoryFormValidatorTest {
     }
 
     @Test
-    void shouldFailWithDuplicatedName() {
+    void validate__should_fail_with_duplicated_name() {
         AdminEditSubCategoryForm form = getAdminEditSubCategoryForm();
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);
@@ -39,7 +39,7 @@ class AdminEditSubCategoryFormValidatorTest {
     }
 
     @Test
-    void shouldPassWithDifferentName() {
+    void validate__should_pass_with_different_name() {
         AdminEditSubCategoryForm form = getAdminEditSubCategoryForm();
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);
@@ -52,7 +52,7 @@ class AdminEditSubCategoryFormValidatorTest {
     }
 
     @Test
-    void shouldFailWithDuplicatedUrlCode() {
+    void validate__should_fail_with_duplicated_urlCode() {
         AdminEditSubCategoryForm form = getAdminEditSubCategoryForm();
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);
@@ -66,7 +66,7 @@ class AdminEditSubCategoryFormValidatorTest {
     }
 
     @Test
-    void shouldPassWithDifferentUrlCode() {
+    void validate__should_pass_with_different_urlCode() {
         AdminEditSubCategoryForm form = getAdminEditSubCategoryForm();
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);

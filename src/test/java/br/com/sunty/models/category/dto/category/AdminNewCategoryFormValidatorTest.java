@@ -9,7 +9,7 @@ import static org.mockito.Mockito.*;
 class AdminNewCategoryFormValidatorTest {
 
     @Test
-    void shouldFailWithDuplicatedName() {
+    void validate__should_fail_with_duplicated_name() {
         AdminNewCategoryForm adminNewCategoryForm = new AdminNewCategoryForm(
                 "Categoria",
                 "categoria",
@@ -32,7 +32,7 @@ class AdminNewCategoryFormValidatorTest {
     }
 
     @Test
-    void shouldPassWithDifferentName() {
+    void validate__should_pass_with_different_name() {
         AdminNewCategoryForm adminNewCategoryForm = new AdminNewCategoryForm(
                 "Categoria",
                 "categoria",
@@ -54,7 +54,7 @@ class AdminNewCategoryFormValidatorTest {
     }
 
     @Test
-    void shouldFailWithDuplicatedUrlCode() {
+    void validate__should_fail_with_duplicated_urlCode() {
         AdminNewCategoryForm adminNewCategoryForm = new AdminNewCategoryForm(
                 "Categoria",
                 "categoria",
@@ -77,7 +77,7 @@ class AdminNewCategoryFormValidatorTest {
     }
 
     @Test
-    void shouldPassWithDifferentUrlCode() {
+    void validate__should_pass_with_different_urlCode() {
         AdminNewCategoryForm adminNewCategoryForm = new AdminNewCategoryForm(
                 "Categoria",
                 "categoria",

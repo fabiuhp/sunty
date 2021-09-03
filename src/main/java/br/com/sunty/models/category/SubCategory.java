@@ -71,6 +71,14 @@ public class SubCategory {
         this.active = true;
     }
 
+    public void inactivate() {
+        this.active = false;
+    }
+
+    public int totalTimeToFinishInHours() {
+        return courseList.stream().mapToInt(Course::getTimeToFinishInHours).sum();
+    }
+
     public void addCourse(Course course) {
         this.courseList.add(course);
     }

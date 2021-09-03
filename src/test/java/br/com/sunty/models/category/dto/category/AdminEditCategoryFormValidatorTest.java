@@ -10,7 +10,7 @@ import static org.mockito.Mockito.*;
 class AdminEditCategoryFormValidatorTest {
 
     @Test
-    void shouldFailWithDuplicatedName() {
+    void validate__should_fail_with_duplicated_name() {
         AdminEditCategoryForm form = new AdminEditCategoryForm(
                 1L,
                 "Categoria",
@@ -34,7 +34,7 @@ class AdminEditCategoryFormValidatorTest {
     }
 
     @Test
-    void shouldPassWithDifferentName() {
+    void validate__should_pass_with_different_name() {
         AdminEditCategoryForm form = new AdminEditCategoryForm(
                 1L,
                 "Categoria",
@@ -57,7 +57,7 @@ class AdminEditCategoryFormValidatorTest {
     }
 
     @Test
-    void shouldFailWithDuplicatedUrlCode() {
+    void validate__should_fail_with_duplicated_urlCode() {
         AdminEditCategoryForm form = new AdminEditCategoryForm(
                 1L,
                 "Categoria",
@@ -81,7 +81,7 @@ class AdminEditCategoryFormValidatorTest {
     }
 
     @Test
-    void shouldPassWithDifferentUrlCode() {
+    void validate__should_pass_with_different_urlCode() {
         AdminEditCategoryForm form = new AdminEditCategoryForm(
                 1L,
                 "Categoria",
