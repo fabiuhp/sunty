@@ -8,9 +8,8 @@ import static org.mockito.Mockito.*;
 
 class AdminNewCategoryFormValidatorTest {
 
-    @Test
-    void validate__should_fail_with_duplicated_name() {
-        AdminNewCategoryForm adminNewCategoryForm = new AdminNewCategoryForm(
+    private AdminNewCategoryForm getAdminNewCategoryForm() {
+        return new AdminNewCategoryForm(
                 "Categoria",
                 "categoria",
                 true,
@@ -20,6 +19,11 @@ class AdminNewCategoryFormValidatorTest {
                 "#123456",
                 "descricao curta"
         );
+    }
+
+    @Test
+    void validate__should_fail_with_duplicated_name() {
+        AdminNewCategoryForm adminNewCategoryForm = getAdminNewCategoryForm();
 
         CategoryRepository repository = mock(CategoryRepository.class);
         when(repository.existsByName("Categoria")).thenReturn(true);
@@ -33,16 +37,7 @@ class AdminNewCategoryFormValidatorTest {
 
     @Test
     void validate__should_pass_with_different_name() {
-        AdminNewCategoryForm adminNewCategoryForm = new AdminNewCategoryForm(
-                "Categoria",
-                "categoria",
-                true,
-                1,
-                "Texto guia",
-                "C:",
-                "#123456",
-                "descricao curta"
-        );
+        AdminNewCategoryForm adminNewCategoryForm = getAdminNewCategoryForm();
 
         CategoryRepository repository = mock(CategoryRepository.class);
 
@@ -55,16 +50,7 @@ class AdminNewCategoryFormValidatorTest {
 
     @Test
     void validate__should_fail_with_duplicated_urlCode() {
-        AdminNewCategoryForm adminNewCategoryForm = new AdminNewCategoryForm(
-                "Categoria",
-                "categoria",
-                true,
-                1,
-                "Texto guia",
-                "C:",
-                "#123456",
-                "descricao curta"
-        );
+        AdminNewCategoryForm adminNewCategoryForm = getAdminNewCategoryForm();
 
         CategoryRepository repository = mock(CategoryRepository.class);
         when(repository.existsByUrlCode("categoria")).thenReturn(true);
@@ -78,16 +64,7 @@ class AdminNewCategoryFormValidatorTest {
 
     @Test
     void validate__should_pass_with_different_urlCode() {
-        AdminNewCategoryForm adminNewCategoryForm = new AdminNewCategoryForm(
-                "Categoria",
-                "categoria",
-                true,
-                1,
-                "Texto guia",
-                "C:",
-                "#123456",
-                "descricao curta"
-        );
+        AdminNewCategoryForm adminNewCategoryForm = getAdminNewCategoryForm();
 
         CategoryRepository repository = mock(CategoryRepository.class);
 

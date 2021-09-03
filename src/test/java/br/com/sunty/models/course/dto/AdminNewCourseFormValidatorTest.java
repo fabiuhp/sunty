@@ -10,9 +10,8 @@ import static org.mockito.Mockito.*;
 
 class AdminNewCourseFormValidatorTest {
 
-    @Test
-    void validate__should_fail_with_duplicated_name() {
-        AdminNewCourseForm form = new AdminNewCourseForm(
+    private AdminNewCourseForm getAdminNewCourseForm() {
+        return new AdminNewCourseForm(
                 "Course",
                 "course",
                 2,
@@ -23,6 +22,11 @@ class AdminNewCourseFormValidatorTest {
                 "Skills desenvolvidas",
                 1L
         );
+    }
+
+    @Test
+    void validate__should_fail_with_duplicated_name() {
+        AdminNewCourseForm form = getAdminNewCourseForm();
 
         CourseRepository repository = mock(CourseRepository.class);
         when(repository.existsByName("Course")).thenReturn(true);
@@ -36,18 +40,7 @@ class AdminNewCourseFormValidatorTest {
 
     @Test
     void validate__should_pass_with_different_name() {
-        AdminNewCourseForm form = new AdminNewCourseForm(
-                "Course",
-                "course",
-                2,
-                CourseVisibility.PUBLICA,
-                "Publico alvo",
-                1L,
-                "Roteiro",
-                "Skills desenvolvidas",
-                1L
-        );
-
+        AdminNewCourseForm form = getAdminNewCourseForm();
 
         CourseRepository repository = mock(CourseRepository.class);
 
@@ -60,18 +53,7 @@ class AdminNewCourseFormValidatorTest {
 
     @Test
     void validate__should_fail_with_duplicated_urlCode() {
-        AdminNewCourseForm form = new AdminNewCourseForm(
-                "Course",
-                "course",
-                2,
-                CourseVisibility.PUBLICA,
-                "Publico alvo",
-                1L,
-                "Roteiro",
-                "Skills desenvolvidas",
-                1L
-        );
-
+        AdminNewCourseForm form = getAdminNewCourseForm();
 
         CourseRepository repository = mock(CourseRepository.class);
         when(repository.existsByUrlCode("course")).thenReturn(true);
@@ -85,17 +67,7 @@ class AdminNewCourseFormValidatorTest {
 
     @Test
     void validate__should_pass_with_different_urlCode() {
-        AdminNewCourseForm form = new AdminNewCourseForm(
-                "Course",
-                "course",
-                2,
-                CourseVisibility.PUBLICA,
-                "Publico alvo",
-                1L,
-                "Roteiro",
-                "Skills desenvolvidas",
-                1L
-        );
+        AdminNewCourseForm form = getAdminNewCourseForm();
 
         CourseRepository repository = mock(CourseRepository.class);
 

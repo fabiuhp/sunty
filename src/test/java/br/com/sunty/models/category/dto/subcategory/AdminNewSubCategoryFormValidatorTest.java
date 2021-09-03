@@ -9,9 +9,8 @@ import static org.mockito.Mockito.*;
 
 class AdminNewSubCategoryFormValidatorTest {
 
-    @Test
-    void validate__should_fail_with_duplicated_name() {
-        AdminNewSubCategoryForm form = new AdminNewSubCategoryForm(
+    private AdminNewSubCategoryForm getAdminNewSubCategoryForm() {
+        return new AdminNewSubCategoryForm(
                 "SubCategoria",
                 "sub-categoria",
                 true,
@@ -20,6 +19,11 @@ class AdminNewSubCategoryFormValidatorTest {
                 "descricao curta",
                 1L
         );
+    }
+
+    @Test
+    void validate__should_fail_with_duplicated_name() {
+        AdminNewSubCategoryForm form = getAdminNewSubCategoryForm();
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);
         when(repository.existsByName("SubCategoria")).thenReturn(true);

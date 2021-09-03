@@ -40,7 +40,7 @@ class AdminEditSubCategoryFormValidatorTest {
 
     @Test
     void validate__should_pass_with_different_name() {
-        AdminEditSubCategoryForm form = getAdminEditSubCategoryForm();
+        AdminEditSubCategoryForm form = mock(AdminEditSubCategoryForm.class);
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);
 
@@ -67,7 +67,7 @@ class AdminEditSubCategoryFormValidatorTest {
 
     @Test
     void validate__should_pass_with_different_urlCode() {
-        AdminEditSubCategoryForm form = getAdminEditSubCategoryForm();
+        AdminEditSubCategoryForm form = mock(AdminEditSubCategoryForm.class);
 
         SubCategoryRepository repository = mock(SubCategoryRepository.class);
 
